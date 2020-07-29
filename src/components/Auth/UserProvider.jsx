@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import apiHandler from "../../api/apiHandler";
+import authApiHandler from "../../api/";
 import UserContext from "./UserContext";
 
 class UserProvider extends Component {
@@ -10,7 +10,7 @@ class UserProvider extends Component {
   };
 
   componentDidMount() {
-    apiHandler
+    authApiHandler
       .isLoggedIn()
       .then((data) => {
         this.setState({ user: data, isLoggedIn: true, isLoading: false });

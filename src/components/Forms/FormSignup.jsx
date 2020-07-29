@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
-import apiHandler from "../../api/apiHandler";
+import authApiHandler from "../../api/authApiHandler";
 
 class FormSignup extends Component {
   static contextType = UserContext;
@@ -27,7 +27,7 @@ class FormSignup extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    apiHandler
+    authApiHandler
       .signup(this.state)
       .then((data) => {
         this.context.setUser(data);

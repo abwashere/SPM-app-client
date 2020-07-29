@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const service = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL,
+  baseURL: process.env.REACT_APP_BACKEND_URL + "/api/auth",
   withCredentials: true, // Cookie is sent to client when using this service. (used for session)
 });
 
@@ -18,28 +18,42 @@ export default {
 
   signup(userInfo) {
     return service
-      .post("/api/auth/signup", userInfo)
+      .post("/signup/player", userInfo)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
-  signin(userInfo) {
+  signup(clubInfo) {
     return service
-      .post("/api/auth/signin", userInfo)
+      .post("/signup/club", clubInfo)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  signin(player) {
+    return service
+      .post("/signin/player", player)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  signin(club) {
+    return service
+      .post("/signin/club", club)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
   isLoggedIn() {
     return service
-      .get("/api/auth/isLoggedIn")
+      .get("/isLoggedIn")
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
   logout() {
     return service
-      .get("/api/auth/logout")
+      .get("/logout")
       .then((res) => res.data)
       .catch(errorHandler);
   },

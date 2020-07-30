@@ -16,9 +16,9 @@ function errorHandler(error) {
 export default {
   service,
 
-  signup(userInfo) {
+  signup(playerInfo) {
     return service
-      .post("/signup/player", userInfo)
+      .post("/signup/player", playerInfo)
       .then((res) => res.data)
       .catch(errorHandler);
   },

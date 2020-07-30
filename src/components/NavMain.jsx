@@ -20,36 +20,39 @@ const NavMain = (props) => {
   }
 
   return (
-    <nav className="NavMain">
-      <NavLink exact to="/">
-        <h3 className="logo">App name</h3>
-      </NavLink>
-      <ul className="nav-list">
-        {context.isLoggedIn && (
-          <React.Fragment>
-            <li>
-              <NavLink to="/profile">
-                {context.user && context.user.email}
-              </NavLink>
-            </li>
-            <li>
-              <p onClick={handleLogout}>Logout</p>
-            </li>
-          </React.Fragment>
-        )}
-        {!context.isLoggedIn && (
-          <React.Fragment>
-            <li>
-              <NavLink to="/signin">Log in</NavLink>
-            </li>
-            <li>
-              <NavLink to="/signup">Create account</NavLink>
-            </li>
-          </React.Fragment>
-        )}
-      </ul>
-    </nav>
-  );
+		<nav className="NavMain">
+			<NavLink exact to="/">
+				<h3 className="logo">Spm</h3>
+			</NavLink>
+			<ul className="nav-list">
+				<li>
+					<NavLink to="/search">Trouver un club</NavLink>
+				</li>
+				{context.isLoggedIn && (
+					<React.Fragment>
+						<li>
+							<NavLink to="/account">
+								{context.user && context.user.email}
+							</NavLink>
+						</li>
+						<li>
+							<p onClick={handleLogout}>Se déconnecter</p>
+						</li>
+					</React.Fragment>
+				)}
+				{!context.isLoggedIn && (
+					<React.Fragment>
+						<li>
+							<NavLink to="/signin">Se connecter</NavLink>
+						</li>
+						<li>
+							<NavLink to="/signup">S'inscrire</NavLink>
+						</li>
+					</React.Fragment>
+				)}
+			</ul>
+		</nav>
+	);
 };
 
 export default withUser(NavMain);

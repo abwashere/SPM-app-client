@@ -10,6 +10,11 @@ html {
   font-family: "Manrope", sans-serif;
 }
 
+.App {
+  position: relative;
+  height: 100vh;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -17,4 +22,13 @@ a {
 
 ul {
   list-style-type: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.col {
+  flex-direction: column;
+  justify-content: space-around;
 }

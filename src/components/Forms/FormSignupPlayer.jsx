@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
 import authApiHandler from "../../api/authApiHandler";
+import "bulma/css/bulma.css";
 
-class FormSignup extends Component {
+
+class FormSignupPlayer extends Component {
   static contextType = UserContext;
 
   state = {
@@ -28,7 +30,7 @@ class FormSignup extends Component {
     event.preventDefault();
 
     authApiHandler
-      .signup(this.state)
+      .signupPlayer(this.state)
       .then((data) => {
         this.context.setUser(data);
         this.props.history.push("/");
@@ -51,4 +53,4 @@ class FormSignup extends Component {
   }
 }
 
-export default withRouter(FormSignup);
+export default withRouter(FormSignupPlayer);

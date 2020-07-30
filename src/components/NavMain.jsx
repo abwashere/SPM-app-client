@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
-import authApiHandler from "../api/";
+import authApiHandler from "./../api/authApiHandler";
 
 import "../styles/NavMain.css";
 

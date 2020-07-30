@@ -16,28 +16,28 @@ function errorHandler(error) {
 export default {
   service,
 
-  signup(playerInfo) {
+  signupPlayer(playerInfo) {
     return service
       .post("/signup/player", playerInfo)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
-  signup(clubInfo) {
+  signupClub(clubInfo) {
     return service
       .post("/signup/club", clubInfo)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
-  signin(player) {
+  signinPlayer(player) {
     return service
       .post("/signin/player", player)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
-  signin(club) {
+  signinClub(club) {
     return service
       .post("/signin/club", club)
       .then((res) => res.data)

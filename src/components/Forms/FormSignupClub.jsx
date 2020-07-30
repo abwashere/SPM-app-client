@@ -6,7 +6,7 @@ import LocationAutoComplete from "./../LocationAutoComplete";
 // import ImageWithPreview from "./ImagePreview";
 
 import "bulma/css/bulma.css";
-import "./../../styles/FormSignUpClub.css";
+import "./../../styles/FormSignUp.css";
 
 class FormSignupClub extends Component {
 	static contextType = UserContext;
@@ -75,7 +75,7 @@ class FormSignupClub extends Component {
 
 	render() {
 		return (
-			<div className="FormSignupClub">
+			<div className="FormSignup">
 				<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
 					<div className="field">
 						<label className="label">Email</label>
@@ -168,7 +168,7 @@ class FormSignupClub extends Component {
 								className="input"
 								type="text"
 								name="foundedYear"
-								defaultValue="tataz.com"
+								defaultValue="2020"
 							/>
 						</div>
 					</div>
@@ -179,7 +179,7 @@ class FormSignupClub extends Component {
 								className="input"
 								type="text"
 								name="subscriptionFee"
-								defaultValue="tataz.com"
+								defaultValue="100 ou 150€ annuel, 15€ mensuel"
 							/>
 						</div>
 					</div>
@@ -210,7 +210,7 @@ class FormSignupClub extends Component {
 						</label>
 					</div>
 
-					<div className="field" id="btn-signup">
+					<div className="field btn-signup">
 						<div className="control">
 							<button className="button is-link">C'est fait !</button>
 						</div>

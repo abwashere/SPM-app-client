@@ -1,0 +1,20 @@
+.FormSignup {
+	width: 50%;
+}
+
+.FormSignUp .btn-signup,
+.FormSignUp .form-section-bottom,
+.Signup .content {
+	margin: 5% auto 0;
+	text-align: center;
+}
+
+.Signup .radio-inputs {
+	margin-bottom: 3%;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.FormSignup.player {
+/* ALIGNER A DROITE */
+}

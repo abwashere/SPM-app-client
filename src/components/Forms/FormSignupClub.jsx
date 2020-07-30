@@ -1,16 +1,18 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
 import authApiHandler from "../../api/authApiHandler";
 import LocationAutoComplete from "./../LocationAutoComplete";
+// import ImageWithPreview from "./ImagePreview";
 
 import "bulma/css/bulma.css";
+import "./../../styles/FormSignUpClub.css";
 
 class FormSignupClub extends Component {
 	static contextType = UserContext;
 
 	state = {
-		role: "",
+		role: "Club",
 		email: "",
 		password: "",
 		email: "",
@@ -18,8 +20,10 @@ class FormSignupClub extends Component {
 		address: "",
 		phoneNumber: "",
 		image: "",
+		tmpImage: "",
 		website: "",
 		foundedYear: "",
+		subscriptionFee: "",
 		description: "",
 	};
 
@@ -70,110 +74,158 @@ class FormSignupClub extends Component {
 	};
 
 	render() {
-		const {
-			role,
-			email,
-			clubName,
-			address,
-			phoneNumber,
-			image,
-			website,
-			foundedYear,
-			description,
-			password,
-		} = this.state;
-
 		return (
-			<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-				{/* 
-adresse
-téléphone
-email
-password 
-
-photo du club
-site web du club
-année de création
-frais d’adhésion (text input)
-description */}
-				<div className="field">
-					<label className="label">Nom du club</label>
-					<div className="control">
-						<input className="input" type="text" value={clubName} />
-					</div>
-				</div>
-
-				<div className="field">
-					<label className="label">Adresse administrative</label>
-					<p>Adresse actuelle : {address}.</p>
-					<div className="control has-icons-left has-icons-right">
-						<LocationAutoComplete onSelect={this.handlePlace} />
-						<span className="icon is-small is-left">
-							<i className="fa fa-map-marker"></i>
-						</span>
-						<span className="icon is-small is-right">
-							{/* <i className="fas fa-check"></i> */}
-						</span>
-					</div>
-				</div>
-
-				<div className="field">
-					<label className="label">Email</label>
-					<div className="control has-icons-left has-icons-right">
-						<input className="input" type="email" value={email} />
-					</div>
-				</div>
-
-				<div className="field">
-					<label className="label">Subject</label>
-					<div className="control">
-						<div className="select">
-							<select>
-								<option>Select dropdown</option>
-								<option>With options</option>
-							</select>
+			<div className="FormSignupClub">
+				<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+					<div className="field">
+						<label className="label">Email</label>
+						<div className="control has-icons-left">
+							<input
+								className="input"
+								type="email"
+								name="email"
+								value="toto@foo.bar"
+							/>
+							<span className="icon is-small is-left">
+								<i className="fa fa-at"></i>
+							</span>
 						</div>
 					</div>
-				</div>
-
-				<div className="field">
-					<label className="label">Message</label>
-					<div className="control">
-						<textarea className="textarea" placeholder="Textarea"></textarea>
+					<div className="field">
+						<label htmlFor="password" className="label">
+							Choisir un mot de passe
+						</label>
+						<div className="control has-icons-left">
+							<input
+								className="input"
+								type="password"
+								placeholder="Entrez un mot de passe"
+								name="password"
+							/>
+							<span className="icon is-small is-left">
+								<i className="fa fa-lock"></i>
+							</span>
+						</div>
 					</div>
-				</div>
+					<div className="field">
+						<label className="label">Nom du club</label>
+						<div className="control">
+							<input
+								className="input"
+								type="text"
+								name="clubName"
+								defaultValue="Les TATAZ"
+							/>
+						</div>
+					</div>
 
-				<div className="field">
-					<div className="control">
-						<label className="checkbox">
-							<input type="checkbox" />I agree to the{" "}
-							<a href="#">terms and conditions</a>
+					<div className="field">
+						<label className="label">Adresse administrative</label>
+						<div className="control has-icons-left">
+							<LocationAutoComplete onSelect={this.handlePlace} />
+							<span className="icon is-small is-left">
+								<i className="fa fa-map-marker"></i>
+							</span>
+							<span className="icon is-small is-right">
+								{/* <i className="fas fa-check"></i> */}
+							</span>
+						</div>
+					</div>
+
+					<div className="field">
+						<label className="label">Téléphone</label>
+						<div className="control has-icons-left">
+							<input
+								className="input"
+								type="tel"
+								name="phoneNumber"
+								pattern="[0-9]{10}"
+								minLength="10"
+								maxLength="10"
+								defaultValue="0123456789"
+							/>
+							<span className="icon is-small is-left">
+								<i className="fa fa-phone"></i>
+							</span>
+						</div>
+					</div>
+
+					<div className="field">
+						<label className="label">Site web du club</label>
+						<div className="control">
+							<input
+								className="input"
+								type="text"
+								name="website"
+								defaultValue="tataz.com"
+							/>
+						</div>
+					</div>
+					<div className="field">
+						<label className="label">Année de création</label>
+						<div className="control">
+							<input
+								className="input"
+								type="text"
+								name="foundedYear"
+								defaultValue="tataz.com"
+							/>
+						</div>
+					</div>
+					<div className="field">
+						<label className="label">Frais d'adhésion</label>
+						<div className="control">
+							<input
+								className="input"
+								type="text"
+								name="subscriptionFee"
+								defaultValue="tataz.com"
+							/>
+						</div>
+					</div>
+
+					<div className="field">
+						<label className="label">Quelques précisions sur le club</label>
+						<div className="control">
+							<textarea
+								className="textarea"
+								name="description"
+								placeholder="Objectifs, ambitions, besoins, politique de recrutement... "
+								value="Faire la fête après les matchs !"
+							></textarea>
+						</div>
+					</div>
+
+						<label className="label">Télécharger une image</label>
+					<div class="file has-name">
+						<label class="file-label">
+							<input class="file-input" type="file" name="resume" />
+							<span class="file-cta">
+								<span class="file-icon">
+									<i class="fas fa-upload"></i>
+								</span>
+								<span class="file-label">Choose a file…</span>
+							</span>
+							<span class="file-name">{this.state.image}</span>
 						</label>
 					</div>
-				</div>
 
-				<div className="field">
-					<div className="control">
-						<label className="radio">
-							<input type="radio" name="question" />
-							Yes
-						</label>
-						<label className="radio">
-							<input type="radio" name="question" />
-							No
-						</label>
+					<div className="field" id="btn-signup">
+						<div className="control">
+							<button className="button is-link">C'est fait !</button>
+						</div>
 					</div>
-				</div>
+				</form>
 
-				<div className="field is-grouped">
-					<div className="control">
-						<button className="button is-link">Submit</button>
-					</div>
-					<div className="control">
-						<button className="button is-link is-light">Cancel</button>
-					</div>
+				<div className="form-section-bottom">
+					<p>Vous avez déjà un compte ? </p>
+					<button class="button is-light">
+						<Link className="link" to="/signin">
+							Connectez-vous !
+						</Link>
+					</button>
 				</div>
-			</form>
+			</div>
 		);
 	}
 }

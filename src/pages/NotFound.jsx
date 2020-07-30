@@ -6,13 +6,13 @@ function Page404(props) {
   console.log(props);
   // 
   return (
-    <div>
-      Oh no !!!
-      <br />
-      Toto , you are lost :( <br />
-      Go back to the &nbsp;<Link to="/">home page</Link>
-    </div>
-  );
+		<div className="ContentMain">
+			Oh no !!!
+			<br />
+			Toto , you are lost :( <br />
+			Go back to the &nbsp;<Link to="/">home page</Link>
+		</div>
+	);
 }
 
 export default withUser(Page404);

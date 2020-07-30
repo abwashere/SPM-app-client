@@ -16,7 +16,7 @@ class Signup extends React.Component {
 	render() {
 		console.log("the state is : ", this.state);
 		return (
-			<div>
+			<div className="ContentMain">
 				<h2>Inscription</h2>
 
 				<form>

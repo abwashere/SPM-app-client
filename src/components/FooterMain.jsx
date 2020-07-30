@@ -15,10 +15,7 @@ const FooterMain = () => {
 					</Link>
 				</div>
 				<div className="admin-profile-link">
-					<Link
-						to="https://linkedin.com/in/audrey-belson"
-						target="_blank"
-					>
+					<Link to="https://linkedin.com/in/audrey-belson" target="_blank">
 						Audrey Belson | missing github
 					</Link>
 				</div>

@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 
 // auth routes
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
-import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 // profile pages
 import ClubPage from "./pages/profiles/Club";
@@ -27,33 +26,35 @@ import FooterMain from "./components/FooterMain";
 function App() {
 	return (
 		<div className="App">
-			<NavMain />
-			<Switch>
-				{/* AUTHENTIFICATION ROUTES */}
-				<Route exact path="/" component={Home} />
-				<Route exact path="/signin" component={Signin} />
-				<Route exact path="/signup" component={Signup} />
-				{/* PROFILES ROUTES */}
-				<Route exact path="/club/:id" component={ClubPage} />
-				<Route exact path="/team/:id" component={TeamPage} />
-				<Route exact path="/event/:id" component={EventPage} />
-				<Route exact path="/player/:id" component={PlayerPage} />
-				{/* CLUB PRIVATE ROUTES */}
-				<ProtectedRoute
-					exact
-					path="/account/team/:mode(create|edit)/:id?"
-					component={Team_CreateEdit}
-				/>
-				<ProtectedRoute
-					exact
-					path="/account/event/:mode(create|edit)/:id?"
-					component={Event_CreateEdit}
-				/>
-				{/* COMMON ROUTES */}
-				<ProtectedRoute exact path="/account" component={Account} />
-				<Route exact path="/search" component={SearchPage} />
-				<Route path="*" component={NotFound} />
-			</Switch>
+			<div className="w-1pc-padding">
+				<NavMain />
+				<Switch>
+					{/* AUTHENTIFICATION ROUTES */}
+					<Route exact path="/" component={Home} />
+					<Route exact path="/signup" component={Signup} />
+					{/* PROFILES ROUTES */}
+					<Route exact path="/club/:id" component={ClubPage} />
+					<Route exact path="/team/:id" component={TeamPage} />
+					<Route exact path="/event/:id" component={EventPage} />
+					<Route exact path="/player/:id" component={PlayerPage} />
+					{/* CLUB PRIVATE ROUTES */}
+					<ProtectedRoute
+						exact
+						path="/account/team/:mode(create|edit)/:id?"
+						component={Team_CreateEdit}
+					/>
+					<ProtectedRoute
+						exact
+						path="/account/event/:mode(create|edit)/:id?"
+						component={Event_CreateEdit}
+					/>
+					{/* COMMON ROUTES */}
+					<ProtectedRoute exact path="/account" component={Account} />
+					<Route exact path="/search" component={SearchPage} />
+					<Route path="*" component={NotFound} />
+				</Switch>
+			</div>
+
 			<FooterMain />
 		</div>
 	);

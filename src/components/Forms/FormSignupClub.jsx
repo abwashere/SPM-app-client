@@ -2,98 +2,126 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
 import authApiHandler from "../../api/authApiHandler";
+import LocationAutoComplete from "./../LocationAutoComplete";
+
 import "bulma/css/bulma.css";
 
-
 class FormSignupClub extends Component {
-  static contextType = UserContext;
+	static contextType = UserContext;
 
-  state = {
-    email: "",
-    password: "",
-  };
+	state = {
+		role: "",
+		email: "",
+		password: "",
+		email: "",
+		clubName: "",
+		address: "",
+		phoneNumber: "",
+		image: "",
+		website: "",
+		foundedYear: "",
+		description: "",
+	};
 
-  handleChange = (event) => {
-    const value =
-      event.target.type === "file"
-        ? event.target.files[0]
-        : event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
+	handleChange = (event) => {
+		const value =
+			event.target.type === "file"
+				? event.target.files[0]
+				: event.target.type === "checkbox"
+				? event.target.checked
+				: event.target.value;
 
-    const key = event.target.name;
+		const key = event.target.name;
 
-    this.setState({ [key]: value });
-  };
+		this.setState({ [key]: value });
+		console.log("inputed : ", value);
+	};
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+	handleSubmit = (event) => {
+		event.preventDefault();
 
-    authApiHandler
-      .signupClub(this.state)
-      .then((data) => {
-        this.context.setUser(data);
-        this.props.history.push("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+		const fd = new FormData();
+		for (let key in this.state) {
+			fd.append(key, this.state[key]);
+		}
 
-  render() {
-    return (
-			/*   <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" />
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" />
-        <button>Submit</button>
-      </form> */
+		authApiHandler
+			.signupClub(fd)
+			.then((data) => {
+				this.context.setUser(data);
+				this.props.history.push("/");
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+	handleImage = (event) => {
+		this.setState({
+			avatar: event.target.files[0],
+			// URL temporaire qu'on peut inserer dans une balise <img  src={urlTemporaire}/>
+			// preview avant de soumettre le <form> au backend.
+			tmpAvatar: URL.createObjectURL(event.target.files[0]),
+		});
+	};
 
+	handlePlace = (place) => {
+		// This handle is passed as a callback to the autocomplete component.
+		console.log(place);
+	};
+
+	render() {
+		const {
+			role,
+			email,
+			clubName,
+			address,
+			phoneNumber,
+			image,
+			website,
+			foundedYear,
+			description,
+			password,
+		} = this.state;
+
+		return (
 			<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+				{/* 
+adresse
+téléphone
+email
+password 
+
+photo du club
+site web du club
+année de création
+frais d’adhésion (text input)
+description */}
 				<div className="field">
-					<label className="label">Name</label>
+					<label className="label">Nom du club</label>
 					<div className="control">
-						<input className="input" type="text" placeholder="Text input" />
+						<input className="input" type="text" value={clubName} />
 					</div>
 				</div>
 
 				<div className="field">
-					<label className="label">Username</label>
+					<label className="label">Adresse administrative</label>
+					<p>Adresse actuelle : {address}.</p>
 					<div className="control has-icons-left has-icons-right">
-						<input
-							className="input is-success"
-							type="text"
-							placeholder="Text input"
-							value="bulma"
-						/>
+						<LocationAutoComplete onSelect={this.handlePlace} />
 						<span className="icon is-small is-left">
-							<i className="fas fa-user"></i>
+							<i className="fa fa-map-marker"></i>
 						</span>
 						<span className="icon is-small is-right">
-							<i className="fas fa-check"></i>
+							{/* <i className="fas fa-check"></i> */}
 						</span>
 					</div>
-					<p className="help is-success">This username is available</p>
 				</div>
 
 				<div className="field">
 					<label className="label">Email</label>
 					<div className="control has-icons-left has-icons-right">
-						<input
-							className="input is-danger"
-							type="email"
-							placeholder="Email input"
-							value="hello@"
-						/>
-						<span className="icon is-small is-left">
-							<i className="fas fa-envelope"></i>
-						</span>
-						<span className="icon is-small is-right">
-							<i className="fas fa-exclamation-triangle"></i>
-						</span>
+						<input className="input" type="email" value={email} />
 					</div>
-					<p className="help is-danger">This email is invalid</p>
 				</div>
 
 				<div className="field">
@@ -147,7 +175,7 @@ class FormSignupClub extends Component {
 				</div>
 			</form>
 		);
-  }
+	}
 }
 
 export default withRouter(FormSignupClub);

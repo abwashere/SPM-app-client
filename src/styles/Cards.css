@@ -1,8 +1,26 @@
-.Card.club {
+.card {
+	width: 30%;
+	max-height: 45vh;
 }
-.Card.team .subtitle {
-	color: green;
+
+.card.club {
+	background-color: rgb(255, 221, 136);
 }
-.Card .content {
+.card.team {
+	background-color: rgb(104, 246, 123);
+}
+.card .content {
 	text-overflow: ellipsis;
+}
+
+.card .is-4by3 img {
+	/* card image */
+}
+
+.card .card-content {
+	height: 50%;
+}
+
+.card .subtitle {
+	color : red;
 }

@@ -1,16 +1,20 @@
 import React from "react";
 
 class FilterComponent extends React.Component {
-  handleClick = (team) => {
-    // this.setState({ selectedTeam: team });
-    this.props.callback(team);
-  };
+	handleClick = (team) => {
+		// this.setState({ selectedTeam: team });
+		this.props.callback(team);
+	};
 
-  render() {
-    return (
-      <React.Fragment>
-        <button
-          onClick={(event) => this.handleClick(null)}
+	render() {
+		return <React.Fragment></React.Fragment>;
+	}
+}
+
+export default FilterComponent;
+
+/*    
+<button  onClick={(event) => this.handleClick(null)}
           className="btn-filter"
         >
           All
@@ -27,9 +31,4 @@ class FilterComponent extends React.Component {
         >
           racoons
         </button>
-      </React.Fragment>
-    );
-  }
-}
-
-export default FilterComponent;
+*/

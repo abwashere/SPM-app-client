@@ -33,7 +33,6 @@ class NavMain extends React.Component {
 
 	render() {
 		const { context } = this.props;
-		console.log("LOG IN IS DISPLAYED ? ", this.state.onDisplay);
 		return (
 			<div className="container-nav">
 				<nav className="NavMain">

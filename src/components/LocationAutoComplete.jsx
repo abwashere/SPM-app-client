@@ -78,7 +78,7 @@ class LocationAutoComplete extends Component {
               placeholder={this.props.placeholderContent}
               value={this.state.search}
               onChange={this.handleSearchChange}
-              // onKeyPress={this.props.handleKeyPress}
+              onKeyPress={this.props.handleKeyPress}
             />
             <span className="icon is-small is-left">
               <i className="fa fa-map"></i>

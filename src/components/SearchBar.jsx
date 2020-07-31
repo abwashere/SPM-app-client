@@ -4,20 +4,17 @@ import LocationAutoComplete from "./LocationAutoComplete";
 import "bulma/css/bulma.css";
 
 const SearchBar = ({ callback }) => {
-	/* 
-	function pressEnter(event) {
-		console.log(
-			"value of the input when key is pressed : "
-		);
-	// event.key === "Enter" && callback(event);
-	} */
+	function redirectToSearchPage(event) {
+		console.log("value of the input when key is pressed : ");
+		event.key === "Enter" && callback(event);
+	}
 
 	return (
 		<div className="SearchBar">
 			<div className="is-medium" style={{ width: "70%" }}>
 				<LocationAutoComplete
 					onSelect={callback}
-					// handleKeyPress={pressEnter}
+					handleKeyPress={redirectToSearchPage}
 					placeholderContent="Où cherchez-vous ?"
 				/>
 			</div>

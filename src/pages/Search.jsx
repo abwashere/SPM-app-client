@@ -1,19 +1,23 @@
 import React, { Component } from "react";
+import * as turf from "@turf/turf";
+
 import teamApiHandler from "./../api/teamApiHandler";
 import clubApiHandler from "./../api/clubApiHandler";
-import axios from "axios";
 
 import Card from "./../components/Cards/Card";
 import SearchBar from "./../components/SearchBar";
 import Filter from "./../components/Filter";
+
+import "./../styles/SearchPage.css";
+
 
 class Search extends Component {
 	state = {
 		teams: [],
 		clubs: [],
 		teamsAndClubs: [],
-		selection: null,
 		searchValue: "",
+		filteredElements: null,
 	};
 
 	componentDidMount() {
@@ -38,43 +42,45 @@ class Search extends Component {
 		copy[index].teams = event.target.value;
 		this.setState({ teamsAndClubs: copy });
 	};
+	*/
+	/* 
 	handleFilter = (group) => {
 		// console.log("filtered group : ", group)
-		this.setState({ selection: group });
+		this.setState({ filteredElements : group });
 	};
-	*/
-
+ */
 	handleSearch = (place) => {
-		console.log("Search bar place is ", place);
-		this.setState({ searchValue: place.text });
-	};
-
-	handleDistance = () => {
-		let longitude = this.state.searchValue.geometry.coordinates[0];
-		let latitude = this.state.searchValue.geometry.coordinates[1];
-		axios
-			.get(
-				`https://api.mapbox.com/geocoding/v5/mapbox.places/${this.state.search}.json?proximity=${longitude},${latitude}&access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
-			)
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => console.log(error));
+		this.setState({ searchValue: place });
 	};
 
 	render() {
-		/* 		console.log("selection : ", this.state.selection);
-							const filteredGroups = this.state.teamsAndClubs.forEach((group) =>
-								console.log(group.address.formattedAddress)
-							); */
-		const filteredGroups = this.state.teamsAndClubs
-			.filter((group) => {
-				return group.address.formattedAddress.includes(this.state.searchValue);
-			})
-			.filter((group) => {
-				if (this.state.selection === null) return true;
-				return group.address.formattedAddress === this.state.selection;
+		console.log(
+			"Value inputed autocompleted in search bar : ",
+			this.state.searchValue
+		);
+
+		let closestGroups = [];
+
+		if (this.state.searchValue) {
+			const lgtSearch = this.state.searchValue.geometry.coordinates[0];
+			const latSearch = this.state.searchValue.geometry.coordinates[1];
+			const to = turf.point([lgtSearch, latSearch]);
+
+			this.state.teamsAndClubs.forEach((elem) => {
+				let lgtElem = elem.address.coordinates[0];
+				let latElem = elem.address.coordinates[1];
+				let from = turf.point([lgtElem, latElem]);
+				let options = { units: "kilometers" };
+				let distance = turf.distance(from, to, options);
+				//console.log("distance", distance);
+				if (distance <= 10) closestGroups.push(elem);
 			});
+		}
+		console.log("elem in less than 10 km : ", closestGroups);
+
+		const filteredGroups = closestGroups;
+		// .filter((group) => { //TODO: filter by criterias
+		// });
 
 		console.log("filtered groups ", filteredGroups);
 
@@ -84,18 +90,14 @@ class Search extends Component {
 
 				<SearchBar callback={this.handleSearch} />
 
-				{/* <Filter callback={this.handleFilter} /> */}
 
-				{/* 	<div className="filtered-cards">
+				{/* <Filter callback={this.handleFilter} /> */}
+				<div className="cards-container grid">
 					{filteredGroups.map((group, index) => (
-						<Card
-							key={index}
-							index={index}
-							group={group}
-							callback={this.setResults}
-						/>
+						<Card key={index} index={index} elem={group} />
 					))}
-				</div> */}
+					{!filteredGroups && <li>Loading...</li>}
+				</div>
 			</div>
 		);
 	}

@@ -15,7 +15,6 @@ class FormSignupClub extends Component {
 		role: "Club",
 		email: "",
 		password: "",
-		email: "",
 		clubName: "",
 		address: "",
 		phoneNumber: "",
@@ -122,7 +121,10 @@ class FormSignupClub extends Component {
 					<div className="field">
 						<label className="label">Adresse administrative</label>
 						<div className="control has-icons-left">
-							<LocationAutoComplete onSelect={this.handlePlace} />
+							<LocationAutoComplete
+								onSelect={this.handlePlace}
+								searchIndication = "Entrez une adresse"
+							/>
 							<span className="icon is-small is-left">
 								<i className="fa fa-map-marker"></i>
 							</span>
@@ -196,7 +198,7 @@ class FormSignupClub extends Component {
 						</div>
 					</div>
 
-						<label className="label">Télécharger une image</label>
+					<label className="label">Télécharger une image</label>
 					<div class="file has-name">
 						<label class="file-label">
 							<input class="file-input" type="file" name="resume" />

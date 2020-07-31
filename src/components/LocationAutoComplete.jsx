@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "../styles/LocationAutoComplete.css";
 import axios from "axios";
 
+import "../styles/LocationAutoComplete.css";
 import "bulma/css/bulma.css";
 
 class LocationAutoComplete extends Component {
@@ -74,15 +74,15 @@ class LocationAutoComplete extends Component {
 						<input
 							className="input"
 							type="text"
-              name="address"
+							name="address"
 							value={this.state.search}
 							onChange={this.handleSearchChange}
-							placeholder="Renseignez une nouvelle adresse"
+							placeholder={this.props.searchIndication}
 						/>
+						<span className="icon is-small is-left">
+							<i className="fa fa-map"></i>
+						</span>
 					</div>
-					<span className="icon is-small is-left">
-						<i className="fa fa-map"></i>
-					</span>
 				</div>
 				<ul className="LocationAutoComplete-results">
 					{this.state.results.map((place) => (

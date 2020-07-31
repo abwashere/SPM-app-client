@@ -2,6 +2,8 @@
 	width: 50%;
 }
 
+
+/* FIXME: TEXTE A ALIGNER A GAUCHE ET BOUTONS A CENTRER => FLEX=ALIGN CENTER */
 .FormSignUp .btn-signup,
 .FormSignUp .form-section-bottom,
 .Signup .content {

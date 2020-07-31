@@ -12,19 +12,19 @@ class FormSignupClub extends Component {
   static contextType = UserContext;
 
   state = {
-    role: "Club",
-    email: "",
-    password: "",
-    clubName: "",
-    address: "",
-    phoneNumber: "",
-    image: "",
-    tmpImage: "",
-    website: "",
-    videoURL: "",
-    year: "",
-    subscriptionFee: "",
-    description: "",
+    // role: "Club",
+    // email: "",
+    // password: "",
+    // clubName: "",
+    // location: "",
+    // phoneNumber: "",
+    // image: "",
+    // tmpImage: "",
+    // website: "",
+    // videoURL: "",
+    // year: "",
+    // subscriptionFee: "",
+    // description: "",
   };
 
   handleChange = (event) => {
@@ -44,6 +44,8 @@ class FormSignupClub extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
+    console.log("============== STATE", this.state);
+
     const fd = new FormData();
     for (let key in this.state) {
       fd.append(key, this.state[key]);
@@ -59,18 +61,26 @@ class FormSignupClub extends Component {
         console.log(error);
       });
   };
-  handleImage = (event) => {
-    this.setState({
-      avatar: event.target.files[0],
-      // URL temporaire qu'on peut inserer dans une balise <img  src={urlTemporaire}/>
-      // preview avant de soumettre le <form> au backend.
-      tmpAvatar: URL.createObjectURL(event.target.files[0]),
-    });
-  };
+
+  //   handleImage = (event) => {
+  //     this.setState({
+  //       avatar: event.target.files[0],
+  //       // URL temporaire qu'on peut inserer dans une balise <img  src={urlTemporaire}/>
+  //       // preview avant de soumettre le <form> au backend.
+  //       tmpAvatar: URL.createObjectURL(event.target.files[0]),
+  //     });
+  //   };
 
   handlePlace = (place) => {
     // This handle is passed as a callback to the autocomplete component.
     console.log(place);
+    this.setState({
+      location: {
+        type: place.geometry.type,
+        coordinates: place.geometry.coordinates,
+        formattedAddress: place.place_name,
+      },
+    });
   };
 
   render() {
@@ -84,8 +94,9 @@ class FormSignupClub extends Component {
                 className="input"
                 type="email"
                 name="email"
-                value="toto@foo.bar"
-                placeholder="Choisissez le mail de l'association que vous consultez le plus régulièrement"
+                // value="toto@foo.bar"
+                placeholder="Entre l'adresse mail de l'association"
+                required
               />
               <span className="icon is-small is-left">
                 <i className="fa fa-at"></i>
@@ -102,6 +113,7 @@ class FormSignupClub extends Component {
                 type="password"
                 placeholder="Entrez un mot de passe"
                 name="password"
+                required
               />
               <span className="icon is-small is-left">
                 <i className="fa fa-lock"></i>
@@ -116,6 +128,7 @@ class FormSignupClub extends Component {
                 type="text"
                 name="clubName"
                 defaultValue="Les TATAZ"
+                required
               />
             </div>
           </div>
@@ -161,7 +174,7 @@ class FormSignupClub extends Component {
                 className="input"
                 type="text"
                 name="website"
-                defaultValue="tataz.com"
+                defaultValue="https://www.tataz.com"
               />
             </div>
           </div>
@@ -194,7 +207,8 @@ class FormSignupClub extends Component {
                 className="input"
                 type="text"
                 name="subscriptionFee"
-                defaultValue="Précisez les modalités d'inscription"
+                value="150€ par an pour les adultes, 80€ pour les juniors"
+                placeholder="Précisez les modalités d'inscription"
               />
             </div>
           </div>
@@ -206,22 +220,23 @@ class FormSignupClub extends Component {
                 className="textarea"
                 name="description"
                 placeholder="Objectifs, ambitions, besoins, politique de recrutement... "
-                value="Faire la fête après les matchs !"
-              ></textarea>
+              >
+                Faire la fête après les matchs !
+              </textarea>
             </div>
           </div>
 
           <label className="label">Télécharger une image</label>
-          <div class="file has-name">
-            <label class="file-label">
-              <input class="file-input" type="file" name="resume" />
-              <span class="file-cta">
-                <span class="file-icon">
-                  <i class="fas fa-upload"></i>
+          <div className="file has-name">
+            <label className="file-label">
+              <input className="file-input" type="file" name="resume" />
+              <span className="file-cta">
+                <span className="file-icon">
+                  <i className="fas fa-upload"></i>
                 </span>
-                <span class="file-label">Choisir un fichier…</span>
+                <span className="file-label">Choisir un fichier…</span>
               </span>
-              <span class="file-name">{this.state.image}</span>
+              <span className="file-name">{this.state.image}</span>
             </label>
           </div>
 
@@ -234,7 +249,7 @@ class FormSignupClub extends Component {
 
         <div className="form-section-bottom">
           <p>Vous avez déjà un compte ? </p>
-          <button class="button is-light">
+          <button className="button is-light">
             <Link className="link" to="/signin">
               Connectez-vous !
             </Link>

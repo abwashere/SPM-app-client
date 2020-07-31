@@ -1,16 +1,27 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
 import authApiHandler from "../../api/authApiHandler";
-import "bulma/css/bulma.css";
+import sportApiHandler from "../../api/sportApiHandler";
+import LocationAutoComplete from "./../LocationAutoComplete";
+// import ImageWithPreview from "./ImagePreview";
 
+import "bulma/css/bulma.css";
+import "./../../styles/FormSignUp.css";
 
 class FormSignupPlayer extends Component {
   static contextType = UserContext;
 
   state = {
+    role: "Player",
     email: "",
     password: "",
+    firstName: "",
+    lastName: "",
+    city: "",
+    sportId: "",
+    level: "",
+    sportsList: [],
   };
 
   handleChange = (event) => {
@@ -40,15 +51,177 @@ class FormSignupPlayer extends Component {
       });
   };
 
+  componentDidMount() {
+    sportApiHandler
+      .getSports()
+      .then((apiRes) => {
+        this.setState({ sportsList: apiRes });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
-      <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" />
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" />
-        <button>Submit</button>
-      </form>
+      <div className="FormSignup">
+        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+          <div className="field">
+            <label className="label">Email</label>
+            <div className="control has-icons-left">
+              <input
+                className="input"
+                type="email"
+                name="email"
+                value="tata@foo.bar"
+                placeholder="Renseigne ton adresse mail"
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fa fa-at"></i>
+              </span>
+            </div>
+          </div>
+
+          <div className="field">
+            <label htmlFor="password" className="label">
+              Choisir un mot de passe
+            </label>
+            <div className="control has-icons-left">
+              <input
+                className="input"
+                type="password"
+                placeholder="Choisis un mot de passe"
+                name="password"
+                required
+              />
+              <span className="icon is-small is-left">
+                <i className="fa fa-lock"></i>
+              </span>
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Prénom</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name="firstName"
+                defaultValue="Jane"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Nom de famille</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name="lastName"
+                defaultValue="Doe"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Ville</label>
+            <div className="control has-icons-left">
+              <LocationAutoComplete
+                onSelect={this.handlePlace}
+                searchIndication="Précise la ville où tu résides"
+              />
+              <span className="icon is-small is-left">
+                <i className="fa fa-map-marker"></i>
+              </span>
+              <span className="icon is-small is-right">
+                {/* <i className="fas fa-check"></i> */}
+              </span>
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">
+              Le sport que tu pratiques ou que tu souhaites pratiquer
+            </label>
+            <div className="field-body">
+              <div className="field">
+                <div className="control has-icons-left">
+                  <div className="select">
+                    <select name="sportId">
+                      <option>Sport</option>
+                      {this.state.sportsList.map((sport) => (
+                        <option key={sport._id} value={sport._id}>
+                          {sport.sportName}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="icon is-small is-left">
+                    <i className="fas fa-running"></i>
+                  </div>
+                </div>
+              </div>
+              <div className="field">
+                <div className="control has-icons-left">
+                  <div className="select">
+                    <select name="level">
+                      <option>Niveau</option>
+                      <option value="débutante">Débutante</option>
+                      <option value="intermédiaire">Intermédiaire</option>
+                      <option value="expérimentée">Expérimentée</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Dis-nous en plus...</label>
+            <div className="control">
+              <textarea
+                className="textarea"
+                name="description"
+                placeholder="Partage ta pratique du sport et ce que tu recherches en t'inscrivant."
+                value="Faire la fête après les matchs !"
+              ></textarea>
+            </div>
+          </div>
+
+          <label className="label">Ajoute ta photo de profil</label>
+          <div className="file has-name">
+            <label className="file-label">
+              <input className="file-input" type="file" name="resume" />
+              <span className="file-cta">
+                <span className="file-icon">
+                  <i className="fas fa-upload"></i>
+                </span>
+                <span className="file-label">Choisir un fichier…</span>
+              </span>
+              <span className="file-name">{this.state.image}</span>
+            </label>
+          </div>
+
+          <div className="field btn-signup">
+            <div className="control">
+              <button className="button is-link">C'est fait !</button>
+            </div>
+          </div>
+        </form>
+
+        <div className="form-section-bottom">
+          <p>Tu as déjà un compte ? </p>
+          <button className="button is-light">
+            <Link className="link" to="/signin">
+              Connecte-toi !
+            </Link>
+          </button>
+        </div>
+      </div>
     );
   }
 }

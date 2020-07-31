@@ -10,52 +10,54 @@ import "./../../styles/FormSignUp.css";
 
 class FormSignupClub extends Component {
   static contextType = UserContext;
-
-  state = {
-    // role: "Club",
-    // email: "",
-    // password: "",
-    // clubName: "",
-    // location: "",
-    // phoneNumber: "",
-    // image: "",
-    // tmpImage: "",
-    // website: "",
-    // videoURL: "",
-    // year: "",
-    // subscriptionFee: "",
-    // description: "",
-  };
+  state = {};
 
   handleChange = (event) => {
     const value =
       event.target.type === "file"
         ? event.target.files[0]
-        : event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
+        : // : event.target.type === "checkbox"
+          // ? event.target.checked
+          event.target.value;
 
     const key = event.target.name;
-
     this.setState({ [key]: value });
-    console.log("inputed : ", value);
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.state.role = "Club";
 
-    console.log("============== STATE", this.state);
+    function buildFormData(formData, data, parentKey) {
+      if (
+        data &&
+        typeof data === "object" &&
+        !(data instanceof Date) &&
+        !(data instanceof File)
+      ) {
+        Object.keys(data).forEach((key) => {
+          buildFormData(
+            formData,
+            data[key],
+            parentKey ? `${parentKey}[${key}]` : key
+          );
+        });
+      } else {
+        const value = data == null ? "" : data;
 
-    const fd = new FormData();
-    for (let key in this.state) {
-      fd.append(key, this.state[key]);
+        formData.append(parentKey, value);
+      }
     }
+
+    let fd = new FormData();
+    buildFormData(fd, this.state);
 
     authApiHandler
       .signupClub(fd)
       .then((data) => {
+        console.log(data);
         this.context.setUser(data);
-        this.props.history.push("/");
+        // this.props.history.push("/account");
       })
       .catch((error) => {
         console.log(error);
@@ -95,7 +97,7 @@ class FormSignupClub extends Component {
                 type="email"
                 name="email"
                 // value="toto@foo.bar"
-                placeholder="Entre l'adresse mail de l'association"
+                placeholder="Entrez l'adresse mail de l'association"
                 required
               />
               <span className="icon is-small is-left">
@@ -220,23 +222,22 @@ class FormSignupClub extends Component {
                 className="textarea"
                 name="description"
                 placeholder="Objectifs, ambitions, besoins, politique de recrutement... "
-              >
-                Faire la fête après les matchs !
-              </textarea>
+                value="Faire la fête après les matchs !"
+              ></textarea>
             </div>
           </div>
 
           <label className="label">Télécharger une image</label>
           <div className="file has-name">
             <label className="file-label">
-              <input className="file-input" type="file" name="resume" />
+              <input className="file-input" type="file" name="image" />
               <span className="file-cta">
                 <span className="file-icon">
                   <i className="fas fa-upload"></i>
                 </span>
                 <span className="file-label">Choisir un fichier…</span>
               </span>
-              <span className="file-name">{this.state.image}</span>
+              {/* <span className="file-name">{this.state.image}</span> */}
             </label>
           </div>
 

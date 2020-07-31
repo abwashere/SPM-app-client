@@ -1,49 +1,38 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-import authApiHandler from "../../api/authApiHandler";
 
 import "bulma/css/bulma.css";
+import "./../../styles/Cards.css";
 
-/* MODEL DE CARTE EN PROVENANCE DE BULMA - A ADAPTER */
-
-const TeamCard = () => {
+const TeamCard = ({ group }) => {
 	return (
-		<div>
-			<div className="card">
-				<div className="card-image">
-					<figure className="image is-4by3">
-						<img
-							src="https://bulma.io/images/placeholders/1280x960.png"
-							alt="Placeholder image"
-						/>
-					</figure>
-				</div>
-
-				<div className="card-content">
-					<div className="media">
-						<div className="media-left">
-							<figure className="image is-48x48">
-								<img
-									src="https://bulma.io/images/placeholders/96x96.png"
-									alt="Placeholder image"
-								/>
-							</figure>
-						</div>
-						<div className="media-content">
-							<p className="title is-4">John Smith</p>
-							<p className="subtitle is-6">@johnsmith</p>
-						</div>
+		<div className="Card team">
+			<Link to={`/team/${group.id}`}>
+				<div className="card">
+					<div className="card-image">
+						<figure className="image is-4by3">
+							<img src={group.image} alt="Placeholder image" />
+						</figure>
 					</div>
 
-					<div className="content">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-						nec iaculis mauris. <Link>@bulmaio</Link>.<Link to="#">#css</Link>{" "}
-						<Link to="#">#responsive</Link>
-						<br />
-						<time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+					<div className="card-content">
+						<div className="media">
+							<div className="media-content">
+								<p className="title is-4">{group.teamName}</p>
+								<p className="subtitle is-6"> {group.club.clubName}</p>
+							</div>
+						</div>
+						<div className="content is-8">
+							{/* FIXME: get formattedAddress */}
+							{group.formattedAddress}
+						</div>
+						<div className="content">
+		
+							{group.formattedAddress}
+						</div>
 					</div>
 				</div>
-			</div>
+			</Link>
 		</div>
 	);
 };

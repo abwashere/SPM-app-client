@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import teamApiHandler from "./../api/teamApiHandler";
 import clubApiHandler from "./../api/clubApiHandler";
-import TeamCard from "./../components/Cards/TeamCard";
-import ClubCard from "./../components/Cards/ClubCard";
+/* import TeamCard from "./../components/Cards/TeamCard";
+import ClubCard from "./../components/Cards/ClubCard"; */
+import Card from "./../components/Cards/Card";
 import SearchBar from "./../components/SearchBar";
 import Filter from "./../components/Filter";
 
@@ -57,37 +58,37 @@ class Search extends Component {
 	};
 
 	handleFilter = (group) => {
-		// console.log(group)
+		// console.log("filtered group : ", group)
 		this.setState({ selection: group });
 	};
 
-	handleSearch = (event) => {
-		console.log("Search bar is being triggered");
-		this.setState({ searchValue: event.target.value });
+	handleSearch = (place) => {
+		console.log("Search bar is being triggered and place is " , place);
+		// this.setState({ searchValue: event.target.value });
 	};
 
 	render() {
 		const filteredGroups = this.state.teamsAndCLubs
 			.filter((group) => {
 				if (this.state.selection === null) return true;
-				return group.team === this.state.selection;
+				return group.address.formattedAddress === this.state.selection;
 			})
 			.filter((group) => {
-				return group.name.includes(this.state.searchValue);
+				return group.address.formattedAddress.includes(this.state.searchValue);
 			});
 
 		return (
 			<React.Fragment>
 				<SearchBar callback={this.handleSearch} />
 
-				<Filter callback={this.handleFilter} />
+				{/* <Filter callback={this.handleFilter} /> */}
 
-				<div className="Result">
-					{filteredGroups.map((member, index) => (
-						<TeamCard
+				<div className="filtered-cards">
+					{filteredGroups.map((group, index) => (
+						<Card
 							key={index}
 							index={index}
-							member={member}
+							group={group}
 							callback={this.setResults}
 						/>
 					))}

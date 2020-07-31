@@ -1,0 +1,8 @@
+.Card.club {
+}
+.Card.team .subtitle {
+	color: green;
+}
+.Card .content {
+	text-overflow: ellipsis;
+}

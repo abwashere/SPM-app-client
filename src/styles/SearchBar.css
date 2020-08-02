@@ -1,0 +1,12 @@
+.SearchBar {
+	width: 100%;
+	margin: 5% 0;
+}
+
+.SearchBar p.label {
+	margin-right: 1%;
+}
+
+.Filter .control{
+  margin-bottom: 5%;
+}

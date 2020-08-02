@@ -41,6 +41,7 @@ ul {
 
 .flex {
 	display: flex;
+	align-items: center;
 }
 
 .col {
@@ -48,12 +49,16 @@ ul {
 	justify-content: space-around;
 }
 
+.space-btw {
+	justify-content: space-between;
+}
+
 .border-round {
-	border-radius: 10px;
+	border-radius: 8px;
 }
 
 .box-shadowed {
-	box-shadow: 2px 3px 2px 1px rgba(66, 66, 66, 0.2);
+    box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
 }
 
 .bold {

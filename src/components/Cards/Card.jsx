@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "bulma/css/bulma.css";
 import "./../../styles/Cards.css";
@@ -13,7 +13,7 @@ const Card = ({ elem }) => {
 			<Link to={`/${isClub ? "club" : "team"}/${elem._id}`}>
 				<div className="card-image">
 					<figure className="image is-4by3">
-						<img src={elem.image} alt="Placeholder image" />
+						<img src={elem.image} alt="Team or club pic" />
 					</figure>
 				</div>
 			</Link>
@@ -33,7 +33,7 @@ const Card = ({ elem }) => {
 				</div>
 				<div className="address content is-10">
 					{/* FIXME: get formattedAddress */}
-					{elem.address.formattedAddress}
+					{elem.location.formattedAddress}
 				</div>
 				<div className="sport content">
 					{!isClub && `${elem.sport.sportName} en ${elem.practice}`}

@@ -12,7 +12,6 @@ import EventPage from "./pages/profiles/Event";
 // common routes
 import Home from "./pages/Home";
 import Account from "./pages/Account";
-import SearchPage from "./pages/Search";
 import NotFound from "./pages/NotFound";
 // private club routes
 import Event_CreateEdit from "./pages/club_pages/EventCreateEdit";
@@ -50,7 +49,6 @@ function App() {
 					/>
 					{/* COMMON ROUTES */}
 					<ProtectedRoute exact path="/account" component={Account} />
-					<Route exact path="/search" component={SearchPage} />
 					<Route path="*" component={NotFound} />
 				</Switch>
 			</div>

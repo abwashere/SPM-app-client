@@ -43,7 +43,7 @@ class NavMain extends React.Component {
 						{context.isLoggedIn && (
 							<React.Fragment>
 								<li id="welcome-msg">
-									Bonjour
+									Bonjour{" "}
 									{(context.user && context.user.firstName) ||
 										context.user.clubName}
 								</li>

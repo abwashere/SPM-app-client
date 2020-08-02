@@ -10,7 +10,6 @@ import Filter from "./../components/Filter";
 
 import "./../styles/SearchPage.css";
 
-
 class Search extends Component {
 	state = {
 		teams: [],
@@ -54,11 +53,6 @@ class Search extends Component {
 	};
 
 	render() {
-		console.log(
-			"Value inputed autocompleted in search bar : ",
-			this.state.searchValue
-		);
-
 		let closestGroups = [];
 
 		if (this.state.searchValue) {
@@ -89,7 +83,6 @@ class Search extends Component {
 				<h1 className="title">Search page</h1>
 
 				<SearchBar callback={this.handleSearch} />
-
 
 				{/* <Filter callback={this.handleFilter} /> */}
 				<div className="cards-container grid">

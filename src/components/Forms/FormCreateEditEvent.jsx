@@ -80,6 +80,10 @@ class FormCreateEditEvent extends Component {
     });
   };
 
+  formatDate = (date) => {
+    date.slice(0, 10);
+  };
+
   componentDidMount() {
     sportApiHandler
       .getSports()
@@ -89,10 +93,33 @@ class FormCreateEditEvent extends Component {
       .catch((error) => {
         console.log(error);
       });
+
+    if (this.props.match.params.mode === "edit") {
+      eventApiHandler.getOneEvent(this.props.match.params.id).then((apiRes) => {
+        console.log(apiRes);
+
+        this.setState({
+          title: apiRes.title,
+          date: this.formatDate(apiRes.date),
+          time: apiRes.time,
+          address: apiRes.address,
+          location: {
+            type: apiRes.type,
+            coordinates: apiRes.coordinates,
+            formattedAddress: apiRes.formattedAddress,
+          },
+          sport: apiRes.sport.sportName,
+          description: apiRes.description,
+          image: apiRes.image,
+        });
+      });
+    }
   }
 
   render() {
     let today = Date.now();
+    console.log(this.state);
+
     return (
       <div className="FormSignup">
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
@@ -117,6 +144,7 @@ class FormCreateEditEvent extends Component {
                 type="date"
                 data-start-date={today}
                 name="date"
+                value={this.state.date}
                 required
               />
               <span className="icon is-small is-left">
@@ -144,6 +172,7 @@ class FormCreateEditEvent extends Component {
               <LocationAutoComplete
                 onSelect={this.handlePlace}
                 searchIndication="Renseignez l'adresse du club"
+                // formattedAddress={this.state.formattedAddress}
               />
               <span className="icon is-small is-left">
                 <i className="fa fa-map-marker"></i>
@@ -201,7 +230,12 @@ class FormCreateEditEvent extends Component {
 
           <div className="field btn-signup">
             <div className="control">
-              <button className="button is-link">Créer</button>
+              {this.props.match.params.mode === "create" && (
+                <button className="button is-link">Créer</button>
+              )}
+              {this.props.match.params.mode === "edit" && (
+                <button className="button is-link">Mettre à jour</button>
+              )}
             </div>
           </div>
         </form>

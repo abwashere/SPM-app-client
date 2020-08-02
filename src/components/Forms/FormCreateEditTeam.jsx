@@ -9,6 +9,7 @@ import FormTraining from "./FormTraining";
 
 import "bulma/css/bulma.css";
 import "./../../styles/FormSignUp.css";
+import { rhumbDistance } from "@turf/turf";
 
 class FormCreateEditTeam extends Component {
   // static contextType = UserContext;
@@ -108,9 +109,50 @@ class FormCreateEditTeam extends Component {
       .catch((error) => {
         console.log(error);
       });
+
+    if (this.props.match.params.mode === "edit") {
+      teamApiHandler.getOneTeam(this.props.match.params.id).then((apiRes) => {
+        console.log(apiRes);
+        // for (let i = 0; i < apiRes.length; i++) {
+        //   let key = apiRes[i];
+        //   let value = apiRes[i];
+        //   this.setState({ [key]: value });
+        // }
+        this.setState({
+          teamName: apiRes.teamName,
+          time: apiRes.time,
+          coachName: apiRes.coachName,
+          minAge: apiRes.minAge,
+          maxAge: apiRes.maxAge,
+          address: apiRes.address,
+          location: {
+            type: apiRes.type,
+            coordinates: apiRes.coordinates,
+            formattedAddress: apiRes.formattedAddress,
+          },
+          trainings: [
+            {
+              day: apiRes.trainings[0].day,
+              time: apiRes.trainings[0].time,
+              duration: apiRes.trainings[0].duration,
+            },
+            {
+              day: apiRes.trainings[1].day,
+              time: apiRes.trainings[1].time,
+              duration: apiRes.trainings[1].duration,
+            },
+          ],
+          sport: apiRes.sport.sportName,
+          description: apiRes.description,
+          image: apiRes.image,
+          practice: apiRes.practice,
+        });
+      });
+    }
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="FormSignup">
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
@@ -271,7 +313,12 @@ class FormCreateEditTeam extends Component {
 
           <div className="field btn-signup">
             <div className="control">
-              <button className="button is-link">Créer</button>
+              {this.props.match.params.mode === "create" && (
+                <button className="button is-link">Créer</button>
+              )}
+              {this.props.match.params.mode === "edit" && (
+                <button className="button is-link">Mettre à jour</button>
+              )}
             </div>
           </div>
         </form>

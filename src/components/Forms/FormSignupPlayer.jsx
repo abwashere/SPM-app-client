@@ -13,38 +13,65 @@ class FormSignupPlayer extends Component {
   static contextType = UserContext;
 
   state = {
-    role: "Player",
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    city: "",
-    sportId: "",
-    level: "",
+    email: "tata@foo.bar",
+    password: "1234",
+    firstName: "Jane",
+    lastName: "Doe",
+    description: "Faire la fête après les matches !",
     sportsList: [],
+    practice: [
+      {
+        sport: "",
+        level: "",
+      },
+    ],
   };
 
   handleChange = (event) => {
     const value =
       event.target.type === "file"
         ? event.target.files[0]
-        : event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
+        : // : event.target.type === "checkbox"
+          // ? event.target.checked
+          event.target.value;
 
     const key = event.target.name;
-
     this.setState({ [key]: value });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.state.role = "Player";
+
+    function buildFormData(formData, data, parentKey) {
+      if (
+        data &&
+        typeof data === "object" &&
+        !(data instanceof Date) &&
+        !(data instanceof File)
+      ) {
+        Object.keys(data).forEach((key) => {
+          buildFormData(
+            formData,
+            data[key],
+            parentKey ? `${parentKey}[${key}]` : key
+          );
+        });
+      } else {
+        const value = data == null ? "" : data;
+
+        formData.append(parentKey, value);
+      }
+    }
+
+    let fd = new FormData();
+    buildFormData(fd, this.state);
 
     authApiHandler
-      .signupPlayer(this.state)
+      .signupPlayer(fd)
       .then((data) => {
         this.context.setUser(data);
-        this.props.history.push("/");
+        // this.props.history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -62,6 +89,18 @@ class FormSignupPlayer extends Component {
       });
   }
 
+  handlePlace = (place) => {
+    // This handle is passed as a callback to the autocomplete component.
+    console.log(place);
+    this.setState({
+      location: {
+        type: place.geometry.type,
+        coordinates: place.geometry.coordinates,
+        formattedAddress: place.place_name,
+      },
+    });
+  };
+
   render() {
     return (
       <div className="FormSignup">
@@ -73,7 +112,7 @@ class FormSignupPlayer extends Component {
                 className="input"
                 type="email"
                 name="email"
-                value="tata@foo.bar"
+                value={this.state.email}
                 placeholder="Renseigne ton adresse mail"
                 required
               />
@@ -91,7 +130,7 @@ class FormSignupPlayer extends Component {
               <input
                 className="input"
                 type="password"
-                placeholder="Choisis un mot de passe"
+                value={this.state.password}
                 name="password"
                 required
               />
@@ -108,7 +147,7 @@ class FormSignupPlayer extends Component {
                 className="input"
                 type="text"
                 name="firstName"
-                defaultValue="Jane"
+                defaultValue={this.state.firstName}
                 required
               />
             </div>
@@ -120,7 +159,7 @@ class FormSignupPlayer extends Component {
               <input
                 className="input"
                 type="text"
-                name="lastName"
+                name={this.state.lastName}
                 defaultValue="Doe"
                 required
               />
@@ -151,7 +190,7 @@ class FormSignupPlayer extends Component {
               <div className="field">
                 <div className="control has-icons-left">
                   <div className="select">
-                    <select name="sportId">
+                    <select name="sport">
                       <option>Sport</option>
                       {this.state.sportsList.map((sport) => (
                         <option key={sport._id} value={sport._id}>
@@ -187,7 +226,7 @@ class FormSignupPlayer extends Component {
                 className="textarea"
                 name="description"
                 placeholder="Partage ta pratique du sport et ce que tu recherches en t'inscrivant."
-                value="Faire la fête après les matchs !"
+                value={this.state.description}
               ></textarea>
             </div>
           </div>
@@ -195,14 +234,14 @@ class FormSignupPlayer extends Component {
           <label className="label">Ajoute ta photo de profil</label>
           <div className="file has-name">
             <label className="file-label">
-              <input className="file-input" type="file" name="resume" />
+              <input className="file-input" type="file" name="picture" />
               <span className="file-cta">
                 <span className="file-icon">
                   <i className="fas fa-upload"></i>
                 </span>
                 <span className="file-label">Choisir un fichier…</span>
               </span>
-              <span className="file-name">{this.state.image}</span>
+              {/* <span className="file-name">{this.state.image}</span> */}
             </label>
           </div>
 

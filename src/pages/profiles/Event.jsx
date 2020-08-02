@@ -43,7 +43,6 @@ class Event extends Component {
           <span className="bold">Date : </span>
           {this.state.event.date}
         </p>
-        )}
         <br />
         {this.state.event.time && (
           <p>

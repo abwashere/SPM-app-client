@@ -77,8 +77,8 @@ class LocationAutoComplete extends Component {
               name="address"
               placeholder={this.props.placeholderContent}
               value={this.state.search}
+              // value={this.props.formattedAddress}
               onChange={this.handleSearchChange}
-              
             />
             <span className="icon is-small is-left">
               <i className="fa fa-map"></i>

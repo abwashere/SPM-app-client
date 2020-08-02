@@ -10,7 +10,17 @@ import "./../../styles/FormSignUp.css";
 
 class FormSignupClub extends Component {
   static contextType = UserContext;
-  state = {};
+  state = {
+    role: "Club",
+    email: "yo@mail.com",
+    password: "1234",
+    clubName: "Les Tataz",
+    phoneNumber: "0123456789",
+    website: "https://www.tataz.com",
+    year: "2018",
+    subscriptionFee: "150€ par an pour les adultes, 80€ pour les juniors",
+    description: "Faire la fête après les matchs !",
+  };
 
   handleChange = (event) => {
     const value =
@@ -26,7 +36,7 @@ class FormSignupClub extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.state.role = "Club";
+    // this.state.role = "Club";
 
     function buildFormData(formData, data, parentKey) {
       if (
@@ -96,7 +106,7 @@ class FormSignupClub extends Component {
                 className="input"
                 type="email"
                 name="email"
-                // value="toto@foo.bar"
+                value={this.state.email}
                 placeholder="Entrez l'adresse mail de l'association"
                 required
               />
@@ -114,6 +124,7 @@ class FormSignupClub extends Component {
                 className="input"
                 type="password"
                 placeholder="Entrez un mot de passe"
+                value={this.state.password}
                 name="password"
                 required
               />
@@ -129,7 +140,7 @@ class FormSignupClub extends Component {
                 className="input"
                 type="text"
                 name="clubName"
-                defaultValue="Les TATAZ"
+                value={this.state.clubName}
                 required
               />
             </div>
@@ -161,7 +172,7 @@ class FormSignupClub extends Component {
                 pattern="[0-9]{10}"
                 minLength="10"
                 maxLength="10"
-                defaultValue="0123456789"
+                value={this.state.phoneNumber}
               />
               <span className="icon is-small is-left">
                 <i className="fa fa-phone"></i>
@@ -176,7 +187,7 @@ class FormSignupClub extends Component {
                 className="input"
                 type="text"
                 name="website"
-                defaultValue="https://www.tataz.com"
+                value={this.state.website}
               />
             </div>
           </div>
@@ -187,6 +198,7 @@ class FormSignupClub extends Component {
                 className="input"
                 type="text"
                 name="videoURL"
+                value={this.state.videoURL}
                 placeholder="Lien de la vidéo, si vous en avez une"
               />
             </div>
@@ -198,7 +210,7 @@ class FormSignupClub extends Component {
                 className="input"
                 type="text"
                 name="year"
-                defaultValue="2020"
+                value={this.state.year}
               />
             </div>
           </div>
@@ -209,7 +221,7 @@ class FormSignupClub extends Component {
                 className="input"
                 type="text"
                 name="subscriptionFee"
-                value="150€ par an pour les adultes, 80€ pour les juniors"
+                value={this.state.subscriptionFee}
                 placeholder="Précisez les modalités d'inscription"
               />
             </div>
@@ -222,7 +234,7 @@ class FormSignupClub extends Component {
                 className="textarea"
                 name="description"
                 placeholder="Objectifs, ambitions, besoins, politique de recrutement... "
-                value="Faire la fête après les matchs !"
+                value={this.state.description}
               ></textarea>
             </div>
           </div>

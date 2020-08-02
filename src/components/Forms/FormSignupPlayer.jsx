@@ -13,6 +13,7 @@ class FormSignupPlayer extends Component {
   static contextType = UserContext;
 
   state = {
+    role: "Player",
     email: "tata@foo.bar",
     password: "1234",
     firstName: "Jane",
@@ -41,7 +42,6 @@ class FormSignupPlayer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.state.role = "Player";
 
     function buildFormData(formData, data, parentKey) {
       if (

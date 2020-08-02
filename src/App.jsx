@@ -1,6 +1,6 @@
+// modules
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-
 // auth routes
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import Signup from "./pages/Signup";
@@ -25,8 +25,10 @@ import FooterMain from "./components/FooterMain";
 function App() {
 	return (
 		<div className="App">
+			<div className="bg-main bordered-round "></div>
 			<div className="w-1pc-padding">
 				<NavMain />
+
 				<Switch>
 					{/* AUTHENTIFICATION ROUTES */}
 					<Route exact path="/" component={Home} />

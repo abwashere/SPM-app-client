@@ -3,7 +3,7 @@
 	color: rgb(57, 57, 57);
 	display: flex;
 	align-items: center;
-	height: 70px;
+	height: var(--nav-height);
 }
 
 .NavMain .nav-list {
@@ -20,5 +20,5 @@
 }
 
 .NavMain #welcome-msg {
-	color: green
+	color: var(--color-main)
 }

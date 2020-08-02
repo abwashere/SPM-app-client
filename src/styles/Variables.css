@@ -1,7 +1,17 @@
 /* COLORS */
 
-
+:root {
+  --color-main: #209983;
+  --color-secondary: #d5ebe749;
+  --color-grey: #a1a1a1;
+}
 
 /* SIZES */
 /* height */
+:root {
+  --nav-height: 70px;
+  --footer-height: 5vh;
+  --footer-position: -10vh;
+}
+
 /* width */

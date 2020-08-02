@@ -34,8 +34,9 @@ ul {
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-gap: 1.5rem;
+	grid-template-columns: repeat(5, 1fr);
+	grid-auto-rows: 540px;
+	grid-gap: 2rem;
 	width: 100%;
 }
 
@@ -58,9 +59,25 @@ ul {
 }
 
 .box-shadowed {
-    box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+	box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+		0 0 0 1px rgba(10, 10, 10, 0.02);
 }
 
 .bold {
 	font-weight: bold;
+}
+
+@media all and (max-width: 950px) and (min-width: 600px) {
+	.grid {
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 1.5rem;
+		width: 100%;
+	}
+}
+@media all and (max-width: 600px) {
+	.grid {
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 4rem;
+		width: 100%;
+	}
 }

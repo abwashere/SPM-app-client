@@ -12,9 +12,10 @@ const Card = ({ elem }) => {
 		<div className={`card ${isClub ? "club" : "team"}`}>
 			<Link to={`/${isClub ? "club" : "team"}/${elem._id}`}>
 				<div className="card-image">
-					<figure className="image is-4by3">
-						<img src={elem.image} alt="Team or club pic" />
-					</figure>
+					<figure
+						className="image"
+						style={{ backgroundImage: `url(${elem.image})` }}
+					></figure>
 				</div>
 			</Link>
 			<div className="card-content">
@@ -31,14 +32,18 @@ const Card = ({ elem }) => {
 						</p>
 					</div>
 				</div>
-				<div className="address content is-10">
+				<div className="address content">
 					{/* FIXME: get formattedAddress */}
 					{elem.location.formattedAddress}
 				</div>
-				<div className="sport content">
-					{!isClub && `${elem.sport.sportName} en ${elem.practice}`}
-				</div>
-				<div className="description content">{isClub && elem.description}</div>
+				{!isClub && (
+					<div className="sport content">
+						{elem.sport.sportName} en {elem.practice}
+					</div>
+				)}
+				{isClub && (
+					<div className="description content"> {elem.description}</div>
+				)}
 			</div>
 		</div>
 	);

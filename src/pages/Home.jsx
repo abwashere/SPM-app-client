@@ -80,7 +80,7 @@ class Home extends Component {
 
 		// TODO: AJOUTER LE FILTRE DES JOURS (nesté !)
 		// TODO: attention au group.sport dont il faudra peut-être retrouver l'id quand le populate fonctionnera !
-		const filteredGroups = closestGroups
+		const results = closestGroups
 			.filter((group) => {
 				if ((!filteredDay, !filteredPractice, !filteredSport)) return true;
 				if (filteredSport) return group.sport === filteredSport;
@@ -94,7 +94,8 @@ class Home extends Component {
 				else return true;
 			});
 
-		console.log("filtered groups ", filteredGroups);
+		console.log("filtered groups ", results);
+		console.log("search value ", results);
 
 		return (
 			<div className="ContentMain">
@@ -103,24 +104,32 @@ class Home extends Component {
 					<SearchBar callback={this.handleSearch} />
 					{searchValue && <Filter callback={this.handleFilter} />}
 				</div>
-
 				{/* DISPLAYED CARDS ----------------------------*/}
 				<div className="cards-container grid">
-					{filteredGroups.map((group, index) => (
+					{results.map((group, index) => (
 						<Card key={index} index={index} elem={group} />
 					))}
-					{!filteredGroups && <li>Loading...</li>}
+					{!results && <li>Loading...</li>}
 				</div>
 
+				{results.length === 0 && searchValue && (
+					<p className="topo">
+						Pas de clubs à l'horizon, veuillez modifier votre recherche.
+					</p>
+				)}
+
 				{/* DISPLAYED CONTENT BEFORE SEARCH -------------- */}
-				{!this.searchValue && (
-					<div className="presentation-content">
+				{!searchValue && (
+					<div className="presentation-content bordered-round flex col">
 						<div className="title-container">
-							<h1 className="title">Le sport pour toute...</h1>
-							<h2 className="subtitle">Blabla ............</h2>
-						</div>
-						<div className="topo-content">
-							<p className="topo">content</p>
+							<h1 className="title">
+								Tous les sports pour toutes les femmes, partout !
+							</h1>
+							<h2 className="subtitle">
+								Clubs amateurs pour sportives tous niveaux, sports collectifs ou
+								individuels en club
+							</h2>
+							<div className="topo">Women players only</div>
 						</div>
 					</div>
 				)}

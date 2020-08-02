@@ -7,7 +7,6 @@ import FormSignin from "../components/Forms/FormSignin";
 import "../styles/NavMain.css";
 import "../styles/SignInForm.css";
 import "bulma/css/bulma.css";
-import "bulma/css/bulma.css"; //TODO: bulma style
 
 class NavMain extends React.Component {
 	state = {
@@ -35,45 +34,73 @@ class NavMain extends React.Component {
 		const { context } = this.props;
 		return (
 			<div className="container-nav">
-				<nav className="NavMain">
-					<NavLink exact to="/">
-						<h3 className="logo">Spm</h3>
-					</NavLink>
-					<ul className="nav-list">
+				<nav
+					className="NavMain navbar"
+					role="navigation"
+					aria-label="main navigation"
+				>
+					<div className="navbar-brand">
+						<NavLink exact to="/" className="logo navbar-item">
+							Spm
+						</NavLink>
+
+						<div
+							role="button"
+							className="navbar-burger burger"
+							aria-label="menu"
+							aria-expanded="false"
+							data-target="navbarBasicExample"
+						>
+							<span aria-hidden="true"></span>
+							<span aria-hidden="true"></span>
+							<span aria-hidden="true"></span>
+						</div>
+					</div>
+
+					<div className="navbar-menu">
 						{context.isLoggedIn && (
-							<React.Fragment>
-								<li id="welcome-msg">
+							<div class="navbar-end">
+								<p id="welcome-msg" className="navbar-item">
 									Bonjour{" "}
 									{(context.user && context.user.firstName) ||
 										context.user.clubName}
-								</li>
-								<li>
+								</p>
+								<p className="navbar-item">
 									<NavLink to="/account">Mon compte</NavLink>
-								</li>
-								<li>
-									<p onClick={this.handleLogout} to="/logout" className="link">
-										Se déconnecter
-									</p>
-								</li>
-							</React.Fragment>
+								</p>
+
+								<p
+									onClick={this.handleLogout}
+									to="/logout"
+									className="link button is-normal"
+								>
+									Se déconnecter
+								</p>
+							</div>
 						)}
 						{!context.isLoggedIn && (
-							<React.Fragment>
-								<li
-									onClick={this.displaySignIn}
-									id="login-link"
-									className="link"
-								>
-									Se connecter
-								</li>
-								<li>
-									<NavLink to="/signup" id="signup-link" className="link">
-										S'inscrire
-									</NavLink>
-								</li>
-							</React.Fragment>
+							<div class="navbar-end">
+								<div class="buttons">
+									<p
+										onClick={this.displaySignIn}
+										id="login-link"
+										className="link button is-light"
+									>
+										Se connecter
+									</p>
+									<p>
+										<NavLink
+											to="/signup"
+											id="signup-link"
+											className="link button is-primary"
+										>
+											S'inscrire
+										</NavLink>
+									</p>
+								</div>
+							</div>
 						)}
-					</ul>
+					</div>
 				</nav>
 				<div onMouseLeave={this.displaySignIn}>
 					{this.state.onDisplay && <FormSignin />}
@@ -84,3 +111,67 @@ class NavMain extends React.Component {
 }
 
 export default withUser(NavMain);
+
+/* 
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+
+      <a class="navbar-item">
+        Documentation
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            About
+          </a>
+          <a class="navbar-item">
+            Jobs
+          </a>
+          <a class="navbar-item">
+            Contact
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Sign up</strong>
+          </a>
+          <a class="button is-light">
+            Log in
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+*/

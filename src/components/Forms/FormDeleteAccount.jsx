@@ -1,34 +1,27 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
-import playerApiHandler from "./../../api/playerApiHandler";
 import clubApiHandler from "./../../api/clubApiHandler";
 
 import "bulma/css/bulma.css";
-import teamApiHandler from "../../api/teamApiHandler";
 
 class FormDeleteAccount extends Component {
 	static contextType = UserContext;
-	state = { isAsked: true };
+	state = { isAsked: true, isDeleted: false };
 
 	handleDelete = (id) => {
-    console.log("handle delete triggered");
+		console.log("handle delete triggered");
 		let user = this.context.user;
-		// this.props.history.push("/");
-
-
-			// 	clubApiHandler
-			// 		.deleteClub(id)
-			// 		.then((dbRes) => {
-			// 			console.log(this.props);
-			// 			console.log("db res", dbRes);
-			// 		})
-			// 		.catch((error) => {
-			// 			console.log(error);
-			// 		});
-			// } else {
-			/* delete player */
-		// }
+		clubApiHandler
+			.deleteClub(id)
+			.then((dbRes) => {
+				console.log("db res in handle delete", dbRes);
+				this.setState({ isDeleted: true });
+				this.context.removeUser();
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	handleAbort = () => {
@@ -36,7 +29,7 @@ class FormDeleteAccount extends Component {
 	};
 
 	render() {
-		const { isAsked } = this.state;
+		const { isAsked, isDeleted } = this.state;
 		const { user } = this.context;
 		console.log(
 			"context user to delete",
@@ -47,28 +40,28 @@ class FormDeleteAccount extends Component {
 
 		return (
 			<div className="FormDeleteAccount">
-				{isAsked && (
-					<React.Fragment>
-						<h1>Etes-tu sûr(e) de vouloir supprimer ce compte ?</h1>
-						<div className="buttons has-addons">
-							<button
-								onClick={this.handleDelete(user._id)}
-								className="button is-danger is-selected"
-							>
-								Oui, au revoir
-							</button>
-							<button
-								onClick={() => {
-									this.handleAbort();
-									this.props.abortDelete();
-								}}
-								className="button is-link is-selected"
-							>
-								Noooo !
-							</button>
-						</div>
-					</React.Fragment>
-				)}
+				{isDeleted && <Redirect to="/" />}
+
+				<React.Fragment>
+					<h1>Etes-tu sûr(e) de vouloir supprimer ce compte ?</h1>
+					<div className="buttons has-addons">
+						<button
+							onClick={() => this.handleDelete(user._id)}
+							className="button is-danger is-selected"
+						>
+							Oui, au revoir
+						</button>
+						<button
+							onClick={() => {
+								this.handleAbort();
+								this.props.abortDelete();
+							}}
+							className="button is-link is-selected"
+						>
+							Noooo !
+						</button>
+					</div>
+				</React.Fragment>
 			</div>
 		);
 	}

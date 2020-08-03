@@ -74,6 +74,7 @@ class NavMain extends React.Component {
 					<div
 						className={`navbar-menu ${this.state.isActive && "is-active"} `}
 						id="nav-content"
+						onMouseLeave={this.displayMenu}
 					>
 						{/* ----------------- AFFICHAGE DES MENUS POUR USER LOGGED ID */}
 						{context.isLoggedIn && (

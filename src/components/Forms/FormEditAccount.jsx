@@ -7,37 +7,64 @@ import "bulma/css/bulma.css";
 
 export class FormEditAccount extends Component {
 	static contextType = UserContext;
-	state = {};
+	state = {
+		firstName: "",
+		lastName: "",
+		sportsList: [],
+		practice: [
+			{
+				sport: "",
+				level: "",
+			},
+		],
+		phoneNumber: "",
+		website: "",
+		year: "",
+		subscriptionFee: "",
+		description: "",
+		email: "",
+		clubName: "",
+		file: null,
+	};
 	/* handleChange = (event) => {
-		const key = event.target.name;
 		const value =
-			event.target.type === "file"
-				? event.target.files[0]
-				: event.target.type === "checkbox"
-				? event.target.checked
-				: event.target.value;
+			event.target.type === "file" ? event.target.files[0] : event.target.value;
+		const key = event.target.name;
 
-		this.setState({ [key]: value });
+		if (event.target.type === "file") {
+			this.setState({
+				file: URL.createObjectURL(event.target.files[0]),
+				picture: event.target.files[0],
+			});
+		} else {
+			this.setState({ [key]: value });
+		}
 	};
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		console.log("sign in submitted");
+		console.log(this.state);
+
+		let fd = new FormData();
+		buildFormData(fd, this.state);
 
 		authApiHandler
-			.updatePlayer(this.state)
-			.then((dataPlayer) => {
-				this.context.setUser(dataPlayer);
-				this.props.callback();
+			.signupPlayer(fd)
+			.then((data) => {
+				console.log(data);
+				this.context.setUser(data);
+				this.props.history.push("/");
 			})
 			.catch((error) => {
 				console.log(error);
 			});
-	}; */
+	};
+ */
 	render() {
 		console.log("le state du form edit", this.state);
+		let user = this.context.user;
 
-		return ( 
+		return (
 			<div className="FormEditAccount">
 				{/* -----------------PHOTO PART */}
 				{/* -----------------INFOS PART */}

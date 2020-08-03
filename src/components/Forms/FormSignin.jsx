@@ -27,7 +27,61 @@ class FormSignin extends Component {
 		this.setState({ [key]: value });
 	};
 
-	handleSubmit= (event) => {
+	/* handleSubmitClub = (event) => {
+		event.preventDefault();
+		console.log("sign in club submitted");
+
+		authApiHandler
+			.signinClub(this.state)
+			.then(() => {
+				this.context.setUser(dataClub);
+				this.props.callback();
+			})
+			.catch((error) => {
+				console.log(error); // Display error message here, if you set the state
+				// if (error.message === "unknown user")
+				// 	this.setState({ invalidPass: true });
+				// if (error.message === "wrong credentials")
+				// 	this.setState({ invalidMail: true });
+			});
+	};
+	handleSubmitPlayer = (event) => {
+		event.preventDefault();
+		console.log("sign in player submitted");
+
+		authApiHandler
+			.authApiHandler(this.state)
+			.then(() => {
+				this.context.setUser(dataPlayer);
+				this.props.callback();
+			})
+			.catch((error) => {
+				console.log(error); // Display error message here, if you set the state
+				// if (error.message === "unknown user")
+				// 	this.setState({ invalidPass: true });
+				// if (error.message === "wrong credentials")
+				// 	this.setState({ invalidMail: true });
+			});
+	}; */
+	handleSubmit = (event) => {
+		event.preventDefault();
+		console.log("sign in submitted");
+
+		authApiHandler
+			.signin(this.state)
+			.then((data) => {
+				this.context.setUser(data);
+				this.props.callback();
+			})
+			.catch((error) => {
+				console.log(error); // Display error message here, if you set the state
+				// if (error.message === "unknown user")
+				// 	this.setState({ invalidPass: true });
+				// if (error.message === "wrong credentials")
+				// 	this.setState({ invalidMail: true });
+			});
+	};
+	/* 	handleSubmit = (event) => {
 		event.preventDefault();
 		console.log("sign in submitted");
 
@@ -40,20 +94,13 @@ class FormSignin extends Component {
 						.then((dataPlayer) => {
 							this.context.setUser(dataPlayer);
 							this.props.callback();
-							// this.props.history.push("/");
 						})
 						.catch((error) => {
 							console.log(error);
-							// if (error.message === "unknown user")
-							// 	this.setState({ invalidPass: true });
-							// if (error.message === "wrong credentials")
-							// 	this.setState({ invalidMail: true });
 						});
 				} else {
 					this.context.setUser(dataClub);
 					this.props.callback();
-
-					// this.props.history.push("/");
 				}
 			})
 			.catch((error) => {
@@ -63,64 +110,89 @@ class FormSignin extends Component {
 				// if (error.message === "wrong credentials")
 				// 	this.setState({ invalidMail: true });
 			});
-	};
+	}; */
 
 	render() {
 		// console.log("mail ? ", this.invalidMail);
 		// console.log("password ? ", this.invalidPass);
 		return (
-			<form
-				onChange={this.handleChange}
-				onSubmit={this.handleSubmit}
-				className="SignInForm box-shadowed border-round"
-			>
-				<div className="field">
-					<label className="label">Email</label>
-					<div className="control has-icons-left has-icons-right">
-						<input
-							className="input"
-							/* className={`input ${
+			<div>
+				{/* 	<React.Fragment>
+					<h1>Tu es ?</h1>
+					<div className="buttons has-addons">
+						<button
+							onClick={() => this.handleDelete(user._id)}
+							className="button is-danger is-selected"
+						>
+							Une meuf
+						</button>
+						<button
+							onClick={() => {
+								this.handleAbort();
+								this.props.abortDelete();
+							}}
+							className="button is-link is-selected"
+						>
+							Un club{" "}
+						</button>
+					</div>
+				</React.Fragment> */}
+
+				<form
+					onChange={this.handleChange}
+					onSubmit={this.handleSubmit}
+					className="SignInForm box-shadowed border-round"
+				>
+					<div className="field">
+						<label className="label">Email</label>
+						<div className="control has-icons-left has-icons-right">
+							<input
+								className="input"
+								/* className={`input ${
 								this.invalidMail ==="yes" ? "is danger" : "is success"
 							} `} */
-							type="email"
-							placeholder="Entrez votre email"
-							// value="foo@bar.baz"
-							name="email"
-						/>
-						<span className="icon is-small is-left">
-							<i className="fas fa-envelope"></i>
-						</span>
-						<span className="icon is-small is-right">
-							<i className="fas fa-exclamation-triangle"></i>
-						</span>
+								type="email"
+								placeholder="Entrez votre email"
+								// value="foo@bar.baz"
+								name="email"
+							/>
+							<span className="icon is-small is-left">
+								<i className="fas fa-envelope"></i>
+							</span>
+							<span className="icon is-small is-right">
+								<i className="fas fa-exclamation-triangle"></i>
+							</span>
+						</div>
+						{this.invalidMail && (
+							<p className="help is-danger">Mail incorrect</p>
+						)}
 					</div>
-					{this.invalidMail && <p className="help is-danger">Mail incorrect</p>}
-				</div>
-				<div className="field">
-					<label className="label">Mot de passe</label>
-					<div className="control has-icons-left has-icons-right">
-						<input
-							className="input"
-							// className={`input ${this.invalidPass === "yes" && "is danger"} `}
-							type="password"
-							// value="1234"
-							name="password"
-						/>
-						<span className="icon is-small is-left">
-							<i className="fas fa-user"></i>
-						</span>
-						<span className="icon is-small is-right">
-							<i className="fas fa-check"></i>
-						</span>
-					</div>
-					{/* {this.invalidPass && (
+					<div className="field">
+						<label className="label">Mot de passe</label>
+						<div className="control has-icons-left has-icons-right">
+							<input
+								className="input"
+								// className={`input ${this.invalidPass === "yes" && "is danger"} `}
+								type="password"
+								// value="1234"
+								name="password"
+							/>
+							<span className="icon is-small is-left">
+								<i className="fas fa-user"></i>
+							</span>
+							<span className="icon is-small is-right">
+								<i className="fas fa-check"></i>
+							</span>
+						</div>
+						{/* {this.invalidPass && (
 						<p className="help is-danger">Password incorrect</p>
 					)} */}
-				</div>
-				<div className="control">
-					<button className="button is-link">Se connecter</button>
-				</div>
-			</form>
+					</div>
+					<div className="control">
+						<button className="button is-link">Se connecter</button>
+					</div>
+				</form>
+			</div>
 		);
 	}
 }

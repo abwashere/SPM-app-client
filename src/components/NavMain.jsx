@@ -11,6 +11,7 @@ import "bulma/css/bulma.css";
 class NavMain extends React.Component {
 	state = {
 		onDisplay: false,
+		isActive: true,
 	};
 
 	handleLogout = () => {
@@ -30,6 +31,12 @@ class NavMain extends React.Component {
 			: this.setState({ onDisplay: true });
 	};
 
+	displayMenu = () => {
+		this.state.isActive
+			? this.setState({ isActive: false })
+			: this.setState({ isActive: true });
+	};
+
 	render() {
 		const { context } = this.props;
 		return (
@@ -40,24 +47,26 @@ class NavMain extends React.Component {
 					aria-label="main navigation"
 				>
 					<div className="navbar-brand">
-						<NavLink exact to="/" className="logo navbar-item">
+						<NavLink exact to="/" id="logo" className="navbar-item bold">
 							Spm
 						</NavLink>
 
-						<div
-							role="button"
-							className="navbar-burger burger"
-							aria-label="menu"
-							aria-expanded="false"
-							data-target="navbarBasicExample"
-						>
-							<span aria-hidden="true"></span>
-							<span aria-hidden="true"></span>
-							<span aria-hidden="true"></span>
+						<div class="navbar-end">
+							<div
+								role="button"
+								className={`navbar-burger burger ${this.state.isActive && "is-active"} `}
+								aria-label="menu"
+								aria-expanded="false"
+								data-target="navbarBasicExample"
+								onClick={this.displayMenu}
+							>
+								<span aria-hidden="true"></span>
+								<span aria-hidden="true"></span>
+								<span aria-hidden="true"></span>
+							</div>
 						</div>
 					</div>
-
-					<div className="navbar-menu">
+					<div className={`navbar-menu ${this.state.isActive && "is-active"} `} id="nav-content">
 						{context.isLoggedIn && (
 							<div class="navbar-end">
 								<p id="welcome-msg" className="navbar-item">

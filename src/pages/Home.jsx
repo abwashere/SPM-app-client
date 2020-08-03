@@ -50,6 +50,8 @@ class Home extends Component {
 		this.setState({ filteredPractice: selection.practice });
 	};
 
+	handleBackground = () => {};
+
 	render() {
 		const {
 			teamsAndClubs,
@@ -104,35 +106,38 @@ class Home extends Component {
 					<SearchBar callback={this.handleSearch} />
 					{searchValue && <Filter callback={this.handleFilter} />}
 				</div>
-				{/* DISPLAYED CARDS ----------------------------*/}
-				<div className="cards-container grid">
-					{results.map((group, index) => (
-						<Card key={index} index={index} elem={group} />
-					))}
-					{!results && <li>Loading...</li>}
-				</div>
-
-				{results.length === 0 && searchValue && (
-					<p className="topo">
-						Pas de clubs à l'horizon, veuillez modifier votre recherche.
-					</p>
-				)}
-
-				{/* DISPLAYED CONTENT BEFORE SEARCH -------------- */}
-				{!searchValue && (
-					<div className="presentation-content bordered-round flex col">
-						<div className="title-container">
-							<h1 className="title">
-								Tous les sports pour toutes les femmes, partout !
-							</h1>
-							<h2 className="subtitle">
-								Clubs amateurs pour sportives tous niveaux, sports collectifs ou
-								individuels en club
-							</h2>
-							<div className="topo">Women players only</div>
-						</div>
+				{/* BACKGROUND  */}
+				<div className={!searchValue && "bg-main"}>
+					{/* DISPLAYED CARDS ----------------------------*/}
+					<div className="cards-container grid">
+						{results.map((group, index) => (
+							<Card key={index} index={index} elem={group} />
+						))}
+						{!results && <li>Loading...</li>}
 					</div>
-				)}
+
+					{results.length === 0 && searchValue && (
+						<p className="topo">
+							Pas de clubs à l'horizon, veuillez modifier votre recherche.
+						</p>
+					)}
+
+					{/* DISPLAYED CONTENT BEFORE SEARCH -------------- */}
+					{!searchValue && (
+						<div className="presentation-content bordered-round flex col">
+							<div className="title-container">
+								<h1 className="title">
+									Tous les sports pour toutes les femmes, partout !
+								</h1>
+								<h2 className="subtitle">
+									Clubs amateurs pour sportives tous niveaux, sports collectifs
+									ou individuels en club
+								</h2>
+								<div className="topo">Women players only</div>
+							</div>
+						</div>
+					)}
+				</div>
 			</div>
 		);
 	}

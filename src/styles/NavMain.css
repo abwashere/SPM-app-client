@@ -1,11 +1,11 @@
 .NavMain {
-	background-color: transparent;
-	color: rgb(57, 57, 57);
-	display: flex;
+	/* color: rgb(57, 57, 57); */
+	/* display: flex; */
 	align-items: center;
 	height: var(--nav-height);
+	z-index: 100;
 }
-
+/* 
 .NavMain .nav-list {
 	margin-left: auto;
 	display: flex;
@@ -14,11 +14,21 @@
 .NavMain .nav-list li:not(:last-child) {
 	margin-right: 20px;
 }
+*/
 
 .NavMain .link:hover {
 	cursor: pointer;
 }
 
 .NavMain #welcome-msg {
-	color: var(--color-main)
+	color: var(--color-main);
 }
+
+#logo {
+	color: var(--color-main);
+	font-family: var(--font-logo);
+	font-size: 2.5em
+}
+	
+	#nav-content {
+	}

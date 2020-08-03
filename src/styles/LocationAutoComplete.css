@@ -1,6 +1,6 @@
 .LocationAutoComplete {
   position: relative;
-  z-index: 100;
+  z-index: 50;
 }
 
 .LocationAutoComplete-results {
@@ -10,7 +10,7 @@
   margin: 0;
   border: 1px solid #00000011;
 }
-
+  
 .LocationAutoComplete-items {
   list-style: none;
   border: 1px solid #00000011;

@@ -2,7 +2,8 @@
   padding: 0;
   position : fixed;
   bottom:var( --footer-height);
-  height: 78%;
+  left: 0;
+  height: 74%;
   width:100%;
   z-index: -10;
   background-image: url("./bg-images/chris-leipelt-CBgEyshBRbM-medium-unsplash.jpg");

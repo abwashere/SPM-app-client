@@ -72,7 +72,7 @@ class LocationAutoComplete extends Component {
         <div className="field">
           <div className="control has-icons-left">
             <input
-              className="input is-large"
+              className="input is-medium"
               type="text"
               name="address"
               placeholder={this.props.placeholderContent}

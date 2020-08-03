@@ -23,9 +23,9 @@ import FooterMain from "./components/FooterMain";
 //----------------------
 
 function App() {
+
 	return (
 		<div className="App">
-			<div className="bg-main bordered-round "></div>
 			<div className="w-1pc-padding">
 				<NavMain />
 

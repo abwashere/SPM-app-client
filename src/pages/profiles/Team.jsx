@@ -30,7 +30,7 @@ class Team extends Component {
         <br />
         <p>
           <span className="bold">Sport : </span>
-          {this.state.team.sport} en {this.state.team.practice}
+          {this.state.team.sport.sportName} en {this.state.team.practice}
         </p>
         <br />
         {this.state.team.practice === "compétition" &&
@@ -84,15 +84,17 @@ class Team extends Component {
                 <th>Durée</th>
               </tr>
             </thead>
-            {this.state.team.trainings.map((training) => {
-              return (
-                <tr key={training._id}>
-                  <td>{training.day}</td>
-                  <td>{training.time}</td>
-                  <td>{training.duration}</td>
-                </tr>
-              );
-            })}
+            <tbody>
+              {this.state.team.trainings.map((training) => {
+                return (
+                  <tr key={training._id}>
+                    <td>{training.day}</td>
+                    <td>{training.time}</td>
+                    <td>{training.duration}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         )}
         <br />

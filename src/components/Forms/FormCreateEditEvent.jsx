@@ -17,15 +17,22 @@ class FormCreateEditEvent extends Component {
     time: "18h00",
     description: "Venez découvrir le futsal !",
     sportsList: [],
+    file: null,
   };
 
   handleChange = (event) => {
     const value =
       event.target.type === "file" ? event.target.files[0] : event.target.value;
-
     const key = event.target.name;
 
-    this.setState({ [key]: value });
+    if (event.target.type === "file") {
+      this.setState({
+        file: URL.createObjectURL(event.target.files[0]),
+        [key]: value,
+      });
+    } else {
+      this.setState({ [key]: value });
+    }
   };
 
   handleSubmit = (event) => {
@@ -224,7 +231,17 @@ class FormCreateEditEvent extends Component {
                 </span>
                 <span className="file-label">Choisir un fichier…</span>
               </span>
-              {/* <span className="file-name">{this.state.image}</span> */}
+              <div>
+                {this.state.file && !this.state.image && (
+                  <img src={this.state.file} alt="preview" />
+                )}
+                {!this.state.file && this.state.image && (
+                  <img src={this.state.image} alt="preview" />
+                )}
+                {this.state.file && this.state.image && (
+                  <img src={this.state.file} alt="preview" />
+                )}
+              </div>
             </label>
           </div>
 

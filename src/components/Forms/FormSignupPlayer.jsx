@@ -4,7 +4,6 @@ import UserContext from "../Auth/UserContext";
 import authApiHandler from "../../api/authApiHandler";
 import sportApiHandler from "../../api/sportApiHandler";
 import LocationAutoComplete from "./../LocationAutoComplete";
-// import ImageWithPreview from "./ImagePreview";
 
 import "bulma/css/bulma.css";
 import "./../../styles/FormSignUp.css";
@@ -26,18 +25,22 @@ class FormSignupPlayer extends Component {
         level: "",
       },
     ],
+    file: null,
   };
 
   handleChange = (event) => {
     const value =
-      event.target.type === "file"
-        ? event.target.files[0]
-        : // : event.target.type === "checkbox"
-          // ? event.target.checked
-          event.target.value;
-
+      event.target.type === "file" ? event.target.files[0] : event.target.value;
     const key = event.target.name;
-    this.setState({ [key]: value });
+
+    if (event.target.type === "file") {
+      this.setState({
+        file: URL.createObjectURL(event.target.files[0]),
+        [key]: value,
+      });
+    } else {
+      this.setState({ [key]: value });
+    }
   };
 
   handleSubmit = (event) => {
@@ -241,7 +244,9 @@ class FormSignupPlayer extends Component {
                 </span>
                 <span className="file-label">Choisir un fichier…</span>
               </span>
-              {/* <span className="file-name">{this.state.image}</span> */}
+              <div>
+                {this.state.file && <img src={this.state.file} alt="preview" />}
+              </div>
             </label>
           </div>
 

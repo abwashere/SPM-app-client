@@ -20,23 +20,26 @@ class FormSignupClub extends Component {
     year: "2018",
     subscriptionFee: "150€ par an pour les adultes, 80€ pour les juniors",
     description: "Faire la fête après les matchs !",
+    file: null,
   };
 
   handleChange = (event) => {
     const value =
-      event.target.type === "file"
-        ? event.target.files[0]
-        : // : event.target.type === "checkbox"
-          // ? event.target.checked
-          event.target.value;
-
+      event.target.type === "file" ? event.target.files[0] : event.target.value;
     const key = event.target.name;
-    this.setState({ [key]: value });
+
+    if (event.target.type === "file") {
+      this.setState({
+        file: URL.createObjectURL(event.target.files[0]),
+        [key]: value,
+      });
+    } else {
+      this.setState({ [key]: value });
+    }
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // this.state.role = "Club";
 
     function buildFormData(formData, data, parentKey) {
       if (
@@ -242,14 +245,21 @@ class FormSignupClub extends Component {
           <label className="label">Télécharger une image</label>
           <div className="file has-name">
             <label className="file-label">
-              <input className="file-input" type="file" name="image" />
+              <input
+                className="file-input"
+                type="file"
+                name="image"
+                onChange={this.handlePreview}
+              />
               <span className="file-cta">
                 <span className="file-icon">
                   <i className="fas fa-upload"></i>
                 </span>
                 <span className="file-label">Choisir un fichier…</span>
               </span>
-              {/* <span className="file-name">{this.state.image}</span> */}
+              <div>
+                {this.state.file && <img src={this.state.file} alt="preview" />}
+              </div>
             </label>
           </div>
 

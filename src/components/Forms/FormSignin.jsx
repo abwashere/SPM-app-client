@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import UserContext from "../Auth/UserContext";
 import { withRouter } from "react-router-dom";
+import UserContext from "../Auth/UserContext";
 import authApiHandler from "../../api/authApiHandler";
 
 import "bulma/css/bulma.css";
@@ -17,8 +17,6 @@ class FormSignin extends Component {
 
 	handleChange = (event) => {
 		const key = event.target.name;
-
-		// You can test more if you have to handle different sorts of inputs.
 		const value =
 			event.target.type === "file"
 				? event.target.files[0]
@@ -81,7 +79,7 @@ class FormSignin extends Component {
 								this.invalidMail ==="yes" ? "is danger" : "is success"
 							} `} */
 							type="email"
-							placeholder="Email input"
+							placeholder="Entrez votre email"
 							// value="foo@bar.baz"
 							name="email"
 						/>
@@ -96,13 +94,12 @@ class FormSignin extends Component {
 				</div>
 
 				<div className="field">
-					<label className="label">Password</label>
+					<label className="label">Mot de passe</label>
 					<div className="control has-icons-left has-icons-right">
 						<input
 							className="input"
 							// className={`input ${this.invalidPass === "yes" && "is danger"} `}
 							type="password"
-							placeholder="Text input"
 							// value="1234"
 							name="password"
 						/>
@@ -118,7 +115,7 @@ class FormSignin extends Component {
 					)} */}
 				</div>
 				<div className="control">
-					<button className="button is-link">Se connecter</button>
+					<button onClick={this.props.callback} type="button" className="button is-link">Se connecter</button>
 				</div>
 			</form>
 		);

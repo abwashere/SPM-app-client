@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import * as turf from "@turf/turf";
 
 import teamApiHandler from "./../api/teamApiHandler";
@@ -28,12 +29,12 @@ class Home extends Component {
 					teamsAndClubs: [...dbRes[0], ...dbRes[1]],
 				});
 			})
-			.then(() =>
-				console.log(
-					"Tous les CLUB + TEAMS de la DB :",
-					this.state.teamsAndClubs
-				)
-			)
+			// .then(() =>
+			// 	console.log(
+			// 		"Tous les CLUB + TEAMS de la DB :",
+			// 		this.state.teamsAndClubs
+			// 	)
+			// )
 			.catch((err) => {
 				console.error(err);
 			});
@@ -44,7 +45,7 @@ class Home extends Component {
 	};
 
 	handleFilter = (selection) => {
-		console.log("filter group is there ? ", selection);
+		// console.log("filter group is there ? ", selection);
 		this.setState({ filteredDay: selection.day });
 		this.setState({ filteredSport: selection.sport });
 		this.setState({ filteredPractice: selection.practice });
@@ -61,7 +62,7 @@ class Home extends Component {
 			filteredDay,
 		} = this.state;
 
-		console.log("LE STATE: ", this.state);
+		// console.log("LE STATE: ", this.state);
 		let closestGroups = [];
 
 		if (searchValue) {
@@ -78,7 +79,7 @@ class Home extends Component {
 				if (distance <= 20) closestGroups.push(elem);
 			});
 		}
-		console.log("elem in less than 20 km : ", closestGroups);
+		// console.log("elem in less than 20 km : ", closestGroups);
 
 		// TODO: AJOUTER LE FILTRE DES JOURS (nesté !)
 		// TODO: attention au group.sport dont il faudra peut-être retrouver l'id quand le populate fonctionnera !
@@ -97,7 +98,7 @@ class Home extends Component {
 			});
 
 		console.log("filtered groups ", results);
-		console.log("search value ", results);
+		// console.log("search value ", results);
 
 		return (
 			<div className="ContentMain">
@@ -107,7 +108,7 @@ class Home extends Component {
 					{searchValue && <Filter callback={this.handleFilter} />}
 				</div>
 				{/* BACKGROUND  */}
-				<div className={!searchValue && "bg-main"}>
+				<div className={!searchValue ? "bg-main" : "hidden"}>
 					{/* DISPLAYED CARDS ----------------------------*/}
 					<div className="cards-container grid">
 						{results.map((group, index) => (
@@ -142,4 +143,4 @@ class Home extends Component {
 		);
 	}
 }
-export default Home;
+export default withRouter(Home);

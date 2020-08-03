@@ -10,26 +10,26 @@ const Card = ({ elem }) => {
 
 	return (
 		<div className={`card ${isClub ? "club" : "team"}`}>
-			<Link to={`/${isClub ? "club" : "team"}/${elem._id}`}>
-				<div className="card-image">
+			<div className="card-image">
+				<Link to={`/${isClub ? "club" : "team"}/${elem._id}`}>
 					<figure
 						className="image"
 						style={{ backgroundImage: `url(${elem.image})` }}
 					></figure>
-				</div>
-			</Link>
+				</Link>
+			</div>
 			<div className="card-content">
 				<div className="media">
 					<div className="media-content">
 						<p className="name title is-4">
 							{isClub ? elem.clubName : elem.teamName}
 						</p>
-						<p className="club-name subtitle is-6">
-							Club :
-							{!isClub && (
+						{!isClub && (
+							<p className="club-name subtitle is-6">
+								Club :{" "}
 								<Link to={`/club/${elem.club._id}`}>{elem.club.clubName}</Link>
-							)}
-						</p>
+							</p>
+						)}
 					</div>
 				</div>
 				<div className="address content">

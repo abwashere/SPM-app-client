@@ -9,7 +9,7 @@
 /* SIZES */
 /* height */
 :root {
-  --nav-height: 70px;
+  --nav-height: 9vh;
   --footer-height: 5vh;
   --footer-position: -10vh;
 }

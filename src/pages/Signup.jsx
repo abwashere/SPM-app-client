@@ -11,7 +11,6 @@ class Signup extends React.Component {
 		let key = event.target.name;
 		let value = event.target.value;
 		console.log("value is", value);
-
 		this.setState({ [key]: value });
 	};
 

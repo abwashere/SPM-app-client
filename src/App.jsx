@@ -23,12 +23,10 @@ import FooterMain from "./components/FooterMain";
 //----------------------
 
 function App() {
-
 	return (
 		<div className="App">
+			<NavMain />
 			<div className="w-1pc-padding">
-				<NavMain />
-
 				<Switch>
 					{/* AUTHENTIFICATION ROUTES */}
 					<Route exact path="/" component={Home} />

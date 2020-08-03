@@ -1,9 +1,12 @@
+.container-nav {
+}
 .NavMain {
-	/* color: rgb(57, 57, 57); */
 	/* display: flex; */
+	background-color: var(--color-secondary);
 	align-items: center;
 	height: var(--nav-height);
 	z-index: 100;
+	padding: 1%;
 }
 /* 
 .NavMain .nav-list {
@@ -27,8 +30,5 @@
 #logo {
 	color: var(--color-main);
 	font-family: var(--font-logo);
-	font-size: 2.5em
+	font-size: 2.5em;
 }
-	
-	#nav-content {
-	}

@@ -69,14 +69,14 @@ ul {
 	font-weight: bold;
 }
 
-@media all and (max-width: 950px) and (min-width: 600px) {
+@media screen and (max-width: 1300px) and (min-width: 600px) {
 	.grid {
 		grid-template-columns: repeat(3, 1fr);
 		grid-gap: 1.5rem;
 		width: 100%;
 	}
 }
-@media all and (max-width: 600px) {
+@media screen and (max-width: 600px) {
 	.grid {
 		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 4rem;

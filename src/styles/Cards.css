@@ -24,11 +24,11 @@
 }
 
 .card .card-content {
-	height: 50%;
+	height: 75%;
 }
 
 .card .media {
-	height: 35%;
+	height: 20%;
 }
 
 .card .title {
@@ -36,7 +36,7 @@
 }
 
 .card .subtitle {
-	font-size: 1.1em;
+	font-size: 0.8em;
 	color: var(--color-main);
 }
 
@@ -48,9 +48,8 @@
 
 .card .description,
 .card .sport {
-	height: 60%;
+	height: 50%;
 	font-size: 1em;
-	white-space: wrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }

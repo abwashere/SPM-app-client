@@ -5,6 +5,7 @@ import teamApiHandler from "../../api/teamApiHandler";
 import sportApiHandler from "../../api/sportApiHandler";
 import LocationAutoComplete from "./../LocationAutoComplete";
 import FormTraining from "./FormTraining";
+import buildFormData from "./../../utils/buildFormData";
 
 import "bulma/css/bulma.css";
 import "./../../styles/FormSignUp.css";
@@ -43,27 +44,6 @@ class FormCreateEditTeam extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-
-    function buildFormData(formData, data, parentKey) {
-      if (
-        data &&
-        typeof data === "object" &&
-        !(data instanceof Date) &&
-        !(data instanceof File)
-      ) {
-        Object.keys(data).forEach((key) => {
-          buildFormData(
-            formData,
-            data[key],
-            parentKey ? `${parentKey}[${key}]` : key
-          );
-        });
-      } else {
-        const value = data == null ? "" : data;
-
-        formData.append(parentKey, value);
-      }
-    }
 
     console.log("===================STATE", this.state);
     let formData = new FormData();

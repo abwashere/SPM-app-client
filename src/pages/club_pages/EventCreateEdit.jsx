@@ -12,6 +12,7 @@ function EventCreateEdit(props) {
         <h1>Mettre à jour les informations de l'évènement</h1>
       )}
       <FormCreateEditEvent />
+      {props.match.params.mode === "edit" && <p>Supprimer l'évènement</p>}
     </div>
   );
 }

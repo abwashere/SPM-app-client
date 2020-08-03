@@ -11,6 +11,7 @@ const TeamCreateEdit = (props) => {
         <h1>Mettre à jour les informations de l'équipe</h1>
       )}
       <FormCreateEditTeam />
+      {props.match.params.mode === "edit" && <p>Supprimer l'équipe</p>}
     </div>
   );
 };

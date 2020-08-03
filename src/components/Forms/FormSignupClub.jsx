@@ -3,7 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
 import authApiHandler from "../../api/authApiHandler";
 import LocationAutoComplete from "./../LocationAutoComplete";
-// import ImageWithPreview from "./ImagePreview";
+import buildFormData from "../../utils/buildFormData";
 
 import "bulma/css/bulma.css";
 import "./../../styles/FormSignUp.css";
@@ -41,27 +41,6 @@ class FormSignupClub extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    function buildFormData(formData, data, parentKey) {
-      if (
-        data &&
-        typeof data === "object" &&
-        !(data instanceof Date) &&
-        !(data instanceof File)
-      ) {
-        Object.keys(data).forEach((key) => {
-          buildFormData(
-            formData,
-            data[key],
-            parentKey ? `${parentKey}[${key}]` : key
-          );
-        });
-      } else {
-        const value = data == null ? "" : data;
-
-        formData.append(parentKey, value);
-      }
-    }
-
     let fd = new FormData();
     buildFormData(fd, this.state);
 
@@ -70,21 +49,12 @@ class FormSignupClub extends Component {
       .then((data) => {
         console.log(data);
         this.context.setUser(data);
-        // this.props.history.push("/account");
+        this.props.history.push("/account");
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
-  //   handleImage = (event) => {
-  //     this.setState({
-  //       avatar: event.target.files[0],
-  //       // URL temporaire qu'on peut inserer dans une balise <img  src={urlTemporaire}/>
-  //       // preview avant de soumettre le <form> au backend.
-  //       tmpAvatar: URL.createObjectURL(event.target.files[0]),
-  //     });
-  //   };
 
   handlePlace = (place) => {
     // This handle is passed as a callback to the autocomplete component.

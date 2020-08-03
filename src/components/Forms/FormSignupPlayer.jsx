@@ -4,6 +4,7 @@ import UserContext from "../Auth/UserContext";
 import authApiHandler from "../../api/authApiHandler";
 import sportApiHandler from "../../api/sportApiHandler";
 import LocationAutoComplete from "./../LocationAutoComplete";
+import buildFormData from "../../utils/buildFormData";
 
 import "bulma/css/bulma.css";
 import "./../../styles/FormSignUp.css";
@@ -36,7 +37,7 @@ class FormSignupPlayer extends Component {
     if (event.target.type === "file") {
       this.setState({
         file: URL.createObjectURL(event.target.files[0]),
-        [key]: value,
+        picture: event.target.files[0],
       });
     } else {
       this.setState({ [key]: value });
@@ -45,27 +46,7 @@ class FormSignupPlayer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-
-    function buildFormData(formData, data, parentKey) {
-      if (
-        data &&
-        typeof data === "object" &&
-        !(data instanceof Date) &&
-        !(data instanceof File)
-      ) {
-        Object.keys(data).forEach((key) => {
-          buildFormData(
-            formData,
-            data[key],
-            parentKey ? `${parentKey}[${key}]` : key
-          );
-        });
-      } else {
-        const value = data == null ? "" : data;
-
-        formData.append(parentKey, value);
-      }
-    }
+    console.log(this.state);
 
     let fd = new FormData();
     buildFormData(fd, this.state);
@@ -73,8 +54,9 @@ class FormSignupPlayer extends Component {
     authApiHandler
       .signupPlayer(fd)
       .then((data) => {
+        console.log(data);
         this.context.setUser(data);
-        // this.props.history.push("/");
+        this.props.history.push("/");
       })
       .catch((error) => {
         console.log(error);

@@ -2,21 +2,36 @@ import React, { Component } from "react";
 
 class FormTraining extends Component {
   state = {
-    day: "lundi",
-    time: "20h00",
-    duration: "1h30",
+    day: "",
+    time: "",
+    duration: "",
   };
 
   handleChange = (event) => {
     const value = event.target.value;
     const key = event.target.name;
 
-    this.setState({ [key]: value }, () => {
+    this.setState({ [key]: value, number: this.props.number }, () => {
       this.props.changeField(this.state);
     });
   };
 
+  handleClick = (event) => {
+    console.log(this.props.number);
+    this.props.removeTraining(this.props.number);
+  };
+
+  updateState = () => {
+    this.setState({
+      day: this.props.day,
+      time: this.props.time,
+      duration: this.props.duration,
+    });
+  };
+
   render() {
+    console.log("===============FORM TRAINING STATE", this.state);
+    console.log("formtraining props", this.props);
     return (
       <div className="field-body">
         <div className="field">
@@ -39,16 +54,42 @@ class FormTraining extends Component {
 
         <div className="field">
           <label className="label">Horaire</label>
-          <div className="control">
-            <input
-              className="input"
-              type="text"
-              name="time"
-              value={this.state.time}
-              onChange={this.handleChange}
-              required
-            />
-          </div>
+          {this.props.time && !this.state.time && (
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name="time"
+                value={this.state.time}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+          )}
+          {this.state.time && (
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name="time"
+                value={this.state.time}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+          )}
+          {!this.state.time && !this.props.time && (
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name="time"
+                value={this.state.time}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+          )}
         </div>
 
         <div className="field">
@@ -63,6 +104,10 @@ class FormTraining extends Component {
               required
             />
           </div>
+        </div>
+
+        <div onClick={this.handleClick}>
+          Supprimer <i className="fas fa-trash-alt"></i>
         </div>
       </div>
     );

@@ -8,7 +8,7 @@ import FormTraining from "./FormTraining";
 
 import "bulma/css/bulma.css";
 import "./../../styles/FormSignUp.css";
-import { rhumbDistance } from "@turf/turf";
+// import { rhumbDistance } from "@turf/turf";
 
 class FormCreateEditTeam extends Component {
   // static contextType = UserContext;
@@ -22,7 +22,7 @@ class FormCreateEditTeam extends Component {
     division: "Régionales 2",
     trainings: [],
     sportsList: [],
-    index: 0,
+    numTrainings: 1,
     file: null,
   };
 
@@ -83,14 +83,31 @@ class FormCreateEditTeam extends Component {
 
   handleTraining = (training) => {
     console.log(training);
+    const newTraining = {
+      day: training.day,
+      time: training.time,
+      duration: training.duration,
+    };
+    const index = training.number;
+    const updatedTrainings = [...this.state.trainings];
+    updatedTrainings.splice(index, 1, newTraining);
+
     this.setState({
-      trainings: [
-        {
-          day: training.day,
-          time: training.time,
-          duration: training.duration,
-        },
-      ],
+      trainings: updatedTrainings,
+    });
+  };
+
+  removeTraining = (index) => {
+    console.log("===============", this.state.trainings);
+    const updatedTrainings = [...this.state.trainings];
+    console.log("===============", updatedTrainings);
+    console.log(index);
+    updatedTrainings.splice(index, 1);
+    console.log("===============", updatedTrainings);
+    console.log("===============", this.state.numTrainings);
+    this.setState({
+      numTrainings: this.state.numTrainings - 1,
+      trainings: updatedTrainings,
     });
   };
 
@@ -104,6 +121,10 @@ class FormCreateEditTeam extends Component {
         formattedAddress: place.place_name,
       },
     });
+  };
+
+  handleClick = () => {
+    this.setState({ numTrainings: this.state.numTrainings + 1 });
   };
 
   componentDidMount() {
@@ -158,7 +179,34 @@ class FormCreateEditTeam extends Component {
   }
 
   render() {
-    console.log(this.state);
+    let trainings = [];
+
+    for (let i = 0; i < this.state.numTrainings; i++) {
+      if (this.state.trainings[i]) {
+        console.log("==============training numéro", i);
+        trainings.push(
+          <FormTraining
+            key={i}
+            number={i}
+            changeField={this.handleTraining}
+            removeTraining={this.removeTraining}
+            day={this.state.trainings[i].day}
+            time={this.state.trainings[i].time}
+            duration={this.state.trainings[i].duration}
+          />
+        );
+      } else {
+        trainings.push(
+          <FormTraining
+            key={i}
+            number={i}
+            changeField={this.handleTraining}
+            removeTraining={this.removeTraining}
+          />
+        );
+      }
+    }
+
     return (
       <div className="FormSignup">
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
@@ -284,11 +332,11 @@ class FormCreateEditTeam extends Component {
           </div>
 
           <div>
-            <FormTraining
-              index={this.state.index}
-              changeField={this.handleTraining}
-            />
-            <p>Ajouter un créneau d'entraînement +</p>
+            {trainings}
+            <p onClick={this.handleClick}>
+              Ajouter un créneau d'entraînement{" "}
+              <i className="far fa-plus-square"></i>
+            </p>
           </div>
 
           <div className="field">

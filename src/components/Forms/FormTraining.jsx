@@ -10,10 +10,10 @@ class FormTraining extends Component {
   handleChange = (event) => {
     const value = event.target.value;
     const key = event.target.name;
-
-    this.setState({ [key]: value, number: this.props.number }, () => {
-      this.props.changeField(this.state);
-    });
+    this.props.handleTrainingChange(this.props.number, key, value);
+    // this.setState({ [key]: value, number: this.props.number }, () => {
+    //   this.props.changeField(this.state);
+    // });
   };
 
   handleClick = (event) => {
@@ -40,13 +40,23 @@ class FormTraining extends Component {
             <div className="select">
               <select name="day" onChange={this.handleChange}>
                 <option>Choisir...</option>
-                <option value="lundi">Lundi</option>
-                <option value="mardi">Mardi</option>
-                <option value="mercredi">Mercredi</option>
-                <option value="jeudi">Jeudi</option>
-                <option value="vendredi">Vendredi</option>
-                <option value="samedi">Samedi</option>
-                <option value="dimanche">Dimanche</option>
+                {[
+                  "lundi",
+                  "mardi",
+                  "mercredi",
+                  "jeudi",
+                  "vendredi",
+                  "samedi",
+                  "dimanche",
+                ].map((day) => (
+                  <option
+                    key={day}
+                    selected={this.props.day === day}
+                    value={day}
+                  >
+                    {day}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -54,45 +64,17 @@ class FormTraining extends Component {
 
         <div className="field">
           <label className="label">Horaire</label>
-          {this.props.time && !this.state.time && (
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="time"
-                value={this.state.time}
-                placeholder="19h00"
-                onChange={this.handleChange}
-                required
-              />
-            </div>
-          )}
-          {this.state.time && (
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="time"
-                value={this.state.time}
-                placeholder="19h00"
-                onChange={this.handleChange}
-                required
-              />
-            </div>
-          )}
-          {!this.state.time && !this.props.time && (
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="time"
-                value={this.state.time}
-                placeholder="19h00"
-                onChange={this.handleChange}
-                required
-              />
-            </div>
-          )}
+          <div className="control">
+            <input
+              className="input"
+              type="text"
+              name="time"
+              value={this.props.time}
+              placeholder="19h00"
+              onChange={this.handleChange}
+              required
+            />
+          </div>
         </div>
 
         <div className="field">
@@ -102,7 +84,7 @@ class FormTraining extends Component {
               className="input"
               type="text"
               name="duration"
-              value={this.state.duration}
+              value={this.props.duration}
               placeholder="1h30"
               onChange={this.handleChange}
               required

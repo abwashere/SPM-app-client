@@ -21,9 +21,14 @@ class FormCreateEditTeam extends Component {
     year: "1987",
     description: "On est là pour gagner !",
     division: "Régionales 2",
-    trainings: [],
+    trainings: [
+      {
+        day: "",
+        time: "",
+        duration: "",
+      },
+    ],
     sportsList: [],
-    numTrainings: 1,
     file: null,
   };
 
@@ -77,6 +82,12 @@ class FormCreateEditTeam extends Component {
     });
   };
 
+  handleTrainingChange = (index, key, value) => {
+    let updatedTrainings = this.state.trainings;
+    updatedTrainings[index][key] = value;
+    this.setState({ trainings: updatedTrainings });
+  };
+
   removeTraining = (index) => {
     console.log("===============", this.state.trainings);
     const updatedTrainings = [...this.state.trainings];
@@ -84,9 +95,8 @@ class FormCreateEditTeam extends Component {
     console.log(index);
     updatedTrainings.splice(index, 1);
     console.log("===============", updatedTrainings);
-    console.log("===============", this.state.numTrainings);
+
     this.setState({
-      numTrainings: this.state.numTrainings - 1,
       trainings: updatedTrainings,
     });
   };
@@ -104,7 +114,13 @@ class FormCreateEditTeam extends Component {
   };
 
   handleClick = () => {
-    this.setState({ numTrainings: this.state.numTrainings + 1 });
+    const updatedTrainings = [...this.state.trainings];
+    updatedTrainings.push({
+      day: "",
+      time: "",
+      duration: "",
+    });
+    this.setState({ trainings: updatedTrainings });
   };
 
   componentDidMount() {
@@ -161,30 +177,20 @@ class FormCreateEditTeam extends Component {
   render() {
     let trainings = [];
 
-    for (let i = 0; i < this.state.numTrainings; i++) {
-      if (this.state.trainings[i]) {
-        console.log("==============training numéro", i);
-        trainings.push(
-          <FormTraining
-            key={i}
-            number={i}
-            changeField={this.handleTraining}
-            removeTraining={this.removeTraining}
-            day={this.state.trainings[i].day}
-            time={this.state.trainings[i].time}
-            duration={this.state.trainings[i].duration}
-          />
-        );
-      } else {
-        trainings.push(
-          <FormTraining
-            key={i}
-            number={i}
-            changeField={this.handleTraining}
-            removeTraining={this.removeTraining}
-          />
-        );
-      }
+    for (let i = 0; i < this.state.trainings.length; i++) {
+      console.log("==============training numéro", i);
+      trainings.push(
+        <FormTraining
+          key={i}
+          number={i}
+          changeField={this.handleTraining}
+          removeTraining={this.removeTraining}
+          day={this.state.trainings[i].day}
+          time={this.state.trainings[i].time}
+          duration={this.state.trainings[i].duration}
+          handleTrainingChange={this.handleTrainingChange}
+        />
+      );
     }
 
     return (

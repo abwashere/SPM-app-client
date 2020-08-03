@@ -1,22 +1,49 @@
 .FormSignup {
-	width: 50%;
+  width: 50%;
 }
-
 
 /* FIXME: TEXTE A ALIGNER A GAUCHE ET BOUTONS A CENTRER => FLEX=ALIGN CENTER */
 .FormSignUp .btn-signup,
 .FormSignUp .form-section-bottom,
 .Signup .content {
-	margin: 5% auto 0;
-	text-align: center;
+  margin: 5% auto 0;
+  text-align: center;
 }
 
 .Signup .radio-inputs {
-	margin-bottom: 3%;
-	width: 100%;
-	justify-content: space-between;
+  margin-bottom: 3%;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.FormSignup.player {
-/* ALIGNER A DROITE */
+.FormSignUp.player {
+  /* ALIGNER A DROITE */
+}
+
+.other {
+  margin: 20px auto 0;
+}
+
+.has-name {
+  margin-bottom: 30px;
+}
+
+.preview {
+  width: 50%;
+  margin: 0 auto 30px;
+}
+
+.field-body {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.inter-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+.addTraining {
+  margin-bottom: 30px;
 }

@@ -188,7 +188,7 @@ class FormCreateEditTeam extends Component {
     }
 
     return (
-      <div className="FormSignup">
+      <div className="FormSignup other">
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <div className="field">
             <label className="label">Nom de l'équipe</label>
@@ -230,12 +230,13 @@ class FormCreateEditTeam extends Component {
                 type="number"
                 name="year"
                 value={this.state.year}
+                placeholder="Année de création de l'équipe"
               />
             </div>
           </div>
 
           <div className="field">
-            <label className="label">Nom des entraîneur.se.s</label>
+            <label className="label">Nom des entraîneur⸱se⸱s</label>
             <div className="control">
               <input
                 className="input"
@@ -247,22 +248,24 @@ class FormCreateEditTeam extends Component {
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">Age minimal pour s'inscrire</label>
-            <div className="control">
-              <input
-                className="input"
-                type="number"
-                name="minAge"
-                value={this.state.minAge}
-              />
+          <div className="field-body">
+            <div className="field">
+              <label className="label">Age minimal</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="number"
+                  name="minAge"
+                  value={this.state.minAge}
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="field">
-            <label className="label">Age maximal</label>
-            <div className="control">
-              <input className="input" type="number" name="maxAge" />
+            <div className="field">
+              <label className="label">Age maximal</label>
+              <div className="control">
+                <input className="input" type="number" name="maxAge" />
+              </div>
             </div>
           </div>
 
@@ -271,7 +274,7 @@ class FormCreateEditTeam extends Component {
             <div className="control">
               <div className="select">
                 <select name="practice" required>
-                  <option>Choisir...</option>
+                  <option>Loisir ou compétition ?</option>
                   <option value="compétition">Compétition</option>
                   <option value="loisir">Loisir</option>
                 </select>
@@ -292,7 +295,7 @@ class FormCreateEditTeam extends Component {
               </div>
             </div>
           )}
-          <h3>Entraînements</h3>
+          <h3 class="inter-title">Entraînements</h3>
           <div className="field">
             <label className="label">Adresse</label>
             <div className="control has-icons-left">
@@ -309,7 +312,7 @@ class FormCreateEditTeam extends Component {
             </div>
           </div>
 
-          <div>
+          <div className="addTraining">
             {trainings}
             <p onClick={this.handleClick}>
               Ajouter un créneau d'entraînement{" "}
@@ -323,8 +326,8 @@ class FormCreateEditTeam extends Component {
               <textarea
                 className="textarea"
                 name="description"
-                placeholder="Dis-nous en plus sur l'évènement, le public attendu, la durée..."
-                value="Venez découvrir le futsal !"
+                placeholder="Dites-nous en plus sur l'équipe, l'état d'esprit, le niveau attendu..."
+                value={this.state.description}
               ></textarea>
             </div>
           </div>
@@ -337,20 +340,20 @@ class FormCreateEditTeam extends Component {
                 <span className="file-icon">
                   <i className="fas fa-upload"></i>
                 </span>
-                <span className="file-label">Choisir un fichier…</span>
+                <span className="file-label">Importer un fichier…</span>
               </span>
-              <div>
-                {this.state.file && !this.state.image && (
-                  <img src={this.state.file} alt="preview" />
-                )}
-                {!this.state.file && this.state.image && (
-                  <img src={this.state.image} alt="preview" />
-                )}
-                {this.state.file && this.state.image && (
-                  <img src={this.state.file} alt="preview" />
-                )}
-              </div>
             </label>
+          </div>
+          <div>
+            {this.state.file && !this.state.image && (
+              <img className="preview" src={this.state.file} alt="preview" />
+            )}
+            {!this.state.file && this.state.image && (
+              <img className="preview" src={this.state.image} alt="preview" />
+            )}
+            {this.state.file && this.state.image && (
+              <img className="preview" src={this.state.file} alt="preview" />
+            )}
           </div>
 
           <div className="field btn-signup">

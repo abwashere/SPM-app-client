@@ -1,11 +1,13 @@
 import React from "react";
 import FormCreateEditTeam from "./../../components/Forms/FormCreateEditTeam";
 
+import "./../../styles/Forms.css";
+
 const TeamCreateEdit = (props) => {
   return (
-    <div className="ContentMain">
+    <div className="ContentMain Forms">
       {props.match.params.mode === "create" && (
-        <h1>Créer une nouvelle équipe</h1>
+        <h1>Ajouter une nouvelle équipe</h1>
       )}
       {props.match.params.mode === "edit" && (
         <h1>Mettre à jour les informations de l'équipe</h1>

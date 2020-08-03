@@ -1,10 +1,12 @@
 import React from "react";
 import FormCreateEditEvent from "../../components/Forms/FormCreateEditEvent";
 
+import "./../../styles/Forms.css";
+
 function EventCreateEdit(props) {
   console.log(props);
   return (
-    <div className="ContentMain">
+    <div className="ContentMain Forms">
       {props.match.params.mode === "create" && (
         <h1>Créer un nouvel évènement</h1>
       )}

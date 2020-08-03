@@ -107,7 +107,7 @@ class FormCreateEditEvent extends Component {
     console.log(this.state);
 
     return (
-      <div className="FormSignup">
+      <div className="FormSignup other">
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <div className="field">
             <label className="label">Nom de l'évènement</label>
@@ -140,7 +140,7 @@ class FormCreateEditEvent extends Component {
           </div>
 
           <div className="field">
-            <label className="label">Heure</label>
+            <label className="label">Horaire</label>
             <div className="control">
               <input
                 className="input"
@@ -194,7 +194,7 @@ class FormCreateEditEvent extends Component {
               <textarea
                 className="textarea"
                 name="description"
-                placeholder="Dis-nous en plus sur l'évènement, le public attendu, la durée..."
+                placeholder="Dites-nous en plus sur l'évènement, le public attendu, la durée..."
                 value={this.state.description}
               ></textarea>
             </div>
@@ -210,18 +210,18 @@ class FormCreateEditEvent extends Component {
                 </span>
                 <span className="file-label">Choisir un fichier…</span>
               </span>
-              <div>
-                {this.state.file && !this.state.image && (
-                  <img src={this.state.file} alt="preview" />
-                )}
-                {!this.state.file && this.state.image && (
-                  <img src={this.state.image} alt="preview" />
-                )}
-                {this.state.file && this.state.image && (
-                  <img src={this.state.file} alt="preview" />
-                )}
-              </div>
             </label>
+          </div>
+          <div>
+            {this.state.file && !this.state.image && (
+              <img className="preview" src={this.state.file} alt="preview" />
+            )}
+            {!this.state.file && this.state.image && (
+              <img className="preview" src={this.state.image} alt="preview" />
+            )}
+            {this.state.file && this.state.image && (
+              <img className="preview" src={this.state.file} alt="preview" />
+            )}
           </div>
 
           <div className="field btn-signup">

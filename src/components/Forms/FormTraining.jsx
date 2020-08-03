@@ -61,6 +61,7 @@ class FormTraining extends Component {
                 type="text"
                 name="time"
                 value={this.state.time}
+                placeholder="19h00"
                 onChange={this.handleChange}
                 required
               />
@@ -73,6 +74,7 @@ class FormTraining extends Component {
                 type="text"
                 name="time"
                 value={this.state.time}
+                placeholder="19h00"
                 onChange={this.handleChange}
                 required
               />
@@ -85,6 +87,7 @@ class FormTraining extends Component {
                 type="text"
                 name="time"
                 value={this.state.time}
+                placeholder="19h00"
                 onChange={this.handleChange}
                 required
               />
@@ -100,6 +103,7 @@ class FormTraining extends Component {
               type="text"
               name="duration"
               value={this.state.duration}
+              placeholder="1h30"
               onChange={this.handleChange}
               required
             />

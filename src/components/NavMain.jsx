@@ -47,10 +47,13 @@ class NavMain extends React.Component {
 					aria-label="main navigation"
 				>
 					<div className="navbar-brand">
+						{/* --------------------------- AFFICHAGE LOGO */}
+
 						<NavLink exact to="/" id="logo" className="navbar-item bold">
 							Spm
 						</NavLink>
 
+						{/* --------------------------- AFFICHAGE RESPONSIVE BURGER */}
 						<div className="navbar-end">
 							<div
 								role="button"
@@ -72,6 +75,7 @@ class NavMain extends React.Component {
 						className={`navbar-menu ${this.state.isActive && "is-active"} `}
 						id="nav-content"
 					>
+						{/* ----------------- AFFICHAGE DES MENUS POUR USER LOGGED ID */}
 						{context.isLoggedIn && (
 							<div className="navbar-end">
 								<p id="welcome-msg" className="navbar-item">
@@ -92,9 +96,16 @@ class NavMain extends React.Component {
 								</p>
 							</div>
 						)}
+						{/* ----------------- AFFICHAGE DES MENUS QUAND NOT LOGGED IN */}
 						{!context.isLoggedIn && (
 							<div className="navbar-end">
-								<div className="buttons" onClick={this.displayMenu, this.displaySignIn}>
+								<div
+									className="buttons"
+									onClick={() => {
+										this.displayMenu();
+										this.displaySignIn();
+									}}
+								>
 									<p
 										onClick={this.displaySignIn}
 										id="login-link"
@@ -116,6 +127,7 @@ class NavMain extends React.Component {
 						)}
 					</div>
 				</nav>
+				{/* ----------------------------- AFFICHAGE DU FORM SIGN IN */}
 				<div>
 					{this.state.onDisplay && <FormSignin callback={this.displaySignIn} />}
 				</div>

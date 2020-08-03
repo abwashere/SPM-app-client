@@ -30,5 +30,6 @@
 #logo {
 	color: var(--color-main);
 	font-family: var(--font-logo);
-	font-size: 2.5em;
+	font-size: 1.7em;
+	text-shadow: black 1px 1px 1px 1px;
 }

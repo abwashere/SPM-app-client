@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
-import authApiHandler from "../../api/authApiHandler";
+import authApiHandler from "./../../api/authApiHandler";
 
 import "bulma/css/bulma.css";
 
@@ -27,8 +27,9 @@ class FormSignin extends Component {
 		this.setState({ [key]: value });
 	};
 
-	handleSubmit = (event) => {
+	handleSubmitLogin = (event) => {
 		event.preventDefault();
+		console.log("sign in submitted");
 
 		authApiHandler
 			.signinClub(this.state)
@@ -38,7 +39,8 @@ class FormSignin extends Component {
 						.signinPlayer(this.state)
 						.then((dataPlayer) => {
 							this.context.setUser(dataPlayer);
-							this.props.history.push("/");
+							this.props.callback();
+							// this.props.history.push("/");
 						})
 						.catch((error) => {
 							console.log(error);
@@ -49,7 +51,9 @@ class FormSignin extends Component {
 						});
 				} else {
 					this.context.setUser(dataClub);
-					this.props.history.push("/");
+					this.props.callback();
+
+					// this.props.history.push("/");
 				}
 			})
 			.catch((error) => {
@@ -67,7 +71,7 @@ class FormSignin extends Component {
 		return (
 			<form
 				onChange={this.handleChange}
-				onSubmit={this.handleSubmit}
+				onSubmit={this.handleSubmitLogin}
 				className="SignInForm box-shadowed border-round"
 			>
 				<div className="field">
@@ -92,7 +96,6 @@ class FormSignin extends Component {
 					</div>
 					{this.invalidMail && <p className="help is-danger">Mail incorrect</p>}
 				</div>
-
 				<div className="field">
 					<label className="label">Mot de passe</label>
 					<div className="control has-icons-left has-icons-right">
@@ -115,7 +118,7 @@ class FormSignin extends Component {
 					)} */}
 				</div>
 				<div className="control">
-					<button onClick={this.props.callback} type="button" className="button is-link">Se connecter</button>
+					<button className="button is-link">Se connecter</button>
 				</div>
 			</form>
 		);

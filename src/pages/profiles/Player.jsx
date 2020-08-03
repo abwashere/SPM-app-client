@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import playerApiHandler from "./../../api/playerApiHandler";
 
+import "./../../styles/Profiles.css";
+import "./../../styles/global.css";
+
 class Player extends Component {
   state = {
     player: null,
@@ -23,12 +26,13 @@ class Player extends Component {
     if (!this.state.player) return null;
 
     return (
-      <div>
-        <h1>
+      <div className="ContentMain Profiles">
+        <h1 className="bold">
           {this.state.player.firstName} {this.state.player.lastName}
         </h1>
 
         <img
+          className="logo"
           src={this.state.player.picture}
           alt="{this.state.player.firstName} {this.state.player.lastName}"
         />
@@ -36,12 +40,12 @@ class Player extends Component {
         {this.state.player.practice.map((sports) => {
           return (
             <p key={sports._id}>
-              <span className="bold">Sport : </span>
+              <span className="bold green">Sport : </span>
               {sports.level === "intermédiaire" && (
                 <span>Niveau {sports.level}</span>
               )}
               {sports.level !== "intermédiaire" && <span>{sports.level} </span>}
-              en {sports.sport}
+              en {sports.sport.sportName}
             </p>
           );
         })}
@@ -49,20 +53,20 @@ class Player extends Component {
         {!this.state.player.location.formattedPlace &&
           this.state.player.address && (
             <p>
-              <span className="bold">Ville : </span>
+              <span className="bold green">Ville : </span>
               {this.state.player.address}
             </p>
           )}
         {this.state.player.location.formattedPlace && (
           <p>
-            <span className="bold">Lieu : </span>
+            <span className="bold green">Ville : </span>
             {this.state.player.location.formattedPlace}
           </p>
         )}
         <br />
         {this.state.player.description && (
           <p>
-            <span className="bold">Plus d'infos sur moi : </span>
+            <span className="bold green">Plus d'infos sur moi : </span>
             {this.state.player.description}
           </p>
         )}

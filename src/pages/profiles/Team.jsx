@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import teamApiHandler from "./../../api/teamApiHandler";
 
+import "./../../styles/Profiles.css";
+import "./../../styles/global.css";
+
 class Team extends Component {
   state = {
     team: null,
@@ -23,27 +26,42 @@ class Team extends Component {
     if (!this.state.team) return null;
 
     return (
-      <div>
-        <h1>{this.state.team.teamName}</h1>
+      <div className="ContentMain Profiles">
+        <h1 className="bold">{this.state.team.teamName}</h1>
 
-        <img src={this.state.team.image} alt={this.state.team.teamName} />
+        <img
+          className="logo"
+          src={this.state.team.image}
+          alt={this.state.team.teamName}
+        />
         <br />
         <p>
-          <span className="bold">Sport : </span>
+          <span className="bold green">Club : </span>
+          {this.state.team.club.clubName}
+        </p>
+        <br />
+        <img
+          className="logoClub"
+          src={this.state.team.club.image}
+          alt={this.state.team.club.clubName}
+        />
+        <br />
+        <p>
+          <span className="bold green">Sport : </span>
           {this.state.team.sport.sportName} en {this.state.team.practice}
         </p>
         <br />
         {this.state.team.practice === "compétition" &&
           this.state.team.division && (
             <p>
-              <span className="bold">Division : </span>
+              <span className="bold green">Division : </span>
               {this.state.team.division}
             </p>
           )}
         <br />
         {this.state.team.year && (
           <p>
-            <span className="bold">Créée en : </span>
+            <span className="bold green">Créée en : </span>
             {this.state.team.year}
           </p>
         )}
@@ -61,16 +79,16 @@ class Team extends Component {
         )}
         <br />
         <br />
-        <h3>Entraînements :</h3>
+        <h3 className="bold">Entraînements :</h3>
         {!this.state.team.location.formattedAddress && this.state.team.address && (
           <p>
-            <span className="bold">Lieu : </span>
+            <span className="bold green">Lieu : </span>
             {this.state.team.address}
           </p>
         )}
         {this.state.team.location.formattedAddress && (
           <p>
-            <span className="bold">Lieu : </span>
+            <span className="bold green">Lieu : </span>
             {this.state.team.location.formattedAddress}
           </p>
         )}
@@ -100,7 +118,7 @@ class Team extends Component {
         <br />
         {this.state.team.description && (
           <p>
-            <span className="bold">Plus d'infos sur l'équipe : </span>
+            <span className="bold  green">Plus d'infos sur l'équipe : </span>
             {this.state.team.description}
           </p>
         )}

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import clubApiHandler from "./../../api/clubApiHandler";
 
+import "./../../styles/Profiles.css";
+import "./../../styles/global.css";
+
 class Club extends Component {
   state = {
     club: null,
@@ -22,51 +25,55 @@ class Club extends Component {
     if (!this.state.club) return null;
 
     return (
-      <div>
-        <h1>{this.state.club.clubName}</h1>
+      <div className="ContentMain Profiles">
+        <h1 className="bold">{this.state.club.clubName}</h1>
 
-        <img src={this.state.club.image} alt={this.state.club.clubName} />
+        <img
+          className="logo"
+          src={this.state.club.image}
+          alt={this.state.club.clubName}
+        />
         <br />
-        <h3>Nous joindre :</h3>
+        <h3 className="bold">Nous (re)joindre :</h3>
         {!this.state.club.location.formattedAddress && this.state.club.address && (
           <p>
-            <span className="bold">Adresse : </span>
+            <span className="bold green">Adresse : </span>
             {this.state.club.address}
           </p>
         )}
         {this.state.club.location.formattedAddress && (
           <p>
-            <span className="bold">Adresse : </span>
+            <span className="bold green">Adresse : </span>
             {this.state.club.location.formattedAddress}
           </p>
         )}
         {this.state.club.phoneNumber && (
           <p>
-            <span className="bold">Téléphone : </span>
+            <span className="bold green">Téléphone : </span>
             {this.state.club.phoneNumber}
           </p>
         )}
         <p>
-          <span className="bold">Email : </span>
+          <span className="bold green">Email : </span>
           {this.state.club.email}
         </p>
         <br />
         {this.state.club.website && (
           <p>
-            <span className="bold">Site web : </span>
-            {this.state.club.website}
+            <span className="bold green">Site web : </span>
+            <a href={this.state.club.website}>{this.state.club.website}</a>
           </p>
         )}
         {this.state.club.videoURL && (
           <p>
-            <span className="bold">Vidéo : </span>
-            {this.state.club.videoURL}
+            <span className="bold green">Vidéo : </span>
+            <a href={this.state.club.videoURL}>{this.state.club.videoURL}</a>
           </p>
         )}
         <br />
         {this.state.club.description && (
           <p>
-            <span className="bold">Plus d'infos : </span>
+            <span className="bold green">Plus d'infos : </span>
             {this.state.club.description}
           </p>
         )}

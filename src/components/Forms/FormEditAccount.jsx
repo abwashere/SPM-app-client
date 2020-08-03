@@ -37,7 +37,7 @@ export class FormEditAccount extends Component {
 	render() {
 		console.log("le state du form edit", this.state);
 
-		return ( 	
+		return ( 
 			<div className="FormEditAccount">
 				{/* -----------------PHOTO PART */}
 				{/* -----------------INFOS PART */}

@@ -28,7 +28,7 @@ class FormDeleteAccount extends Component {
 			// 		});
 			// } else {
 			/* delete player */
-		}
+		// }
 	};
 
 	handleAbort = () => {

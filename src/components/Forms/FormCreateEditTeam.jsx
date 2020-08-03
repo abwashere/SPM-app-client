@@ -230,7 +230,6 @@ class FormCreateEditTeam extends Component {
                 type="number"
                 name="year"
                 value={this.state.year}
-                required
               />
             </div>
           </div>
@@ -256,7 +255,6 @@ class FormCreateEditTeam extends Component {
                 type="number"
                 name="minAge"
                 value={this.state.minAge}
-                required
               />
             </div>
           </div>
@@ -272,7 +270,7 @@ class FormCreateEditTeam extends Component {
             <label className="label">Type de pratique</label>
             <div className="control">
               <div className="select">
-                <select name="practice">
+                <select name="practice" required>
                   <option>Choisir...</option>
                   <option value="compétition">Compétition</option>
                   <option value="loisir">Loisir</option>

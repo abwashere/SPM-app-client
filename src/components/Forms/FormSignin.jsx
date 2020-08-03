@@ -27,7 +27,7 @@ class FormSignin extends Component {
 		this.setState({ [key]: value });
 	};
 
-	handleSubmitLogin = (event) => {
+	handleSubmit= (event) => {
 		event.preventDefault();
 		console.log("sign in submitted");
 
@@ -71,7 +71,7 @@ class FormSignin extends Component {
 		return (
 			<form
 				onChange={this.handleChange}
-				onSubmit={this.handleSubmitLogin}
+				onSubmit={this.handleSubmit}
 				className="SignInForm box-shadowed border-round"
 			>
 				<div className="field">

@@ -99,13 +99,7 @@ class NavMain extends React.Component {
 						{/* ----------------- AFFICHAGE DES MENUS QUAND NOT LOGGED IN */}
 						{!context.isLoggedIn && (
 							<div className="navbar-end">
-								<div
-									className="buttons"
-									onClick={() => {
-										this.displayMenu();
-										this.displaySignIn();
-									}}
-								>
+								<div className="buttons" onClick={this.displayMenu}>
 									<p
 										onClick={this.displaySignIn}
 										id="login-link"

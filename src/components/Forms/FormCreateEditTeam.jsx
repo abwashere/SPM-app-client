@@ -84,7 +84,6 @@ class FormCreateEditTeam extends Component {
   handleTraining = (training) => {
     console.log(training);
     const newTraining = {
-<<<<<<< Updated upstream
       day: training.day,
       time: training.time,
       duration: training.duration,
@@ -108,14 +107,6 @@ class FormCreateEditTeam extends Component {
     console.log("===============", this.state.numTrainings);
     this.setState({
       numTrainings: this.state.numTrainings - 1,
-=======
-        day: training.day,
-        time: training.time,
-        duration: training.duration,
-      },
-      updatedTrainings = [...this.state.trainings, newTraining];
-    this.setState({
->>>>>>> Stashed changes
       trainings: updatedTrainings,
     });
   };
@@ -191,7 +182,6 @@ class FormCreateEditTeam extends Component {
     let trainings = [];
 
     for (let i = 0; i < this.state.numTrainings; i++) {
-<<<<<<< Updated upstream
       if (this.state.trainings[i]) {
         console.log("==============training numéro", i);
         trainings.push(
@@ -217,16 +207,6 @@ class FormCreateEditTeam extends Component {
       }
     }
 
-=======
-      trainings.push(
-        <FormTraining
-          key={i}
-          // number={i}
-          changeField={this.handleTraining}
-        />
-      );
-    }
->>>>>>> Stashed changes
     return (
       <div className="FormSignup">
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
@@ -352,21 +332,10 @@ class FormCreateEditTeam extends Component {
           </div>
 
           <div>
-<<<<<<< Updated upstream
             {trainings}
             <p onClick={this.handleClick}>
               Ajouter un créneau d'entraînement{" "}
               <i className="far fa-plus-square"></i>
-=======
-            {/* <FormTraining
-              index={this.state.index}
-              changeField={this.handleTraining}
-            /> */}
-            {trainings}
-            <p onClick={this.handleClick}>
-              Ajouter un créneau d'entraînement{" "}
-              <i class="far fa-plus-square"></i>
->>>>>>> Stashed changes
             </p>
           </div>
 

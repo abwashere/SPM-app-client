@@ -1,11 +1,13 @@
 .Account .forms {
-
+	width: 100%;
 }
 
-.Account .edit-box .teams{
-  
+.FormEditAccount {
+	width: 100%;
 }
 
-.Account .edit-box .events{
-  
+.Account .edit-box .teams {
+}
+
+.Account .edit-box .events {
 }

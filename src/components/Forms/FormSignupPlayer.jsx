@@ -16,16 +16,16 @@ class FormSignupPlayer extends Component {
     role: "Player",
     email: "tata@foo.bar",
     password: "1234",
-    firstName: "Jane",
-    lastName: "Doe",
-    description: "Faire la fête après les matches !",
-    sportsList: [],
-    practice: [
+    firstName: "Jane", 
+    lastName: "Doe", 
+    description: "Faire la fête après les matches !", 
+    sportsList: [], 
+    practice: [ 
       {
         sport: "",
         level: "",
       },
-    ],
+    ], 
     file: null,
   };
 
@@ -88,167 +88,167 @@ class FormSignupPlayer extends Component {
 
   render() {
     return (
-      <div className="FormSignup">
-        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-          <div className="field">
-            <label className="label">Email</label>
-            <div className="control has-icons-left">
-              <input
-                className="input"
-                type="email"
-                name="email"
-                value={this.state.email}
-                placeholder="Renseigne ton adresse mail"
-                required
-              />
-              <span className="icon is-small is-left">
-                <i className="fa fa-at"></i>
-              </span>
-            </div>
-          </div>
+			<div className="FormSignup">
+				<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+					<div className="field">
+						<label className="label">Email</label>
+						<div className="control has-icons-left">
+							<input
+								className="input"
+								type="email"
+								name="email"
+								value={this.state.email}
+								placeholder="Renseigne ton adresse mail"
+								required
+							/>
+							<span className="icon is-small is-left">
+								<i className="fa fa-at"></i>
+							</span>
+						</div>
+					</div>
 
-          <div className="field">
-            <label htmlFor="password" className="label">
-              Choisir un mot de passe
-            </label>
-            <div className="control has-icons-left">
-              <input
-                className="input"
-                type="password"
-                value={this.state.password}
-                name="password"
-                required
-              />
-              <span className="icon is-small is-left">
-                <i className="fa fa-lock"></i>
-              </span>
-            </div>
-          </div>
+					<div className="field">
+						<label htmlFor="password" className="label">
+							Choisir un mot de passe
+						</label>
+						<div className="control has-icons-left">
+							<input
+								className="input"
+								type="password"
+								value={this.state.password}
+								name="password"
+								required
+							/>
+							<span className="icon is-small is-left">
+								<i className="fa fa-lock"></i>
+							</span>
+						</div>
+					</div>
 
-          <div className="field">
-            <label className="label">Prénom</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="firstName"
-                defaultValue={this.state.firstName}
-                required
-              />
-            </div>
-          </div>
+					<div className="field">
+						<label className="label">Prénom</label>
+						<div className="control">
+							<input
+								className="input"
+								type="text"
+								name="firstName"
+								defaultValue={this.state.firstName}
+								required
+							/>
+						</div>
+					</div>
 
-          <div className="field">
-            <label className="label">Nom de famille</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name={this.state.lastName}
-                defaultValue="Doe"
-                required
-              />
-            </div>
-          </div>
+					<div className="field">
+						<label className="label">Nom de famille</label>
+						<div className="control">
+							<input
+								className="input"
+								type="text"
+								name="lastName"
+								defaultValue={this.state.lastName}
+								required
+							/>
+						</div>
+					</div>
 
-          <div className="field">
-            <label className="label">Ville</label>
-            <div className="control has-icons-left">
-              <LocationAutoComplete
-                onSelect={this.handlePlace}
-                searchIndication="Précise la ville où tu résides"
-              />
-              <span className="icon is-small is-left">
-                <i className="fa fa-map-marker"></i>
-              </span>
-              <span className="icon is-small is-right">
-                {/* <i className="fas fa-check"></i> */}
-              </span>
-            </div>
-          </div>
+					<div className="field">
+						<label className="label">Ville</label>
+						<div className="control has-icons-left">
+							<LocationAutoComplete
+								onSelect={this.handlePlace}
+								placeholderContent="Précise la ville où tu résides"
+							/>
+							<span className="icon is-small is-left">
+								<i className="fa fa-map-marker"></i>
+							</span>
+							<span className="icon is-small is-right">
+								{/* <i className="fas fa-check"></i> */}
+							</span>
+						</div>
+					</div>
 
-          <div className="field">
-            <label className="label">
-              Le sport que tu pratiques ou que tu souhaites pratiquer
-            </label>
-            <div className="field-body">
-              <div className="field">
-                <div className="control has-icons-left">
-                  <div className="select">
-                    <select name="sport">
-                      <option>Sport</option>
-                      {this.state.sportsList.map((sport) => (
-                        <option key={sport._id} value={sport._id}>
-                          {sport.sportName}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="icon is-small is-left">
-                    <i className="fas fa-running"></i>
-                  </div>
-                </div>
-              </div>
-              <div className="field">
-                <div className="control has-icons-left">
-                  <div className="select">
-                    <select name="level">
-                      <option>Niveau</option>
-                      <option value="débutante">Débutante</option>
-                      <option value="intermédiaire">Intermédiaire</option>
-                      <option value="expérimentée">Expérimentée</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+					<div className="field">
+						<label className="label">
+							Le sport que tu pratiques ou que tu souhaites pratiquer
+						</label>
+						<div className="field-body">
+							<div className="field">
+								<div className="control has-icons-left">
+									<div className="select">
+										<select name="sport">
+											<option>Sport</option>
+											{this.state.sportsList.map((sport) => (
+												<option key={sport._id} value={sport._id}>
+													{sport.sportName}
+												</option>
+											))}
+										</select>
+									</div>
+									<div className="icon is-small is-left">
+										<i className="fas fa-running"></i>
+									</div>
+								</div>
+							</div>
+							<div className="field">
+								<div className="control has-icons-left">
+									<div className="select">
+										<select name="level">
+											<option>Niveau</option>
+											<option value="débutante">Débutante</option>
+											<option value="intermédiaire">Intermédiaire</option>
+											<option value="expérimentée">Expérimentée</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-          <div className="field">
-            <label className="label">Dis-nous en plus...</label>
-            <div className="control">
-              <textarea
-                className="textarea"
-                name="description"
-                placeholder="Partage ta pratique du sport et ce que tu recherches en t'inscrivant."
-                value={this.state.description}
-              ></textarea>
-            </div>
-          </div>
+					<div className="field">
+						<label className="label">Dis-nous en plus...</label>
+						<div className="control">
+							<textarea
+								className="textarea"
+								name="description"
+								placeholder="Partage ta pratique du sport et ce que tu recherches en t'inscrivant."
+								value={this.state.description}
+							></textarea>
+						</div>
+					</div>
 
-          <label className="label">Ajoute ta photo de profil</label>
-          <div className="file has-name">
-            <label className="file-label">
-              <input className="file-input" type="file" name="picture" />
-              <span className="file-cta">
-                <span className="file-icon">
-                  <i className="fas fa-upload"></i>
-                </span>
-                <span className="file-label">Choisir un fichier…</span>
-              </span>
-              <div>
-                {this.state.file && <img src={this.state.file} alt="preview" />}
-              </div>
-            </label>
-          </div>
+					<label className="label">Ajoute ta photo de profil</label>
+					<div className="file has-name">
+						<label className="file-label">
+							<input className="file-input" type="file" name="picture" />
+							<span className="file-cta">
+								<span className="file-icon">
+									<i className="fas fa-upload"></i>
+								</span>
+								<span className="file-label">Choisir un fichier…</span>
+							</span>
+							<div>
+								{this.state.file && <img src={this.state.file} alt="preview" />}
+							</div>
+						</label>
+					</div>
 
-          <div className="field btn-signup">
-            <div className="control">
-              <button className="button is-link">C'est fait !</button>
-            </div>
-          </div>
-        </form>
+					<div className="field btn-signup">
+						<div className="control">
+							<button className="button is-link">C'est fait !</button>
+						</div>
+					</div>
+				</form>
 
-        <div className="form-section-bottom">
-          <p>Tu as déjà un compte ? </p>
-          <button className="button is-light">
-            <Link className="link" to="/signin">
-              Connecte-toi !
-            </Link>
-          </button>
-        </div>
-      </div>
-    );
+				<div className="form-section-bottom">
+					<p>Tu as déjà un compte ? </p>
+					<button className="button is-light">
+						<Link className="link" to="/signin">
+							Connecte-toi !
+						</Link>
+					</button>
+				</div>
+			</div>
+		);
   }
 }
 

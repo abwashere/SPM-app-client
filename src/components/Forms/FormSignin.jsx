@@ -27,42 +27,6 @@ class FormSignin extends Component {
 		this.setState({ [key]: value });
 	};
 
-	/* handleSubmitClub = (event) => {
-		event.preventDefault();
-		console.log("sign in club submitted");
-
-		authApiHandler
-			.signinClub(this.state)
-			.then(() => {
-				this.context.setUser(dataClub);
-				this.props.callback();
-			})
-			.catch((error) => {
-				console.log(error); // Display error message here, if you set the state
-				// if (error.message === "unknown user")
-				// 	this.setState({ invalidPass: true });
-				// if (error.message === "wrong credentials")
-				// 	this.setState({ invalidMail: true });
-			});
-	};
-	handleSubmitPlayer = (event) => {
-		event.preventDefault();
-		console.log("sign in player submitted");
-
-		authApiHandler
-			.authApiHandler(this.state)
-			.then(() => {
-				this.context.setUser(dataPlayer);
-				this.props.callback();
-			})
-			.catch((error) => {
-				console.log(error); // Display error message here, if you set the state
-				// if (error.message === "unknown user")
-				// 	this.setState({ invalidPass: true });
-				// if (error.message === "wrong credentials")
-				// 	this.setState({ invalidMail: true });
-			});
-	}; */
 	handleSubmit = (event) => {
 		event.preventDefault();
 		console.log("sign in submitted");
@@ -81,63 +45,12 @@ class FormSignin extends Component {
 				// 	this.setState({ invalidMail: true });
 			});
 	};
-	/* 	handleSubmit = (event) => {
-		event.preventDefault();
-		console.log("sign in submitted");
-
-		authApiHandler
-			.signinClub(this.state)
-			.then((dataClub) => {
-				if (!dataClub) {
-					authApiHandler
-						.signinPlayer(this.state)
-						.then((dataPlayer) => {
-							this.context.setUser(dataPlayer);
-							this.props.callback();
-						})
-						.catch((error) => {
-							console.log(error);
-						});
-				} else {
-					this.context.setUser(dataClub);
-					this.props.callback();
-				}
-			})
-			.catch((error) => {
-				console.log(error); // Display error message here, if you set the state
-				// if (error.message === "unknown user")
-				// 	this.setState({ invalidPass: true });
-				// if (error.message === "wrong credentials")
-				// 	this.setState({ invalidMail: true });
-			});
-	}; */
 
 	render() {
 		// console.log("mail ? ", this.invalidMail);
 		// console.log("password ? ", this.invalidPass);
 		return (
 			<div>
-				{/* 	<React.Fragment>
-					<h1>Tu es ?</h1>
-					<div className="buttons has-addons">
-						<button
-							onClick={() => this.handleDelete(user._id)}
-							className="button is-danger is-selected"
-						>
-							Une meuf
-						</button>
-						<button
-							onClick={() => {
-								this.handleAbort();
-								this.props.abortDelete();
-							}}
-							className="button is-link is-selected"
-						>
-							Un club{" "}
-						</button>
-					</div>
-				</React.Fragment> */}
-
 				<form
 					onChange={this.handleChange}
 					onSubmit={this.handleSubmit}

@@ -4,6 +4,9 @@ import authApiHandler from "./../api/authApiHandler";
 import FormEditAccount from "./../components/Forms/FormEditAccount";
 import FormDeleteAccount from "./../components/Forms/FormDeleteAccount";
 
+import "./../styles/Account.css";
+
+
 class Account extends React.Component {
 	static contextType = UserContext;
 
@@ -22,9 +25,9 @@ class Account extends React.Component {
 			<div className="Account ContentMain">
 				<h1 className="title">Mon compte</h1>
 
-				<div className="forms flex">
+				<div className="forms flex space-btw">
 					{/* SECTION MODIF INFOS PERSOS */}
-					<div className="edit-account">
+					<div className="edit-account flex space-btw">
 						{/* edit section --------- */}
 						<FormEditAccount />
 						{/* delete section --------- */}

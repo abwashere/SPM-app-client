@@ -54,7 +54,7 @@ class FormCreateEditTeam extends Component {
       .then((data) => {
         // this.context.setUser(data);
         console.log("===================data added", data);
-        // this.props.history.push("/"); //renvoyer sur la page de l'événement créé
+        this.props.history.push(`/team/${data._id}`); //renvoyer sur la page de l'événement créé
       })
       .catch((error) => {
         console.log(error);
@@ -207,7 +207,7 @@ class FormCreateEditTeam extends Component {
             <label className="label">Sport</label>
             <div className="control has-icons-left">
               <div className="select">
-                <select name="sportId">
+                <select name="sport" required>
                   <option>Sport</option>
                   {this.state.sportsList.map((sport) => (
                     <option key={sport._id} value={sport._id}>

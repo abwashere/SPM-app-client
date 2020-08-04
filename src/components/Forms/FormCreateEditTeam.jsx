@@ -128,7 +128,6 @@ class FormCreateEditTeam extends Component {
   };
 
   componentDidMount() {
-    console.log("component has mounted");
     sportApiHandler
       .getSports()
       .then((apiRes) => {
@@ -147,7 +146,7 @@ class FormCreateEditTeam extends Component {
 
   render() {
     let trainings = [];
-    console.log(this.state);
+
     for (let i = 0; i < this.state.trainings.length; i++) {
       trainings.push(
         <FormTraining

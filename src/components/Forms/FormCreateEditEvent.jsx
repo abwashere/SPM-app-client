@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-// import UserContext from "../Auth/UserContext";
 import eventApiHandler from "../../api/eventApiHandler";
 import sportApiHandler from "../../api/sportApiHandler";
 import LocationAutoComplete from "./../LocationAutoComplete";
@@ -10,12 +9,10 @@ import "bulma/css/bulma.css";
 import "./../../styles/FormSignUp.css";
 
 class FormCreateEditEvent extends Component {
-  // static contextType = UserContext;
-
   state = {
-    title: "Session d'initiation",
-    time: "18h00",
-    description: "Venez découvrir le futsal !",
+    // title: "Session d'initiation",
+    // time: "18h00",
+    // description: "Venez découvrir le futsal !",
     sportsList: [],
     file: null,
   };
@@ -38,20 +35,28 @@ class FormCreateEditEvent extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log("===================STATE", this.state);
     let formData = new FormData();
     buildFormData(formData, this.state);
 
-    eventApiHandler
-      .createEvent(formData)
-      .then((data) => {
-        // this.context.setUser(data);
-        console.log("===================data added", data);
-        this.props.history.push("/account");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (this.props.match.params.mode === "create") {
+      eventApiHandler
+        .createEvent(formData)
+        .then((data) => {
+          this.props.history.push(`/event/${data._id}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      eventApiHandler
+        .updateEvent(this.state._id, formData)
+        .then((data) => {
+          this.props.history.push(`/event/${data._id}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   handlePlace = (place) => {
@@ -82,29 +87,13 @@ class FormCreateEditEvent extends Component {
 
     if (this.props.match.params.mode === "edit") {
       eventApiHandler.getOneEvent(this.props.match.params.id).then((apiRes) => {
-        console.log(apiRes);
-
-        this.setState({
-          title: apiRes.title,
-          date: this.formatDate(apiRes.date),
-          time: apiRes.time,
-          address: apiRes.address,
-          location: {
-            type: apiRes.type,
-            coordinates: apiRes.coordinates,
-            formattedAddress: apiRes.formattedAddress,
-          },
-          sport: apiRes.sport.sportName,
-          description: apiRes.description,
-          image: apiRes.image,
-        });
+        this.setState(apiRes);
       });
     }
   }
 
   render() {
     let today = Date.now();
-    console.log(this.state);
 
     return (
       <div className="FormSignup other">
@@ -116,7 +105,7 @@ class FormCreateEditEvent extends Component {
                 className="input"
                 type="title"
                 name="title"
-                value={this.state.title}
+                defaultValue={this.state.title}
                 required
               />
             </div>
@@ -130,7 +119,7 @@ class FormCreateEditEvent extends Component {
                 type="date"
                 data-start-date={today}
                 name="date"
-                value={this.state.date}
+                defaultValue={this.state.date}
                 required
               />
               <span className="icon is-small is-left">
@@ -146,7 +135,7 @@ class FormCreateEditEvent extends Component {
                 className="input"
                 type="text"
                 name="time"
-                value={this.state.time}
+                defaultValue={this.state.time}
                 required
               />
             </div>
@@ -173,7 +162,11 @@ class FormCreateEditEvent extends Component {
             <label className="label">Sport</label>
             <div className="control has-icons-left">
               <div className="select">
-                <select name="sport">
+                <select
+                  name="sport" // value={this.state.sport.sportName}
+                  onChange={this.handleChange}
+                  required
+                >
                   <option>Sport</option>
                   {this.state.sportsList.map((sport) => (
                     <option key={sport._id} value={sport._id}>
@@ -195,7 +188,7 @@ class FormCreateEditEvent extends Component {
                 className="textarea"
                 name="description"
                 placeholder="Dites-nous en plus sur l'évènement, le public attendu, la durée..."
-                value={this.state.description}
+                defaultValue={this.state.description}
               ></textarea>
             </div>
           </div>

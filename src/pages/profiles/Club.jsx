@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import clubApiHandler from "./../../api/clubApiHandler";
+import Card from "./../../components/Cards/Card";
 
 import "./../../styles/Profiles.css";
 import "./../../styles/global.css";
@@ -7,6 +8,7 @@ import "./../../styles/global.css";
 class Club extends Component {
 	state = {
 		club: null,
+		clubTeams: [],
 	};
 
 	componentDidMount() {
@@ -18,7 +20,15 @@ class Club extends Component {
 				console.log(apiRes);
 				this.setState({ club: apiRes });
 			})
-			.catch((apiError) => console.log(apiError));
+			.catch((apiError) => console.log(apiError))
+			.then(() => {
+				clubApiHandler
+					.getTeamsOfClub(clubId)
+					.then((dbResTeams) => {
+						this.setState({ clubTeams: dbResTeams });
+					})
+					.catch((err) => console.log(err));
+			});
 	}
 
 	render() {
@@ -26,9 +36,9 @@ class Club extends Component {
 
 		return (
 			<div className="ContentMain Profiles">
-				<h1 className="bold">{this.state.club.clubName}</h1>
+				<h1 className="title">{this.state.club.clubName}</h1>
 				<div className="flex">
-					<div className="logo-container round-box box-shadowed">
+					<div className="profile-logo-container round-box box-shadowed">
 						<img
 							className="logo"
 							src={this.state.club.image}
@@ -82,6 +92,17 @@ class Club extends Component {
 								{this.state.club.description}
 							</p>
 						)}
+					</div>
+					<div className="teams-box">
+						{/* DISPLAYED CARDS ----------------------------*/}
+						<div className="cards-container grid fr-2">
+							{this.state.clubTeams.map((team, index) => (
+								<Card key={team} index={team} elem={team} />
+							))}
+							{!this.state.clubTeams && <p>Loading...</p>}
+						</div>
+
+						{this.state.length === 0 && <p>Ce club n'as pas encore de team.</p>}
 					</div>
 				</div>
 			</div>

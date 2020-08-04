@@ -1,8 +1,25 @@
-.FooterMain {
+.FooterMain,
+.footer {
 	position: absolute;
 	bottom: var(--footer-position);
 	height: var(--footer-height);
 	width: 100%;
-	border-top: 1px solid black;
-	justify-content: center;
+	padding: 0;
+	align-items: center;
+	background-color: var(--color-secondary);
+}
+
+.FooterMain #logo-footer {
+	color: var(--color-main);
+	font-family: var(--font-logo);
+	font-size: 1.1em;
+}
+
+@media screen and (max-width: 650px) {
+	.FooterMain.footer span:not(#logo-footer) {
+		display: none;
+	}
+	.FooterMain.footer {
+		height: 2%;
+	}
 }

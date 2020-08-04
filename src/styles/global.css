@@ -39,11 +39,39 @@ li .link:hover {
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-auto-rows: 400px;
 	grid-gap: 2rem;
 	width: 100%;
 	padding: 1%;
+}
+
+.fr-5 {
+	grid-template-columns: repeat(5, 1fr);
+	grid-auto-rows: 400px;
+}
+
+.fr-2 {
+	grid-template-columns: repeat(2, 1fr);
+	grid-auto-rows: 300px;
+}
+
+@media screen and (max-width: 1000px) and (min-width: 600px) {
+	.grid {
+		grid-gap: 1.5rem;
+		width: 100%;
+	}
+	.fr-5 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+@media screen and (max-width: 600px) {
+	.grid {
+		grid-gap: 4rem;
+		width: 100%;
+		margin: 5% 0;
+	}
+	.fr-5 {
+		grid-template-columns: repeat(1, 1fr);
+	}
 }
 
 .flex {
@@ -77,40 +105,23 @@ li .link:hover {
 }
 
 /* LOGO BIG */
-.Profiles .logo-container,
-.Profiles.logo-container {
+.profile-logo-container {
 	height: 10em;
 	width: 10em;
 	margin: 0 4% 4% 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-.Profiles .logo,
-.Profiles.logo {
-	max-height: 100%;
-	max-width: 100%;
-}
-.Profiles.logo-container {
-	margin: 10% 0;
 	background-position-y: top;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
-
-@media screen and (max-width: 1300px) and (min-width: 600px) {
-	.grid {
-		grid-template-columns: repeat(3, 1fr);
-		grid-gap: 1.5rem;
-		width: 100%;
-	}
+.profile-logo-container .logo {
+	max-height: 100%;
+	max-width: 100%;
 }
-@media screen and (max-width: 600px) {
-	.grid {
-		grid-template-columns: repeat(2, 1fr);
-		grid-gap: 4rem;
-		width: 100%;
-	}
+.FormEditAccount .profile-logo-container {
+	margin: 10% 0;
 }
 
 .navbar-brand {

@@ -54,17 +54,17 @@
 	text-overflow: ellipsis;
 }
 
-@media all and (max-width: 950px) and (min-width: 600px) {
-	.card {
+@media screen and (max-width: 1000px) and (min-width: 600px) {	.card {
 		max-width: 200px;
 	}
 	.card .is-4by3 img {
 	}
 }
 
-@media all and (max-width: 600px) {
+@media screen and (max-width: 600px) {
 	.card {
-		max-width: 300px;
+		width: 300px;
+		margin: auto;
 	}
 	.card .is-4by3 img {
 	}

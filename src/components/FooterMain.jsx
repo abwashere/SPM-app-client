@@ -6,18 +6,39 @@ import "bulma/css/bulma.css";
 
 const FooterMain = () => {
 	return (
-		<footer className="FooterMain flex">
-			<div className="flex col">created by </div>
-			<div className="flex col">
-				<div className="admin-profile-link">
-					<Link to="https://www.linkedin.com/in/auderichon/" target="_blank">
-						Aude Richon | missing github
-					</Link>
+		<footer className="FooterMain flex col footer">
+			<div className="content has-text-centered flex col">
+				<div>
+					<strong id="logo-footer">Spm</strong>
 				</div>
-				<div className="admin-profile-link">
-					<Link to="https://linkedin.com/in/audrey-belson" target="_blank">
-						Audrey Belson | missing github
-					</Link>
+
+				<div className="flex" >
+					<span>created by Aude Richon</span>
+					<a href="https://www.linkedin.com/in/auderichon/" target="_blank">
+						<span className="icon is-medium">
+							<i className="fab fa-linkedin"></i>
+						</span>
+					</a>
+					<a href="https://github.com/auderichon" target="_blank">
+						<span className="icon is-medium">
+							<i className="fab fa-github-square"></i>
+						</span>
+					</a>
+					<span> and Audrey Belson </span>
+					<a href="https://linkedin.com/in/audrey-belson" target="_blank">
+						<span className="icon is-medium">
+							<i className="fab fa-linkedin"></i>
+						</span>
+					</a>
+					<a
+						href="https://github.com/abWasHere"
+						className="icon"
+						target="_blank"
+					>
+						<span className="icon is-medium">
+							<i className="fab fa-github-square"></i>
+						</span>
+					</a>
 				</div>
 			</div>
 		</footer>

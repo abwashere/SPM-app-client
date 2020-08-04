@@ -132,7 +132,7 @@ export class FormEditAccount extends Component {
           <div className="photo-edit">
             <label className="label">Image de profil</label>
             <div
-              className="Profiles logo-container round-box box-shadowed"
+              className="profile-logo-container round-box box-shadowed"
               style={{
                 backgroundImage: `url(${
                   role === "Club" ? user.image : user.picture

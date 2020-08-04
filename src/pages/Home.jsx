@@ -110,7 +110,7 @@ class Home extends Component {
 				{/* BACKGROUND  */}
 				<div className={!searchValue ? "bg-main" : "hidden"}>
 					{/* DISPLAYED CARDS ----------------------------*/}
-					<div className="cards-container grid">
+					<div className="cards-container grid fr-5">
 						{results.map((group, index) => (
 							<Card key={index} index={index} elem={group} />
 						))}

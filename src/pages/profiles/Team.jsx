@@ -6,7 +6,7 @@ import "./../../styles/global.css";
 
 class Team extends Component {
   state = {
-    team: null,
+    team: "",
   };
 
   componentDidMount() {

@@ -47,3 +47,16 @@
 .addTraining {
   margin-bottom: 30px;
 }
+
+.delete-btn {
+  text-align: center;
+  padding: 20px;
+}
+
+.delete-btn span {
+  font-size: 0.5rem;
+}
+
+.delete-btn svg {
+  color: rgb(247, 92, 92);
+}

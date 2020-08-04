@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-// import UserContext from "../Auth/UserContext";
 import teamApiHandler from "../../api/teamApiHandler";
 import sportApiHandler from "../../api/sportApiHandler";
 import LocationAutoComplete from "./../LocationAutoComplete";
@@ -9,18 +8,15 @@ import buildFormData from "./../../utils/buildFormData";
 
 import "bulma/css/bulma.css";
 import "./../../styles/FormSignUp.css";
-// import { rhumbDistance } from "@turf/turf";
 
 class FormCreateEditTeam extends Component {
-  // static contextType = UserContext;
-
   state = {
-    teamName: "Les braqueuses",
-    coachName: "John Doe",
-    minAge: "18",
-    year: "1987",
-    description: "On est là pour gagner !",
-    division: "Régionales 2",
+    // teamName: "Les braqueuses",
+    // coachName: "John Doe",
+    // minAge: "18",
+    // year: "1987",
+    // description: "On est là pour gagner !",
+    // division: "Régionales 2",
     trainings: [
       {
         day: "",
@@ -43,31 +39,40 @@ class FormCreateEditTeam extends Component {
         [key]: value,
       });
     } else {
-      this.setState({ [key]: value });
+      this.setState({
+        [key]: value,
+      });
     }
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log("===================STATE", this.state);
     let formData = new FormData();
     buildFormData(formData, this.state);
 
-    teamApiHandler
-      .createTeam(formData)
-      .then((data) => {
-        // this.context.setUser(data);
-        console.log("===================data added", data);
-        this.props.history.push(`/team/${data._id}`); //renvoyer sur la page de l'événement créé
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (this.props.match.params.mode === "create") {
+      teamApiHandler
+        .createTeam(formData)
+        .then((data) => {
+          this.props.history.push(`/team/${data._id}`); //renvoyer sur la page de l'événement créé
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      teamApiHandler
+        .updateTeam(this.state._id, formData)
+        .then((data) => {
+          this.props.history.push(`/team/${data._id}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   handleTraining = (training) => {
-    console.log(training);
     const newTraining = {
       day: training.day,
       time: training.time,
@@ -85,16 +90,14 @@ class FormCreateEditTeam extends Component {
   handleTrainingChange = (index, key, value) => {
     let updatedTrainings = this.state.trainings;
     updatedTrainings[index][key] = value;
-    this.setState({ trainings: updatedTrainings });
+    this.setState({
+      trainings: updatedTrainings,
+    });
   };
 
   removeTraining = (index) => {
-    console.log("===============", this.state.trainings);
     const updatedTrainings = [...this.state.trainings];
-    console.log("===============", updatedTrainings);
-    console.log(index);
     updatedTrainings.splice(index, 1);
-    console.log("===============", updatedTrainings);
 
     this.setState({
       trainings: updatedTrainings,
@@ -103,7 +106,6 @@ class FormCreateEditTeam extends Component {
 
   handlePlace = (place) => {
     // This handle is passed as a callback to the autocomplete component.
-    console.log(place);
     this.setState({
       location: {
         type: place.geometry.type,
@@ -120,10 +122,13 @@ class FormCreateEditTeam extends Component {
       time: "",
       duration: "",
     });
-    this.setState({ trainings: updatedTrainings });
+    this.setState({
+      trainings: updatedTrainings,
+    });
   };
 
   componentDidMount() {
+    console.log("component has mounted");
     sportApiHandler
       .getSports()
       .then((apiRes) => {
@@ -135,50 +140,15 @@ class FormCreateEditTeam extends Component {
 
     if (this.props.match.params.mode === "edit") {
       teamApiHandler.getOneTeam(this.props.match.params.id).then((apiRes) => {
-        console.log(apiRes);
-        // for (let i = 0; i < apiRes.length; i++) {
-        //   let key = apiRes[i];
-        //   let value = apiRes[i];
-        //   this.setState({ [key]: value });
-        // }
-        this.setState({
-          teamName: apiRes.teamName,
-          time: apiRes.time,
-          coachName: apiRes.coachName,
-          minAge: apiRes.minAge,
-          maxAge: apiRes.maxAge,
-          address: apiRes.address,
-          location: {
-            type: apiRes.type,
-            coordinates: apiRes.coordinates,
-            formattedAddress: apiRes.formattedAddress,
-          },
-          trainings: [
-            {
-              day: apiRes.trainings[0].day,
-              time: apiRes.trainings[0].time,
-              duration: apiRes.trainings[0].duration,
-            },
-            {
-              day: apiRes.trainings[1].day,
-              time: apiRes.trainings[1].time,
-              duration: apiRes.trainings[1].duration,
-            },
-          ],
-          sport: apiRes.sport.sportName,
-          description: apiRes.description,
-          image: apiRes.image,
-          practice: apiRes.practice,
-        });
+        this.setState(apiRes);
       });
     }
   }
 
   render() {
     let trainings = [];
-
+    console.log(this.state);
     for (let i = 0; i < this.state.trainings.length; i++) {
-      console.log("==============training numéro", i);
       trainings.push(
         <FormTraining
           key={i}
@@ -202,8 +172,8 @@ class FormCreateEditTeam extends Component {
               <input
                 className="input"
                 type="title"
-                name="title"
-                value={this.state.teamName}
+                name="teamName"
+                defaultValue={this.state.teamName}
                 required
               />
             </div>
@@ -213,7 +183,12 @@ class FormCreateEditTeam extends Component {
             <label className="label">Sport</label>
             <div className="control has-icons-left">
               <div className="select">
-                <select name="sport" required>
+                <select
+                  name="sport"
+                  // value={this.state.sport.sportName}
+                  onChange={this.handleChange}
+                  required
+                >
                   <option>Sport</option>
                   {this.state.sportsList.map((sport) => (
                     <option key={sport._id} value={sport._id}>
@@ -235,7 +210,7 @@ class FormCreateEditTeam extends Component {
                 className="input"
                 type="number"
                 name="year"
-                value={this.state.year}
+                defaultValue={this.state.year}
                 placeholder="Année de création de l'équipe"
               />
             </div>
@@ -248,7 +223,7 @@ class FormCreateEditTeam extends Component {
                 className="input"
                 type="text"
                 name="coachName"
-                value={this.state.coachName}
+                defaultValue={this.state.coachName}
                 required
               />
             </div>
@@ -262,7 +237,7 @@ class FormCreateEditTeam extends Component {
                   className="input"
                   type="number"
                   name="minAge"
-                  value={this.state.minAge}
+                  defaultValue={this.state.minAge}
                 />
               </div>
             </div>
@@ -270,7 +245,12 @@ class FormCreateEditTeam extends Component {
             <div className="field">
               <label className="label">Age maximal</label>
               <div className="control">
-                <input className="input" type="number" name="maxAge" />
+                <input
+                  className="input"
+                  type="number"
+                  name="maxAge"
+                  defaultValue={this.state.maxAge}
+                />
               </div>
             </div>
           </div>
@@ -279,7 +259,12 @@ class FormCreateEditTeam extends Component {
             <label className="label">Type de pratique</label>
             <div className="control">
               <div className="select">
-                <select name="practice" required>
+                <select
+                  name="practice"
+                  value={this.state.practice}
+                  onChange={this.handleChange}
+                  required
+                >
                   <option>Loisir ou compétition ?</option>
                   <option value="compétition">Compétition</option>
                   <option value="loisir">Loisir</option>
@@ -296,12 +281,12 @@ class FormCreateEditTeam extends Component {
                   className="input"
                   type="text"
                   name="division"
-                  value={this.state.division}
+                  defaultValue={this.state.division}
                 />
               </div>
             </div>
           )}
-          <h3 class="inter-title">Entraînements</h3>
+          <h3 className="inter-title">Entraînements</h3>
           <div className="field">
             <label className="label">Adresse</label>
             <div className="control has-icons-left">
@@ -333,7 +318,7 @@ class FormCreateEditTeam extends Component {
                 className="textarea"
                 name="description"
                 placeholder="Dites-nous en plus sur l'équipe, l'état d'esprit, le niveau attendu..."
-                value={this.state.description}
+                defaultValue={this.state.description}
               ></textarea>
             </div>
           </div>

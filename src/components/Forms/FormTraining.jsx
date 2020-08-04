@@ -1,44 +1,31 @@
 import React, { Component } from "react";
 
-class FormTraining extends Component {
-  state = {
-    day: "",
-    time: "",
-    duration: "",
-  };
+import "./../../styles/FormSignUp.css";
+import "bulma/css/bulma.css";
 
+class FormTraining extends Component {
   handleChange = (event) => {
     const value = event.target.value;
     const key = event.target.name;
     this.props.handleTrainingChange(this.props.number, key, value);
-    // this.setState({ [key]: value, number: this.props.number }, () => {
-    //   this.props.changeField(this.state);
-    // });
   };
 
   handleClick = (event) => {
-    console.log(this.props.number);
     this.props.removeTraining(this.props.number);
   };
 
-  updateState = () => {
-    this.setState({
-      day: this.props.day,
-      time: this.props.time,
-      duration: this.props.duration,
-    });
-  };
-
   render() {
-    console.log("===============FORM TRAINING STATE", this.state);
-    console.log("formtraining props", this.props);
     return (
       <div className="field-body">
         <div className="field">
           <label className="label">Jour</label>
           <div className="control">
             <div className="select">
-              <select name="day" onChange={this.handleChange}>
+              <select
+                name="day"
+                onChange={this.handleChange}
+                value={this.props.day}
+              >
                 <option>Choisir...</option>
                 {[
                   "lundi",
@@ -49,11 +36,7 @@ class FormTraining extends Component {
                   "samedi",
                   "dimanche",
                 ].map((day) => (
-                  <option
-                    key={day}
-                    selected={this.props.day === day}
-                    value={day}
-                  >
+                  <option key={day} value={day}>
                     {day}
                   </option>
                 ))}
@@ -92,8 +75,9 @@ class FormTraining extends Component {
           </div>
         </div>
 
-        <div onClick={this.handleClick}>
-          Supprimer <i className="fas fa-trash-alt"></i>
+        <div className="delete-btn" onClick={this.handleClick}>
+          <span>Supprimer </span>
+          <i className="fas fa-trash-alt"></i>
         </div>
       </div>
     );

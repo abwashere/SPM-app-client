@@ -45,7 +45,7 @@ class Club extends Component {
 							alt={this.state.club.clubName}
 						/>
 					</div>
-					<div className="description">
+					<div className="description-club">
 						<h3 className="bold">Nous (re)joindre :</h3>
 						{!this.state.club.location.formattedAddress &&
 							this.state.club.address && (

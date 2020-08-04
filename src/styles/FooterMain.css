@@ -2,9 +2,10 @@
 .footer {
 	position: absolute;
 	bottom: var(--footer-position);
+	min-height: fit-content;
 	height: var(--footer-height);
 	width: 100%;
-	padding: 0;
+	padding: 1vh 0;
 	align-items: center;
 	background-color: var(--color-secondary);
 }

@@ -10,8 +10,8 @@
 /* height */
 :root {
   --nav-height: 9vh;
-  --footer-height: 7vh;
-  --footer-position: -10vh;
+  --footer-height: 10%;
+  --footer-position: -10%;
 }
 
 /* width */

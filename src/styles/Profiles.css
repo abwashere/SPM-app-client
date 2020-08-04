@@ -14,7 +14,11 @@
 	margin-bottom: 10px;
 }
 
-.Profiles .description {
+.Profiles .description-club {
+	width: 40%;
+	margin-right: 4%;
+}
+.Profiles .teams-box {
 	width: 40%;
 }
 

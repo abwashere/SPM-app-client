@@ -30,14 +30,14 @@ class Player extends Component {
 				<h1 className="title">
 					{this.state.player.firstName} {this.state.player.lastName}
 				</h1>
-				<div className="flex">
+				<div className="flex space-btw">
 					<div
 						className="profile-logo-container round-box box-shadowed"
 						style={{
 							backgroundImage: `url(${this.state.player.picture})`,
 						}}
 					></div>
-					<div className="description">
+					<div className="description-player">
 						{this.state.player.practice.map((sports) => {
 							return (
 								<p key={sports._id}>

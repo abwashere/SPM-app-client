@@ -113,19 +113,21 @@ class FormCreateEditEvent extends Component {
 
           <div className="field">
             <label className="label">Date</label>
-            <div className="control has-icons-left">
-              <input
-                className="input"
-                type="date"
-                data-start-date={today}
-                name="date"
-                defaultValue={this.state.date}
-                required
-              />
-              <span className="icon is-small is-left">
-                <i className="fa fa-calendar-alt"></i>
-              </span>
-            </div>
+            {this.state.date && (
+              <div className="control has-icons-left">
+                <input
+                  className="input"
+                  type="date"
+                  data-start-date={today}
+                  name="date"
+                  defaultValue={this.state.date.slice(0, 10)}
+                  required
+                />
+                <span className="icon is-small is-left">
+                  <i className="fa fa-calendar-alt"></i>
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="field">

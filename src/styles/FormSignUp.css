@@ -16,52 +16,52 @@
   justify-content: space-between;
 }
 
-.FormSignUp.player {
+.player {
   /* ALIGNER A DROITE */
 }
 
-.FormSignUp .other {
+.other {
   margin: 20px auto 0;
 }
 
-.FormSignUp .has-name {
+.has-name {
   margin-bottom: 30px;
 }
 
-.FormSignUp .preview {
+.preview {
   width: 50%;
   margin: 0 auto 30px;
 }
 
-.FormSignUp .field-body {
+.field-body {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.FormSignUp .inter-title {
+.inter-title {
   font-weight: bold;
   font-size: 1.1rem;
   margin-bottom: 0;
 }
 
-.FormSignUp .addTraining {
+.addTraining {
   margin-bottom: 30px;
 }
 
-.FormSignUp .delete-btn {
+.delete-btn {
   text-align: center;
   padding: 20px;
 }
 
-.FormSignUp .delete-btn span {
+.delete-btn span {
   font-size: 0.5rem;
 }
 
-.FormSignUp .delete-btn svg {
+.delete-btn svg {
   color: rgb(247, 92, 92);
 }
 
-.FormSignUp .email {
+.email {
   padding-left: 40px;
   padding-top: 8px;
 }

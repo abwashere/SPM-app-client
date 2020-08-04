@@ -20,6 +20,7 @@
 		display: none;
 	}
 	.FooterMain.footer {
-		height: 2%;
+		height: fit-content;
+		padding-top: 3%;
 	}
 }

@@ -6,7 +6,7 @@ import "./../../styles/Cards.css";
 
 const Card = ({ elem }) => {
 	let isClub;
-	if (elem.clubName) isClub = true;
+	if (elem.role ==="Club") isClub = true;
 
 	return (
 		<div className={`card ${isClub ? "club" : "team"}`}>
@@ -38,7 +38,7 @@ const Card = ({ elem }) => {
 				</div>
 				{!isClub && (
 					<div className="sport content">
-						{elem.sport.sportName} en {elem.practice}
+						{elem.practice.sport.sportName} en {elem.practice}
 					</div>
 				)}
 				{isClub && (

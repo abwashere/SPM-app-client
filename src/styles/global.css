@@ -33,7 +33,7 @@ ul {
   list-style-type: none;
 }
 
-li .link:hover {
+.link:hover {
   color: var(--color-main);
 }
 
@@ -124,9 +124,6 @@ li .link:hover {
   margin: 10% 0;
 }
 
-.navbar-brand {
-  justify-content: space-between;
-}
 
 .deleteElement {
   color: rgb(247, 92, 92);

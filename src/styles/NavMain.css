@@ -1,23 +1,11 @@
-.container-nav {
-}
 .NavMain {
 	/* display: flex; */
 	background-color: var(--color-secondary);
-	align-items: center;
+	/* align-items: center; */
 	height: var(--nav-height);
 	z-index: 100;
-	padding: 1%;
+	padding: 2% 1% 1%;
 }
-/* 
-.NavMain .nav-list {
-	margin-left: auto;
-	display: flex;
-}
-
-.NavMain .nav-list li:not(:last-child) {
-	margin-right: 20px;
-}
-*/
 
 .NavMain .link:hover {
 	cursor: pointer;
@@ -32,4 +20,19 @@
 	font-family: var(--font-logo);
 	font-size: 1.7em;
 	text-shadow: black 1px 1px 1px 1px;
+}
+
+.NavMain .navbar-menu {
+	width: fit-content;
+	position: absolute;
+	right: 1%;
+}
+
+.NavMain .navbar-item {
+	text-align: right;
+}
+
+
+.navbar-brand {
+  justify-content: space-between;
 }

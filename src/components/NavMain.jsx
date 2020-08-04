@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import authApiHandler from "./../api/authApiHandler";
 import FormSignin from "../components/Forms/FormSignin";
@@ -54,9 +54,9 @@ class NavMain extends React.Component {
 					<div className="navbar-brand">
 						{/* --------------------------- AFFICHAGE LOGO */}
 
-						<NavLink exact to="/" id="logo" className="navbar-item bold">
+						<Link exact to="/" id="logo" className="navbar-item bold">
 							Spm
-						</NavLink>
+						</Link>
 
 						{/* --------------------------- AFFICHAGE RESPONSIVE BURGER */}
 						<div className="navbar-end">
@@ -89,14 +89,14 @@ class NavMain extends React.Component {
 									{(context.user && context.user.firstName) ||
 										context.user.clubName}
 								</p>
-								<p className="navbar-item">
-									<NavLink to="/account">Mon compte</NavLink>
+								<p className="link navbar-item">
+									<Link to="/account">Mon compte</Link>
 								</p>
 
 								<p
 									onClick={this.handleLogout}
 									to="/logout"
-									className="link button is-text"
+									className="link navbar-item"
 								>
 									Se déconnecter
 								</p>
@@ -114,13 +114,13 @@ class NavMain extends React.Component {
 										Se connecter
 									</p>
 									<p>
-										<NavLink
+										<Link
 											to="/signup"
 											id="signup-link"
 											className="link button is-primary"
 										>
 											S'inscrire
-										</NavLink>
+										</Link>
 									</p>
 								</div>
 							</div>

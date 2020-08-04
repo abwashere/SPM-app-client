@@ -20,11 +20,7 @@ class Account extends React.Component {
 			.getTeamsOfClub(user._id)
 			.then((dbResTeams) => {
 				console.log("teams du club:", dbResTeams);
-				if (!dbResTeams) {
-					this.setState({ clubTeams: "Pas de teams enregistrée" });
-				} else {
-					this.setState({ clubTeams: dbResTeams });
-				}
+				this.setState({ clubTeams: dbResTeams });
 			})
 			.catch((err) => console.log(err))
 			.then(() => {
@@ -69,25 +65,34 @@ class Account extends React.Component {
 							)}
 						</div>
 					</div>
+
 					{/*-------------- SECTION MODIF TEAMS ET EVENTS pour clubs */}
 					{role === "Club" && (
-						<div className="edit-right flex col">
+						<div className="edit-right">
 							{/* ajouter des liens sur les noms */}
 							<p className="subtitle">Mettre à jour mes équipes</p>
-							<div className="teams">
-								<ul>
-									{clubTeams.map((team) => (
-										<li key={team._id}>
-											<Link
-												className="link"
-												to={`/account/team/edit/${team._id}`}
-											>
-												{team.teamName}
-											</Link>
-										</li>
-									))}
-								</ul>
-							</div>
+							{clubTeams.length === 0 ? (
+								<p>Aucun évènement créé.</p>
+							) : (
+								<div className="teams">
+									<ul>
+										{clubTeams.map((team) => (
+											<li key={team._id}>
+												<Link
+													className="link"
+													to={`/account/team/edit/${team._id}`}
+												>
+													{team.teamName}
+												</Link>
+											</li>
+										))}
+									</ul>
+								</div>
+							)}
+							<button className="button is-success">
+								<Link to={`/account/team/create`}>Ajouter une équipe</Link>
+							</button>
+
 							<p className="subtitle">Mettre à jour mes évènements</p>
 							{clubEvents.length === 0 ? (
 								<p>Aucun évènement créé.</p>
@@ -107,6 +112,9 @@ class Account extends React.Component {
 									</ul>
 								</div>
 							)}
+							<button className="button is-success">
+								<Link to={`/account/event/create`}>Ajouter un évènement</Link>
+							</button>
 						</div>
 					)}
 				</div>

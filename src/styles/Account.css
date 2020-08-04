@@ -10,7 +10,12 @@
 .Account .forms .edit-right {
 	flex-grow: 1;
 	align-items: flex-start;
+	margin-left: 10%;
 }
+.Account .forms .edit-right button{
+	margin: 10% auto 25%;
+}
+
 .Account .forms .edit-bottom {
 	margin-top: 5%;
 	align-self: flex-start;

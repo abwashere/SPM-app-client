@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import eventApiHandler from "./../../api/eventApiHandler";
-
+import moment from "moment";
 import "./../../styles/Profiles.css";
 import "./../../styles/global.css";
+
+require("moment/locale/fr.js");
 
 class Event extends Component {
   state = {
@@ -24,7 +26,10 @@ class Event extends Component {
   render() {
     console.log(this.state);
     if (!this.state.event) return null;
-    const date = this.state.event.date.slice(0, 10);
+    const date =
+      moment(this.state.event.date).format("dddd") +
+      " " +
+      moment(this.state.event.date).format("LL");
 
     return (
       <div className="ContentMain Profiles">
@@ -35,16 +40,20 @@ class Event extends Component {
           alt={this.state.event.title}
         />
         <br />
-        <p>
-          <span className="bold green">Club : </span>
-          {this.state.event.club.clubName}
-        </p>
-        <br />
-        <img
-          className="logoClub"
-          src={this.state.event.club.image}
-          alt={this.state.event.club.clubName}
-        />
+        {this.state.event.club && (
+          <div>
+            <p>
+              <span className="bold green">Club : </span>
+              {this.state.event.club.clubName}
+            </p>
+            <br />
+            <img
+              className="logoClub"
+              src={this.state.event.club.image}
+              alt={this.state.event.club.clubName}
+            />
+          </div>
+        )}
         <br />
         <p>
           <span className="bold green">Sport : </span>

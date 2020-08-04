@@ -197,7 +197,7 @@ class FormCreateEditTeam extends Component {
                 </select>
               </div>
               <div className="icon is-small is-left">
-                <i className="fas fa-running"></i>
+                <i className="fas fa-football-ball"></i>
               </div>
             </div>
           </div>

@@ -7,11 +7,11 @@ import "bulma/css/bulma.css";
 
 class FormDeleteAccount extends Component {
 	static contextType = UserContext;
-	state = { isAsked: true, isDeleted: false };
+	state = { isDeleted: false };
 
 	handleDelete = (id) => {
 		console.log("handle delete triggered");
-		let user = this.context.user;
+
 		clubApiHandler
 			.deleteClub(id)
 			.then((dbRes) => {
@@ -24,12 +24,8 @@ class FormDeleteAccount extends Component {
 			});
 	};
 
-	handleAbort = () => {
-		this.setState({ isAsked: false });
-	};
-
 	render() {
-		const { isAsked, isDeleted } = this.state;
+		const { isDeleted } = this.state;
 		const { user } = this.context;
 		console.log(
 			"context user to delete",
@@ -53,7 +49,6 @@ class FormDeleteAccount extends Component {
 						</button>
 						<button
 							onClick={() => {
-								this.handleAbort();
 								this.props.abortDelete();
 							}}
 							className="button is-warning is-selected"

@@ -87,6 +87,10 @@ ul {
 }
 .Profiles.logo-container {
 	margin: 10% 0;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	background-size: cover;
+
 }
 
 @media screen and (max-width: 1300px) and (min-width: 600px) {

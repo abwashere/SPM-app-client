@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
 import clubApiHandler from "../../api/clubApiHandler";
 import playerApiHandler from "../../api/playerApiHandler";
@@ -14,10 +14,15 @@ import "./../../styles/Account.css";
 export class FormEditAccount extends Component {
 	static contextType = UserContext;
 	state = {
-		file: null,
 		sportsList: [],
-
-		// isUpdated: false,
+		file: null,
+		// practice: [
+		// 	{
+		// 		sport: "",
+		// 		level: "",
+		// 	},
+		// ],
+		isUpdated: true,
 	};
 	componentDidMount() {
 		sportApiHandler
@@ -28,7 +33,15 @@ export class FormEditAccount extends Component {
 			.catch((error) => {
 				console.log(error);
 			});
+
+		console.log("user edit ", this.context.user);
 	}
+
+	handleUpdate = () => {
+		this.state.isUpdated
+			? this.setState({ isUpdated: false })
+			: this.setState({ isUpdated: true });
+	};
 
 	handleChange = (event) => {
 		const value =
@@ -74,7 +87,7 @@ export class FormEditAccount extends Component {
 				.updatePlayer(user._id, fd)
 				.then((data) => {
 					console.log("UPDATED INFOS", data);
-					this.context.setUser(data);
+					this.context.setUser(data); // FIXME: setUser ne fonctionne pas
 					this.setState({ isUpdated: true });
 				})
 				.catch((error) => {
@@ -85,7 +98,7 @@ export class FormEditAccount extends Component {
 				.updateClub(user._id, fd)
 				.then((data) => {
 					console.log("UPDATED INFOS", data);
-					this.context.setUser(data);
+					this.context.setUser(data); // FIXME: setUser ne fonctionne pas
 					this.setState({ isUpdated: true });
 				})
 				.catch((error) => {
@@ -96,7 +109,6 @@ export class FormEditAccount extends Component {
 	render() {
 		let user = this.context.user;
 		let role = this.context.user.role;
-		console.log("user edit ", user);
 		return (
 			<div className="FormEditAccount">
 				<h2 className="subtitle">Mettre à jour mes infos personnelles</h2>
@@ -108,17 +120,23 @@ export class FormEditAccount extends Component {
 					{/* ----------------------------------PHOTO PART */}
 					<div className="photo-edit">
 						<label className="label">Image du profile</label>
-						<div className="Profiles logo-container round-box box-shadowed">
-							<img
-								className="Profiles logo"
-								src={role === "Club" ? user.image : user.picture}
-								alt="profile picture"
-							/>
-						</div>
+						<div
+							className="Profiles logo-container round-box box-shadowed"
+							style={{
+								backgroundImage: `url(${
+									role === "Club" ? user.image : user.picture
+								})`,
+							}}
+						></div>
 
 						<div className="file has-name">
 							<label className="file-label">
-								<input className="file-input" type="file" name="image" />
+								<input
+									className="file-input"
+									type="file"
+									name="image"
+									onClick={this.handleUpdate}
+								/>
 								<span className="file-cta">
 									<span className="file-icon">
 										<i className="fas fa-upload"></i>
@@ -127,9 +145,11 @@ export class FormEditAccount extends Component {
 								</span>
 							</label>
 						</div>
-						<div className="preview">
-							{this.state.file && <img src={this.state.file} alt="preview" />}
-						</div>
+						{!this.state.isUpdated && (
+							<div className="preview">
+								{this.state.file && <img src={this.state.file} alt="preview" />}
+							</div>
+						)}
 					</div>
 
 					{/* ----------------------------------INFOS PART */}
@@ -287,40 +307,50 @@ export class FormEditAccount extends Component {
 								</div>
 
 								<div className="field">
-									<label className="label">
-										Le sport que tu pratiques ou que tu souhaites pratiquer
-									</label>
-									<div className="field-body">
-										<div className="field">
-											<div className="control has-icons-left">
-												<div className="select">
-													<select name="sport">
-														<option>Sport</option>
-														{this.state.sportsList.map((sport) => (
-															<option key={sport._id} value={sport._id}>
-																{sport.sportName}
-															</option>
-														))}
-													</select>
-													<span className="icon is-small is-left">
-														<i className="fa fa-running"></i>
-													</span>
+									<label className="label">Tes sports</label>
+									
+									{/* MAPPING DE TOUS LES SPORTS DE PLAYER */}
+									{user.practice.map((obj, index) => (
+										<React.Fragment key={index}>
+										{index + 1} .
+										{obj.level}
+											<div className="field-body">
+												<div className="field">
+													<div className="control has-icons-left">
+														<div className="select">
+															<select name="sport">
+																<option>{obj.sport}</option>
+																{this.state.sportsList.map((sport) => (
+																	<option key={sport._id} value={sport._id}>
+																		{sport.sportName}
+																	</option>
+																))}
+															</select>
+															<span className="icon is-small is-left">
+																<i className="fas fa-football-ball"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+												<div className="field">
+													<div className="control">
+														<div className="select">
+															<select name="level">
+																<option>{obj.sport.level}</option>
+																<option value="débutante">Débutante</option>
+																<option value="intermédiaire">
+																	Intermédiaire
+																</option>
+																<option value="expérimentée">
+																	Expérimentée
+																</option>
+															</select>
+														</div>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div className="field">
-											<div className="control">
-												<div className="select">
-													<select name="level">
-														<option>Niveau</option>
-														<option value="débutante">Débutante</option>
-														<option value="intermédiaire">Intermédiaire</option>
-														<option value="expérimentée">Expérimentée</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
+										</React.Fragment>
+									))}
 								</div>
 							</React.Fragment>
 						)}

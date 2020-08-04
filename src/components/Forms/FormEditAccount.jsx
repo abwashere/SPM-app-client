@@ -16,12 +16,6 @@ export class FormEditAccount extends Component {
   state = {
     sportsList: [],
     file: null,
-    // practice: [
-    //   {
-    //     sport: "",
-    //     level: "",
-    //   },
-    // ],
     isUpdated: true,
   };
   componentDidMount() {
@@ -36,7 +30,7 @@ export class FormEditAccount extends Component {
         this.setState({
           practice: [
             {
-              sport: user.practice[0].sport._id,
+              sport: user.practice[0].sport,
               level: user.practice[0].level,
             },
           ],
@@ -350,6 +344,7 @@ export class FormEditAccount extends Component {
                           {this.state.practice &&
                             this.state.practice.map((practice) => (
                               <select
+                                key={practice.sport}
                                 name="sport"
                                 value={practice.sport}
                                 onChange={this.handleChange}

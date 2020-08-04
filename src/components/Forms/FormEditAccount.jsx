@@ -16,23 +16,31 @@ export class FormEditAccount extends Component {
 	state = {
 		sportsList: [],
 		file: null,
-		// practice: [
-		// 	{
-		// 		sport: "",
-		// 		level: "",
-		// 	},
-		// ],
+		practice: [
+			{
+				sport: "",
+				level: "",
+			},
+		],
 		isUpdated: true,
 	};
 	componentDidMount() {
+		let user = this.context.user;
+
 		sportApiHandler
 			.getSports()
 			.then((apiRes) => {
 				this.setState({ sportsList: apiRes });
 			})
+			.then(() => {
+				this.setState({
+					"practice[0].sport": "user.practice[0].sport._id",
+					"practice[0].level": "user.practice[0].level",
+				}, console.log("le state après sport ", this.state.practice));
+			})
 			.catch((error) => {
 				console.log(error);
-			});
+			})
 
 		console.log("user edit ", this.context.user);
 	}
@@ -47,12 +55,17 @@ export class FormEditAccount extends Component {
 		const value =
 			event.target.type === "file" ? event.target.files[0] : event.target.value;
 		const key = event.target.name;
+		console.log(event.target.type);
 
 		if (event.target.type === "file") {
 			this.setState({
 				file: URL.createObjectURL(event.target.files[0]),
 				picture: event.target.files[0],
 			});
+		} else if (event.target.type === "select-one") {
+			var stateCopy = Object.assign({}, this.state);
+			stateCopy.practice[0][key] = value;
+			this.setState(stateCopy);
 		} else {
 			this.setState({ [key]: value });
 		}
@@ -169,24 +182,6 @@ export class FormEditAccount extends Component {
 								</span>
 							</div>
 						</div>
-						{/* ----------- */}
-						<div className="field">
-							<label className="label">Téléphone</label>
-							<div className="control has-icons-left">
-								<input
-									className="input"
-									type="tel"
-									name="phoneNumber"
-									pattern="[0-9]{10}"
-									minLength="10"
-									maxLength="10"
-									defaultValue={user.phoneNumber}
-								/>
-								<span className="icon is-small is-left">
-									<i className="fa fa-phone"></i>
-								</span>
-							</div>
-						</div>
 
 						{/* ----------- */}
 
@@ -229,6 +224,7 @@ export class FormEditAccount extends Component {
 										/>
 									</div>
 								</div>
+								{/* ----------- */}
 
 								<div className="field">
 									<label className="label">Site web du club</label>
@@ -241,6 +237,25 @@ export class FormEditAccount extends Component {
 										/>
 									</div>
 								</div>
+								{/* ----------- */}
+								<div className="field">
+									<label className="label">Téléphone</label>
+									<div className="control has-icons-left">
+										<input
+											className="input"
+											type="tel"
+											name="phoneNumber"
+											pattern="[0-9]{10}"
+											minLength="10"
+											maxLength="10"
+											defaultValue={user.phoneNumber}
+										/>
+										<span className="icon is-small is-left">
+											<i className="fa fa-phone"></i>
+										</span>
+									</div>
+								</div>
+								{/* ----------- */}
 
 								<div className="field">
 									<label className="label">Vidéo de présentation</label>
@@ -253,6 +268,7 @@ export class FormEditAccount extends Component {
 										/>
 									</div>
 								</div>
+								{/* ----------- */}
 
 								<div className="field">
 									<label className="label">Frais d'adhésion</label>
@@ -265,6 +281,7 @@ export class FormEditAccount extends Component {
 										/>
 									</div>
 								</div>
+								{/* ----------- */}
 
 								<div className="field">
 									<label className="label">Année de création</label>
@@ -307,50 +324,44 @@ export class FormEditAccount extends Component {
 								</div>
 
 								<div className="field">
-									<label className="label">Tes sports</label>
-									
+									<label className="label">Ton sport</label>
+
 									{/* MAPPING DE TOUS LES SPORTS DE PLAYER */}
-									{user.practice.map((obj, index) => (
-										<React.Fragment key={index}>
-										{index + 1} .
-										{obj.level}
-											<div className="field-body">
-												<div className="field">
-													<div className="control has-icons-left">
-														<div className="select">
-															<select name="sport">
-																<option>{obj.sport}</option>
-																{this.state.sportsList.map((sport) => (
-																	<option key={sport._id} value={sport._id}>
-																		{sport.sportName}
-																	</option>
-																))}
-															</select>
-															<span className="icon is-small is-left">
-																<i className="fas fa-football-ball"></i>
-															</span>
-														</div>
-													</div>
-												</div>
-												<div className="field">
-													<div className="control">
-														<div className="select">
-															<select name="level">
-																<option>{obj.sport.level}</option>
-																<option value="débutante">Débutante</option>
-																<option value="intermédiaire">
-																	Intermédiaire
-																</option>
-																<option value="expérimentée">
-																	Expérimentée
-																</option>
-															</select>
-														</div>
-													</div>
+
+									<div className="field-body">
+										<div className="field">
+											<div className="control has-icons-left">
+												<div className="select">
+													<select
+														name="sport"
+														// value={this.state.practice[0].sport._id}
+														onChange={this.handleChange}
+													>
+														{this.state.sportsList.map((sport) => (
+															<option key={sport._id} value={sport._id}>
+																{sport.sportName}
+															</option>
+														))}
+													</select>
+													<span className="icon is-small is-left">
+														<i className="fas fa-football-ball"></i>
+													</span>
 												</div>
 											</div>
-										</React.Fragment>
-									))}
+										</div>
+										<div className="field">
+											<div className="control">
+												<div className="select">
+													<select name="level">
+														<option>{user.practice[0].level}</option>
+														<option value="débutante">débutante</option>
+														<option value="intermédiaire">intermédiaire</option>
+														<option value="expérimentée">expérimentée</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</React.Fragment>
 						)}

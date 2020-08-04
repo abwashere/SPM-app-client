@@ -182,19 +182,31 @@ class FormCreateEditTeam extends Component {
             <label className="label">Sport</label>
             <div className="control has-icons-left">
               <div className="select">
-                <select
-                  name="sport"
-                  // value={this.state.sport.sportName}
-                  onChange={this.handleChange}
-                  required
-                >
-                  <option>Sport</option>
-                  {this.state.sportsList.map((sport) => (
-                    <option key={sport._id} value={sport._id}>
-                      {sport.sportName}
-                    </option>
-                  ))}
-                </select>
+                {this.state.sport && (
+                  <select
+                    name="sport"
+                    value={this.state.sport._id}
+                    onChange={this.handleChange}
+                    required
+                  >
+                    <option>Sport</option>
+                    {this.state.sportsList.map((sport) => (
+                      <option key={sport._id} value={sport._id}>
+                        {sport.sportName}
+                      </option>
+                    ))}
+                  </select>
+                )}
+                {!this.state.sport && (
+                  <select name="sport" required>
+                    <option>Sport</option>
+                    {this.state.sportsList.map((sport) => (
+                      <option key={sport._id} value={sport._id}>
+                        {sport.sportName}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
               <div className="icon is-small is-left">
                 <i className="fas fa-football-ball"></i>

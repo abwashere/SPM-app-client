@@ -1,58 +1,54 @@
-
-
-.card {
+.Card {
 	width: 100%;
 	height: 100%;
 }
 
-.card.club {
+.Card.club {
 	background-color: var(--color-secondary);
 }
-.card.team {
+
+.Card .card-image-box {
+	height: 30%;
+	padding-top: 5%;
 }
 
-.card-image {
-	height: 25%;
-	padding: 2%;
-}
-
-.card .image {
-	/* card image */
+.Card .image {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
 	height: 100%;
 }
 
-.card .card-content {
-	height: 75%;
+.Card .card-content {
+	height: 70%;
 }
 
-.card .media {
-	height: 30%;
+.Card .heading {
+	margin-bottom: 10px;
+	text-transform: capitalize;
 }
 
-.card .title {
+.Card .heading .name {
 	font-size: 1em;
 }
 
-.card .subtitle {
+.Card .heading .team-owner {
 	font-size: 0.8em;
 	color: var(--color-main);
 }
 
-.card .address {
+.Card .address {
 	font-size: 0.7em;
 	color: var(--color-grey);
-	height: 15%;
+	margin-bottom: 10px;
 }
 
-.card .description,
-.card .sport {
-	height: 40%;
-	font-size: 0.8em;
+.Card .description,
+.Card .sport {
+	font-size: 0.9em;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	height: 40%;
 }
 
 @media screen and (max-width: 1000px) {
@@ -62,24 +58,19 @@
 }
 
 @media screen and (max-width: 1000px) and (min-width: 650px) {
-	.card {
-		min-width: 230px;
+	.Card {
+		min-width: 250px;
 		margin: auto;
 	}
-	.card .media {
-		height: 25%;
-	}
-	.card .media-content {
+	.Card .heading {
 		font-size: 0.8em;
 		overflow: hidden;
 	}
-	.card .address {
+	.Card .address {
 		font-size: 0.7em;
-		height: 20%;
 	}
-	.card .description,
-	.card .sport {
-		height: 30%;
+	.Card .description,
+	.Card .sport {
 		font-size: 0.7em;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -87,32 +78,28 @@
 }
 
 @media screen and (max-width: 650px) {
-	.card {
+	.Card {
 		min-width: 300px;
 		margin: auto;
 	}
-	.card .media-content {
-		overflow: hidden;
-	}
 
-	.card .title {
+	.Card .heading .name {
 		font-size: 1.2em;
 	}
 
-	.card .subtitle {
+	.Card .heading .team-owner {
 		font-size: 0.9em;
 		color: var(--color-main);
 	}
 
-	.card .address {
+	.Card .address {
 		font-size: 0.8em;
 		color: var(--color-grey);
-		height: 15%;
 	}
 
-	.card .description,
-	.card .sport {
-		height: 40%;
+	.Card .description,
+	.Card .sport {
+		height: 30%;
 		font-size: 0.9em;
 		overflow: hidden;
 		text-overflow: ellipsis;

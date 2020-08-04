@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import clubApiHandler from "./../../api/clubApiHandler";
-import Card from "./../../components/Cards/Card";
+import Card from "../../components/Cards/Card";
 
 import "./../../styles/Profiles.css";
 import "./../../styles/global.css";
@@ -38,13 +38,12 @@ class Club extends Component {
 			<div className="ContentMain Profiles">
 				<h1 className="title">{this.state.club.clubName}</h1>
 				<div className="flex">
-					<div className="profile-logo-container round-box box-shadowed">
-						<img
-							className="logo"
-							src={this.state.club.image}
-							alt={this.state.club.clubName}
-						/>
-					</div>
+					<div
+						className="profile-logo-container round-box box-shadowed"
+						style={{
+							backgroundImage: `url(${this.state.club.image})`,
+						}}
+					></div>
 					<div className="description-club">
 						<h3 className="bold">Nous (re)joindre :</h3>
 						{!this.state.club.location.formattedAddress &&
@@ -97,7 +96,7 @@ class Club extends Component {
 						{/* DISPLAYED CARDS ----------------------------*/}
 						<div className="cards-container grid fr-2">
 							{this.state.clubTeams.map((team, index) => (
-								<Card key={team} index={team} elem={team} />
+								<Card key={index} elem={team} />
 							))}
 							{!this.state.clubTeams && <p>Loading...</p>}
 						</div>

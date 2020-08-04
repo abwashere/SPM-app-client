@@ -20,43 +20,48 @@
   /* ALIGNER A DROITE */
 }
 
-.other {
+.FormSignUp .other {
   margin: 20px auto 0;
 }
 
-.has-name {
+.FormSignUp .has-name {
   margin-bottom: 30px;
 }
 
-.preview {
+.FormSignUp .preview {
   width: 50%;
   margin: 0 auto 30px;
 }
 
-.field-body {
+.FormSignUp .field-body {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.inter-title {
+.FormSignUp .inter-title {
   font-weight: bold;
   font-size: 1.1rem;
   margin-bottom: 0;
 }
 
-.addTraining {
+.FormSignUp .addTraining {
   margin-bottom: 30px;
 }
 
-.delete-btn {
+.FormSignUp .delete-btn {
   text-align: center;
   padding: 20px;
 }
 
-.delete-btn span {
+.FormSignUp .delete-btn span {
   font-size: 0.5rem;
 }
 
-.delete-btn svg {
+.FormSignUp .delete-btn svg {
   color: rgb(247, 92, 92);
+}
+
+.FormSignUp .email {
+  padding-left: 40px;
+  padding-top: 8px;
 }

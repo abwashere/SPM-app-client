@@ -1,79 +1,80 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: var(--font-content);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-content);
 }
 
 html {
-	font-family: "Manrope", sans-serif;
+  font-family: "Manrope", sans-serif;
 }
 
 .w-1pc-padding {
-	padding: 0 1%;
+  padding: 0 1%;
 }
 
 .App {
-	position: relative;
-	min-height: 90vh;
+  position: relative;
+  min-height: 90vh;
 }
 
 .ContentMain {
-	padding: 1% 4% 5% 4%;
+  padding: 1% 4% 5% 4%;
 }
 
 a {
-	text-decoration: none;
-	color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 ul {
-	list-style-type: none;
+  list-style-type: none;
 }
 
 .grid {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-auto-rows: 400px;
-	grid-gap: 2rem;
-	width: 100%;
-	padding: 1%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 400px;
+  grid-gap: 2rem;
+  width: 100%;
+  padding: 1%;
 }
 
 .flex {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .col {
-	flex-direction: column;
-	justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .space-btw {
-	justify-content: space-between;
+  justify-content: space-between;
 }
 
 .round-box {
-	border-radius: 100%;
+  border-radius: 100%;
 }
 .border-round {
-	border-radius: 8px;
+  border-radius: 8px;
 }
 
 .box-shadowed {
-	box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
-		0 0 0 1px rgba(10, 10, 10, 0.02);
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+    0 0 0 1px rgba(10, 10, 10, 0.02);
 }
 
 .bold {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 /* LOGO BIG */
-.Profiles .logo-container, .Profiles.logo-container {
+.Profiles .logo-container,
+.Profiles.logo-container {
   height: 10em;
   width: 10em;
   margin: 0 4% 4% 0;
@@ -81,29 +82,33 @@ ul {
   align-items: center;
   justify-content: center;
 }
-.Profiles .logo, .Profiles.logo{
+.Profiles .logo,
+.Profiles.logo {
   max-height: 100%;
   max-width: 100%;
 }
 .Profiles.logo-container {
-	margin: 10% 0;
-	background-position-y: top;
-	background-repeat: no-repeat;
-	background-size: cover;
-
+  margin: 10% 0;
+  background-position-y: top;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 @media screen and (max-width: 1300px) and (min-width: 600px) {
-	.grid {
-		grid-template-columns: repeat(3, 1fr);
-		grid-gap: 1.5rem;
-		width: 100%;
-	}
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.5rem;
+    width: 100%;
+  }
 }
 @media screen and (max-width: 600px) {
-	.grid {
-		grid-template-columns: repeat(2, 1fr);
-		grid-gap: 4rem;
-		width: 100%;
-	}
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 4rem;
+    width: 100%;
+  }
+}
+
+.navbar-brand {
+  justify-content: space-between;
 }

@@ -96,7 +96,7 @@ class NavMain extends React.Component {
 								<p
 									onClick={this.handleLogout}
 									to="/logout"
-									className="link button is-normal"
+									className="link button is-text"
 								>
 									Se déconnecter
 								</p>

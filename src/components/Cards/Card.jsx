@@ -38,7 +38,7 @@ const Card = ({ elem }) => {
 				</div>
 				{!isClub && (
 					<div className="sport content">
-						{elem.practice.sport.sportName} en {elem.practice}
+						{elem.sport.sportName} en {elem.practice}
 					</div>
 				)}
 				{isClub && (

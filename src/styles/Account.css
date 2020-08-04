@@ -1,9 +1,51 @@
 .Account .forms {
-	width: 100%;
+	align-items: flex-start;
+}
+.Account .forms .edit-left {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	flex-grow: 2;
+}
+.Account .forms .edit-right {
+	flex-grow: 1;
+	align-items: flex-start;
+}
+.Account .forms .edit-bottom {
+	margin-top: 5%;
+	align-self: flex-start;
 }
 
 .FormEditAccount {
 	width: 100%;
+}
+.FormEditAccount .form {
+	margin: 4% 0;
+	align-items: flex-start;
+}
+
+.FormEditAccount .form .file-cta {
+	background: none;
+	border: none;
+	font-weight: 500;
+	font-size: 0.8em;
+}
+
+.FormEditAccount .photo-edit {
+	flex-grow: 1;
+	position: relative;
+}
+.FormEditAccount .photo-edit .preview {
+	position: absolute;
+	left: 0;
+}
+
+.FormEditAccount .infos-edit {
+	flex-grow: 3;
+}
+
+.FormDeleteAccount p {
+	margin: 5% 0;
 }
 
 .Account .edit-box .teams {

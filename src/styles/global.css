@@ -56,6 +56,9 @@ ul {
 	justify-content: space-between;
 }
 
+.round-box {
+	border-radius: 100%;
+}
 .border-round {
 	border-radius: 8px;
 }
@@ -67,6 +70,23 @@ ul {
 
 .bold {
 	font-weight: bold;
+}
+
+/* LOGO BIG */
+.Profiles .logo-container, .Profiles.logo-container {
+  height: 10em;
+  width: 10em;
+  margin: 0 4% 4% 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Profiles .logo, .Profiles.logo{
+  max-height: 100%;
+  max-width: 100%;
+}
+.Profiles.logo-container {
+	margin: 10% 0;
 }
 
 @media screen and (max-width: 1300px) and (min-width: 600px) {

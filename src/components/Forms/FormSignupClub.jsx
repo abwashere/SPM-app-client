@@ -219,7 +219,6 @@ class FormSignupClub extends Component {
 								className="file-input"
 								type="file"
 								name="image"
-								onChange={this.handlePreview}
 							/>
 							<span className="file-cta">
 								<span className="file-icon">

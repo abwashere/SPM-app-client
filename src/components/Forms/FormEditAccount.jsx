@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
-import authApiHandler from "../../api/authApiHandler";
+import clubApiHandler from "../../api/clubApiHandler";
+import playerApiHandler from "../../api/playerApiHandler";
 import sportApiHandler from "../../api/sportApiHandler";
 import LocationAutoComplete from "./../LocationAutoComplete";
 import buildFormData from "../../utils/buildFormData";
@@ -13,25 +14,10 @@ import "./../../styles/Account.css";
 export class FormEditAccount extends Component {
 	static contextType = UserContext;
 	state = {
-		firstName: "",
-		lastName: "",
-		sportsList: [],
-		practice: [
-			{
-				sport: "",
-				level: "",
-			},
-		],
-		phoneNumber: "",
-		website: "",
-		year: "",
-		subscriptionFee: "",
-		description: "",
-		email: "",
-		clubName: "",
 		file: null,
-		isUpdated: false,
-		// sportsList: null,
+		sportsList: [],
+
+		// isUpdated: false,
 	};
 	componentDidMount() {
 		sportApiHandler
@@ -73,17 +59,21 @@ export class FormEditAccount extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		let user = this.context.user;
+		console.log("le state du form edit AVANT UPDATE", this.state);
 
-		console.log(this.state);
-
-		let fd = new FormData();
-		buildFormData(fd, this.state);
+		let fd;
+		if (this.state.file) {
+			fd = new FormData();
+			buildFormData(fd, this.state);
+		} else {
+			fd = this.state;
+		}
 
 		if (user.role === "Player")
-			authApiHandler
-				.updatePlayer(fd)
+			playerApiHandler
+				.updatePlayer(user._id, fd)
 				.then((data) => {
-					console.log(data);
+					console.log("UPDATED INFOS", data);
 					this.context.setUser(data);
 					this.setState({ isUpdated: true });
 				})
@@ -91,10 +81,10 @@ export class FormEditAccount extends Component {
 					console.log(error);
 				});
 		if (user.role === "Club")
-			authApiHandler
-				.updateClub(fd)
+			clubApiHandler
+				.updateClub(user._id, fd)
 				.then((data) => {
-					console.log(data);
+					console.log("UPDATED INFOS", data);
 					this.context.setUser(data);
 					this.setState({ isUpdated: true });
 				})
@@ -104,43 +94,41 @@ export class FormEditAccount extends Component {
 	};
 
 	render() {
-		console.log("le state du form edit", this.state);
 		let user = this.context.user;
 		let role = this.context.user.role;
-
+		console.log("user edit ", user);
 		return (
 			<div className="FormEditAccount">
 				<h2 className="subtitle">Mettre à jour mes infos personnelles</h2>
 				<form
-					className="form"
+					className="form flex"
 					onChange={this.handleChange}
 					onSubmit={this.handleSubmit}
 				>
 					{/* ----------------------------------PHOTO PART */}
 					<div className="photo-edit">
-						<label className="label">Image de profile</label>
+						<label className="label">Image du profile</label>
+						<div className="Profiles logo-container round-box box-shadowed">
+							<img
+								className="Profiles logo"
+								src={role === "Club" ? user.image : user.picture}
+								alt="profile picture"
+							/>
+						</div>
+
 						<div className="file has-name">
 							<label className="file-label">
-								<input
-									className="file-input"
-									type="file"
-									name="image"
-									onChange={this.handlePreview}
-								/>
+								<input className="file-input" type="file" name="image" />
 								<span className="file-cta">
 									<span className="file-icon">
 										<i className="fas fa-upload"></i>
 									</span>
-									<span className="file-label">
-										Choisir un nouveau fichier…
-									</span>
+									<span className="file-label">Nouvelle image</span>
 								</span>
-								<div>
-									{this.state.file && (
-										<img src={this.state.file} alt="preview" />
-									)}
-								</div>
 							</label>
+						</div>
+						<div className="preview">
+							{this.state.file && <img src={this.state.file} alt="preview" />}
 						</div>
 					</div>
 
@@ -179,31 +167,6 @@ export class FormEditAccount extends Component {
 								</span>
 							</div>
 						</div>
-						{/* ----------- */}
-
-						<div className="field">
-							<label className="label">Description</label>
-							<div className="control">
-								<textarea
-									className="textarea"
-									name="description"
-									defaultValue={user.description}
-								></textarea>
-							</div>
-						</div>
-						{/* ---club----------------------------------------- */}
-
-						<div className="field">
-							<label className="label">Nom du club</label>
-							<div className="control">
-								<input
-									className="input"
-									type="text"
-									name="clubName"
-									defaultValue={user.clubName}
-								/>
-							</div>
-						</div>
 
 						{/* ----------- */}
 
@@ -217,125 +180,151 @@ export class FormEditAccount extends Component {
 								<span className="icon is-small is-left">
 									<i className="fa fa-map-marker"></i>
 								</span>
-								<span className="icon is-small is-right"></span>
-							</div>
-						</div>
-
-						{/* -------------------------------------------- */}
-
-						<div className="field">
-							<label className="label">Site web du club</label>
-							<div className="control">
-								<input
-									className="input"
-									type="text"
-									name="website"
-									defaultValue={user.website}
-								/>
 							</div>
 						</div>
 						{/* ----------- */}
 
 						<div className="field">
-							<label className="label">Vidéo de présentation</label>
+							<label className="label">Description</label>
 							<div className="control">
-								<input
-									className="input"
-									type="text"
-									name="videoURL"
-									defaultValue={user.videoURL}
-								/>
-							</div>
-						</div>
-						{/* ----------- */}
-
-						<div className="field">
-							<label className="label">Frais d'adhésion</label>
-							<div className="control">
-								<input
-									className="input"
-									type="text"
-									name="subscriptionFee"
-									defaultValue={user.subscriptionFee}
-								/>
+								<textarea
+									className="textarea"
+									name="description"
+									defaultValue={user.description}
+								></textarea>
 							</div>
 						</div>
 
-						{/* ----------- */}
-
-						<div className="field">
-							<label className="label">Année de création</label>
-							<div className="control">
-								<input
-									className="input"
-									type="text"
-									name="year"
-									defaultValue={user.year}
-								/>
-							</div>
-						</div>
-						{/* ---player------------------------------------- */}
-
-						<div className="field">
-							<label className="label">Prénom</label>
-							<div className="control">
-								<input
-									className="input"
-									type="text"
-									name="firstName"
-									defaultValue={user.firstName}
-								/>
-							</div>
-						</div>
-
-						<div className="field">
-							<label className="label">Nom de famille</label>
-							<div className="control">
-								<input
-									className="input"
-									type="text"
-									name="lastName"
-									defaultValue={user.lastName}
-								/>
-							</div>
-						</div>
-
-						<div className="field">
-							<label className="label">
-								Le sport que tu pratiques ou que tu souhaites pratiquer
-							</label>
-							<div className="field-body">
+						{/* ---club specific----------------------------------------- */}
+						{user.role === "Club" && (
+							<React.Fragment>
 								<div className="field">
-									<div className="control has-icons-left">
-										<div className="select">
-											<select name="sport">
-												<option>Sport</option>
-												{this.state.sportsList.map((sport) => (
-													<option key={sport._id} value={sport._id}>
-														{sport.sportName}
-													</option>
-												))}
-											</select>
+									<label className="label">Nom du club</label>
+									<div className="control">
+										<input
+											className="input"
+											type="text"
+											name="clubName"
+											defaultValue={user.clubName}
+										/>
+									</div>
+								</div>
+
+								<div className="field">
+									<label className="label">Site web du club</label>
+									<div className="control">
+										<input
+											className="input"
+											type="text"
+											name="website"
+											defaultValue={user.website}
+										/>
+									</div>
+								</div>
+
+								<div className="field">
+									<label className="label">Vidéo de présentation</label>
+									<div className="control">
+										<input
+											className="input"
+											type="text"
+											name="videoURL"
+											defaultValue={user.videoURL}
+										/>
+									</div>
+								</div>
+
+								<div className="field">
+									<label className="label">Frais d'adhésion</label>
+									<div className="control">
+										<input
+											className="input"
+											type="text"
+											name="subscriptionFee"
+											defaultValue={user.subscriptionFee}
+										/>
+									</div>
+								</div>
+
+								<div className="field">
+									<label className="label">Année de création</label>
+									<div className="control">
+										<input
+											className="input"
+											type="text"
+											name="year"
+											defaultValue={user.year}
+										/>
+									</div>
+								</div>
+							</React.Fragment>
+						)}
+						{/* ---player specific ----------------------------------- */}
+						{user.role === "Player" && (
+							<React.Fragment>
+								<div className="field">
+									<label className="label">Prénom</label>
+									<div className="control">
+										<input
+											className="input"
+											type="text"
+											name="firstName"
+											defaultValue={user.firstName}
+										/>
+									</div>
+								</div>
+
+								<div className="field">
+									<label className="label">Nom de famille</label>
+									<div className="control">
+										<input
+											className="input"
+											type="text"
+											name="lastName"
+											defaultValue={user.lastName}
+										/>
+									</div>
+								</div>
+
+								<div className="field">
+									<label className="label">
+										Le sport que tu pratiques ou que tu souhaites pratiquer
+									</label>
+									<div className="field-body">
+										<div className="field">
+											<div className="control has-icons-left">
+												<div className="select">
+													<select name="sport">
+														<option>Sport</option>
+														{this.state.sportsList.map((sport) => (
+															<option key={sport._id} value={sport._id}>
+																{sport.sportName}
+															</option>
+														))}
+													</select>
+													<span className="icon is-small is-left">
+														<i className="fa fa-running"></i>
+													</span>
+												</div>
+											</div>
 										</div>
-										<div className="icon is-small is-left">
-											<i className="fas fa-running"></i>
+										<div className="field">
+											<div className="control">
+												<div className="select">
+													<select name="level">
+														<option>Niveau</option>
+														<option value="débutante">Débutante</option>
+														<option value="intermédiaire">Intermédiaire</option>
+														<option value="expérimentée">Expérimentée</option>
+													</select>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-								<div className="field">
-									<div className="control has-icons-left">
-										<div className="select">
-											<select name="level">
-												<option>Niveau</option>
-												<option value="débutante">Débutante</option>
-												<option value="intermédiaire">Intermédiaire</option>
-												<option value="expérimentée">Expérimentée</option>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+							</React.Fragment>
+						)}
+
 						{/* ----------------------------------------BUTTON */}
 
 						<div className="field btn-signup">

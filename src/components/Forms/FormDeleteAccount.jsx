@@ -43,11 +43,11 @@ class FormDeleteAccount extends Component {
 				{isDeleted && <Redirect to="/" />}
 
 				<React.Fragment>
-					<h1>Etes-tu sûr(e) de vouloir supprimer ce compte ?</h1>
-					<div className="buttons has-addons">
+					<p>Etes-tu sûr(e) de vouloir supprimer ce compte ?</p>
+					<div className="buttons">
 						<button
 							onClick={() => this.handleDelete(user._id)}
-							className="button is-danger is-selected"
+							className="button is-selected"
 						>
 							Oui, au revoir
 						</button>
@@ -56,7 +56,7 @@ class FormDeleteAccount extends Component {
 								this.handleAbort();
 								this.props.abortDelete();
 							}}
-							className="button is-link is-selected"
+							className="button is-warning is-selected"
 						>
 							Noooo !
 						</button>

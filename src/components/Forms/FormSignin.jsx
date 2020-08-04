@@ -72,13 +72,13 @@ class FormSignin extends Component {
 							<span className="icon is-small is-left">
 								<i className="fas fa-envelope"></i>
 							</span>
-							<span className="icon is-small is-right">
+							{/* <span className="icon is-small is-right">
 								<i className="fas fa-exclamation-triangle"></i>
-							</span>
+							</span> */}
 						</div>
-						{this.invalidMail && (
+						{/* {this.invalidMail && (
 							<p className="help is-danger">Mail incorrect</p>
-						)}
+						)} */}
 					</div>
 					<div className="field">
 						<label className="label">Mot de passe</label>
@@ -87,15 +87,15 @@ class FormSignin extends Component {
 								className="input"
 								// className={`input ${this.invalidPass === "yes" && "is danger"} `}
 								type="password"
-								// value="1234"
+								defaultValue="1234"
 								name="password"
 							/>
 							<span className="icon is-small is-left">
 								<i className="fas fa-user"></i>
 							</span>
-							<span className="icon is-small is-right">
+							{/* <span className="icon is-small is-right">
 								<i className="fas fa-check"></i>
-							</span>
+							</span> */}
 						</div>
 						{/* {this.invalidPass && (
 						<p className="help is-danger">Password incorrect</p>

@@ -5,6 +5,7 @@ import authApiHandler from "../../api/authApiHandler";
 import sportApiHandler from "../../api/sportApiHandler";
 import LocationAutoComplete from "./../LocationAutoComplete";
 import buildFormData from "../../utils/buildFormData";
+import validateEmail from "../../utils/validateEmail";
 
 import "bulma/css/bulma.css";
 import "./../../styles/FormSignUp.css";
@@ -48,19 +49,23 @@ class FormSignupPlayer extends Component {
     event.preventDefault();
     console.log("state before submit", this.state);
 
-    let fd = new FormData();
-    buildFormData(fd, this.state);
+    if (!validateEmail(this.state.email)) {
+      console.log("email is not valid");
+    } else {
+      let fd = new FormData();
+      buildFormData(fd, this.state);
 
-    authApiHandler
-      .signupPlayer(fd)
-      .then((data) => {
-        console.log(data);
-        this.context.setUser(data);
-        this.props.history.push("/account");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      authApiHandler
+        .signupPlayer(fd)
+        .then((data) => {
+          console.log(data);
+          this.context.setUser(data);
+          this.props.history.push("/account");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   componentDidMount() {

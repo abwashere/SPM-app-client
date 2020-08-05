@@ -37,7 +37,7 @@ class Club extends Component {
 		return (
 			<div className="ContentMain Profiles">
 				<h1 className="title">{this.state.club.clubName}</h1>
-				<div className="flex">
+				<div className="flex slide-left">
 					<div
 						className="profile-logo-container round-box box-shadowed"
 						style={{

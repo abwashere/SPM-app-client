@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import teamApiHandler from "./../../api/teamApiHandler";
 
 import "./../../styles/Profiles.css";
@@ -26,7 +28,7 @@ class Team extends Component {
 		if (!this.state.team) return null;
 
 		return (
-			<div className="ContentMain Profiles">
+			<div className="ContentMain Profiles slide-left">
 				<h1 className="title">{this.state.team.teamName}</h1>
 
 				<img

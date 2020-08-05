@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 import eventApiHandler from "./../api/eventApiHandler";
 
@@ -21,6 +22,7 @@ class EventsList extends Component {
 
 	render() {
 		const { events } = this.state;
+
 		return (
 			<div className="ContentMain EventsList">
 				<h1 className="title">Tous les évènements</h1>
@@ -44,24 +46,31 @@ class EventsList extends Component {
 								events.map((event, i) => (
 									<tr key={i}>
 										<td>
-											<img
-												src={event.image}
-												alt="event pic"
-												className="event-img-small "
-											/>
-										</td>
-										<td>
-											<Link to={`/event/${event._id}`} className="link">
-												{event.title}
+											<Link to={`/event/${event._id}`}>
+												<img
+													src={event.image}
+													alt="event pic"
+													className="event-img-small hvr-grow"
+												/>
 											</Link>
 										</td>
 										<td>
-											{event.date.day} à {event.time}
+											<Link to={`/event/${event._id}`} className="link">
+												<strong>{event.title}</strong>
+											</Link>
+										</td>
+										<td>
+											<strong>
+												{moment(event.date).format("dddd Do MMMM YYYY")} à {event.time}
+											</strong>
 										</td>
 										<td>{event.location.formattedAddress} </td>
 										<td>
-											<Link to={`/club/${event.club._id}`} className="link">
-												<strong>{event.club.clubName}</strong>
+											<Link
+												to={`/club/${event.club._id}`}
+												className="link hvr-underline-from-center"
+											>
+												{event.club.clubName}
 											</Link>
 										</td>
 									</tr>

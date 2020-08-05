@@ -384,7 +384,7 @@ export class FormEditAccount extends Component {
 
             <div className="field btn-signup">
               <div className="control">
-                <button className="button is-link">Mettre à jour</button>
+                <button className="button is-link hvr-buzz-out">Mettre à jour</button>
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ const Card = ({ elem }) => {
 	if (elem.role === "Club") isClub = true;
 
 	return (
-		<div className={`Card ${isClub ? "club" : "team"} box-shadowed `}>
+		<div className={`Card ${isClub ? "club" : "team"} box-shadowed hvr-grow`}>
 			<div className="card-image-box">
 				<Link to={`/${isClub ? "club" : "team"}/${elem._id}`}>
 					<figure

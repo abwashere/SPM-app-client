@@ -47,7 +47,7 @@ class Account extends React.Component {
 			<div className="Account ContentMain">
 				<h1 className="title">Mon compte</h1>
 
-				<div className="forms flex space-btw">
+				<div className="forms flex space-btw ">
 					{/*--------------------------- SECTION MODIF INFOS PERSOS */}
 					<div className="edit-left col">
 						{/*-------------------- edit section --------- */}
@@ -79,7 +79,7 @@ class Account extends React.Component {
 										{clubTeams.map((team) => (
 											<li key={team._id}>
 												<Link
-													className="link"
+													className="link hvr-underline-from-center"
 													to={`/account/team/edit/${team._id}`}
 												>
 													{team.teamName}
@@ -89,7 +89,7 @@ class Account extends React.Component {
 									</ul>
 								</div>
 							)}
-							<button className="button is-success">
+							<button className="button is-success hvr-pulse-grow">
 								<Link to={`/account/team/create`}>Ajouter une équipe</Link>
 							</button>
 
@@ -102,7 +102,7 @@ class Account extends React.Component {
 										{clubEvents.map((event) => (
 											<li key={event._id}>
 												<Link
-													className="link"
+													className="link hvr-underline-from-center"
 													to={`/account/event/edit/${event._id}`}
 												>
 													{event.name}
@@ -112,7 +112,7 @@ class Account extends React.Component {
 									</ul>
 								</div>
 							)}
-							<button className="button is-success">
+							<button className="button is-success hvr-pulse-grow">
 								<Link to={`/account/event/create`}>Ajouter un évènement</Link>
 							</button>
 						</div>

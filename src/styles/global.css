@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
-@import "./animations.css";
+@import "./hover.css";
 
 * {
 	margin: 0;
@@ -156,4 +156,59 @@ ul {
 
 .centered {
 	margin: 40px 40% 0;
+}
+
+
+/* ANIMATIONS ---------------------------------------------------- */
+
+@keyframes slide-top {
+	0% {
+		-webkit-transform: translateY(80vh);
+		transform: translateY(80vh);
+	}
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
+.slide-top {
+	-webkit-animation: slide-top 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes flip-scale-up-hor {
+  0% {
+    -webkit-transform: scale(1) rotateX(0);
+            transform: scale(1) rotateX(0);
+  }
+  50% {
+    -webkit-transform: scale(2.5) rotateX(-90deg);
+            transform: scale(2.5) rotateX(-90deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateX(-180deg);
+            transform: scale(1) rotateX(-180deg);
+  }
+}
+.flip-scale-up-hor {
+	-webkit-animation: flip-scale-up-hor 0.5s linear both;
+	        animation: flip-scale-up-hor 0.5s linear both;
+}
+
+/* -------- */
+
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+.slide-left {
+	-webkit-animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }

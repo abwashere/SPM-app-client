@@ -13,8 +13,6 @@ import "./../styles/Home.css";
 
 class Home extends Component {
   state = {
-    teams: [],
-    clubs: [],
     teamsAndClubs: [],
     searchValue: "",
     closestGroups: [],
@@ -91,12 +89,9 @@ class Home extends Component {
         })
         .filter((team) => {
           if (this.state.day) {
-            const dayTeam = team.trainings.filter((training) => {
-              console.log(training.day);
-              return training.day === this.state.day;
+            return team.trainings.some((training) => {
+              return training.day.includes(this.state.day);
             });
-            console.log(dayTeam);
-            return dayTeam;
           } else {
             return true;
           }

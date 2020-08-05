@@ -3,6 +3,10 @@
 	height: 100%;
 }
 
+.Card:hover {
+	
+}
+
 .Card.club {
 	background-color: var(--color-secondary);
 }

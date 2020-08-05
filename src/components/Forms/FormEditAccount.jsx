@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import UserContext from "../Auth/UserContext";
 import clubApiHandler from "../../api/clubApiHandler";
 import playerApiHandler from "../../api/playerApiHandler";

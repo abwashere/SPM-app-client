@@ -4,7 +4,6 @@ import { withUser } from "../components/Auth/withUser";
 import authApiHandler from "./../api/authApiHandler";
 import FormSignin from "../components/Forms/FormSignin";
 
-
 import "../styles/NavMain.css";
 import "../styles/SignInForm.css";
 import "bulma/css/bulma.css";
@@ -13,7 +12,7 @@ class NavMain extends React.Component {
 	state = {
 		onDisplay: false,
 		isActive: false,
-		isLoggedOut:false,
+		isLoggedOut: false,
 	};
 
 	handleLogout = () => {
@@ -46,11 +45,7 @@ class NavMain extends React.Component {
 			<div className="container-nav">
 				{this.state.isLoggedOut && <Redirect to="/" />}
 
-				<nav
-					className="navbar"
-					role="navigation"
-					aria-label="main navigation"
-				>
+				<nav className="navbar" role="navigation" aria-label="main navigation">
 					<div className="navbar-brand">
 						{/* --------------------------- AFFICHAGE LOGO */}
 
@@ -77,7 +72,9 @@ class NavMain extends React.Component {
 						</div>
 					</div>
 					<div
-						className={`navbar-menu ${this.state.isActive && "is-active"} border-round `}
+						className={`navbar-menu ${
+							this.state.isActive && "is-active"
+						} border-round `}
 						id="nav-content"
 						onMouseLeave={this.displayMenu}
 					>
@@ -89,9 +86,17 @@ class NavMain extends React.Component {
 									{(context.user && context.user.firstName) ||
 										context.user.clubName}
 								</p>
-								<p className="link navbar-item">
-									<Link to="/account">Mon compte</Link>
-								</p>
+								<Link to="/events/all" id="all-events-link">
+									<p
+										className="link
+										navbar-item"
+									>
+										Voir les évènements
+									</p>
+								</Link>
+								<Link to="/account">
+									<p className="link navbar-item">Mon compte</p>
+								</Link>
 
 								<p
 									onClick={this.handleLogout}
@@ -105,6 +110,15 @@ class NavMain extends React.Component {
 						{/* ----------------- AFFICHAGE DES MENUS QUAND NOT LOGGED IN */}
 						{!context.isLoggedIn && (
 							<div className="navbar-end">
+								<Link to="/events/all" id="all-events-link">
+									<p
+										className="link
+										navbar-item"
+									>
+										Voir les évènements
+									</p>
+								</Link>
+
 								<div className="buttons" onClick={this.displayMenu}>
 									<p
 										onClick={this.displaySignIn}

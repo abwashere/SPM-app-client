@@ -45,54 +45,54 @@ class Filter extends React.Component {
     if (!this.state.sportsList) return <p>is loading...</p>;
     else
       return (
-        <div className="Filter flex">
-          {!this.state.onDisplay && (
-            <button
-              onClick={this.displayFilters}
-              id="btn-filter-open"
-              className="button"
-              aria-haspopup="true"
-              aria-controls="dropdown-menu"
-            >
-              <span>Filtrer</span>
-              <span className="icon is-small">
-                <i className="fas fa-angle-down" aria-hidden="true"></i>
-              </span>
-            </button>
-          )}
+				<div className="Filter flex">
+					{!this.state.onDisplay && (
+						<button
+							onClick={this.displayFilters}
+							id="btn-filter-open"
+							className="button"
+							aria-haspopup="true"
+							aria-controls="dropdown-menu"
+						>
+							<span>Filtrer</span>
+							<span className="icon is-small">
+								<i className="fas fa-angle-down" aria-hidden="true"></i>
+							</span>
+						</button>
+					)}
 
-          {this.state.onDisplay && (
-            <form
-              className="filters"
-              onChange={this.handleChange}
-              onSubmit={this.handleSubmit}
-              ref="form"
-            >
-              <div className="practice control">
-                <label className="radio" htmlFor="filter-competition">
-                  <input
-                    type="radio"
-                    name="practice"
-                    id="filter-competition"
-                    value="compétition"
-                    // checked={this.props.practice === "compétition"}
-                  />
-                  {"  "}
-                  Compétition
-                </label>
-                <label className="radio" htmlFor="filter-loisir">
-                  <input
-                    type="radio"
-                    name="practice"
-                    id="filter-loisir"
-                    value="loisir"
-                    // checked={this.props.practice === "loisir"}
-                  />
-                  {"  "}
-                  Loisir
-                </label>
-                {/* FIXME: */}
-                {/* <label className="radio" htmlFor="filter-all">
+					{this.state.onDisplay && (
+						<form
+							className="filters"
+							onChange={this.handleChange}
+							onSubmit={this.handleSubmit}
+							ref="form"
+						>
+							<div className="practice control">
+								<label className="radio" htmlFor="filter-competition">
+									<input
+										type="radio"
+										name="practice"
+										id="filter-competition"
+										value="compétition"
+										// checked={this.props.practice === "compétition"}
+									/>
+									{"  "}
+									Compétition
+								</label>
+								<label className="radio" htmlFor="filter-loisir">
+									<input
+										type="radio"
+										name="practice"
+										id="filter-loisir"
+										value="loisir"
+										// checked={this.props.practice === "loisir"}
+									/>
+									{"  "}
+									Loisir
+								</label>
+								{/* FIXME: */}
+								{/* <label className="radio" htmlFor="filter-all">
 									<input
 										type="radio"
 										name="practice"
@@ -101,58 +101,58 @@ class Filter extends React.Component {
 									/>
 									Les 2
 								</label> */}
-              </div>
-              <div className="control">
-                <div className="select">
-                  <select name="sport" defaultValue={this.props.sport}>
-                    <option>Sport</option>
-                    {this.state.sportsList.map((sport) => (
-                      <option key={sport._id} value={sport._id}>
-                        {sport.sportName}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="control">
-                <div className="select">
-                  <select name="day" defaultValue={this.props.day}>
-                    <option>Jour d'entraînement</option>
-                    {[
-                      "lundi",
-                      "mardi",
-                      "mercredi",
-                      "jeudi",
-                      "vendredi",
-                      "samedi",
-                      "dimanche",
-                    ].map((day) => (
-                      <option key={day} value={day}>
-                        {day}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="control flex">
-                <button
-                  id="btn-filter-apply"
-                  className="button is-small is-dark"
-                >
-                  Appliquer les filtres
-                </button>
-                <button
-                  type="button"
-                  className="button is-small is-dark delete-filters"
-                  onClick={this.deleteFilters}
-                >
-                  Effacer les filtres
-                </button>
-              </div>
-            </form>
-          )}
-        </div>
-      );
+							</div>
+							<div className="control">
+								<div className="select">
+									<select name="sport" defaultValue={this.props.sport}>
+										<option>Sport</option>
+										{this.state.sportsList.map((sport) => (
+											<option key={sport._id} value={sport._id}>
+												{sport.sportName}
+											</option>
+										))}
+									</select>
+								</div>
+							</div>
+							<div className="control">
+								<div className="select">
+									<select name="day" defaultValue={this.props.day}>
+										<option>Jour d'entraînement</option>
+										{[
+											"lundi",
+											"mardi",
+											"mercredi",
+											"jeudi",
+											"vendredi",
+											"samedi",
+											"dimanche",
+										].map((day) => (
+											<option key={day} value={day}>
+												{day}
+											</option>
+										))}
+									</select>
+								</div>
+							</div>
+							<div className="control flex">
+								<button
+									id="btn-filter-apply"
+									className="button is-small is-success is-outlined"
+								>
+									Appliquer les filtres
+								</button>
+								<button
+									type="button"
+									className="button is-small is-outlined delete-filters"
+									onClick={this.deleteFilters}
+								>
+									Effacer les filtres
+								</button>
+							</div>
+						</form>
+					)}
+				</div>
+			);
   }
 }
 

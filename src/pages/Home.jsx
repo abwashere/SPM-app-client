@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import * as turf from "@turf/turf";
 
 import teamApiHandler from "./../api/teamApiHandler";
@@ -8,6 +8,8 @@ import clubApiHandler from "./../api/clubApiHandler";
 import Card from "./../components/Cards/Card";
 import SearchBar from "./../components/SearchBar";
 import Filter from "./../components/Filter";
+import Map from "./../components/Map";
+import { Marker, Popup } from "react-mapbox-gl";
 
 import "./../styles/Home.css";
 
@@ -20,6 +22,9 @@ class Home extends Component {
     practice: null,
     sport: null,
     day: null,
+    selectedElem: null,
+    showCard: false,
+    showMap: true,
   };
 
   handleSearch = (place) => {
@@ -110,6 +115,17 @@ class Home extends Component {
     });
   };
 
+  showCard = (element) => {
+    this.setState({
+      selectedElem: element,
+      showCard: true,
+    });
+  };
+
+  handleMap = () => {
+    this.setState({ showMap: !this.state.showMap });
+  };
+
   componentDidMount() {
     Promise.all([teamApiHandler.getTeams(), clubApiHandler.getClubs()])
       .then((dbRes) => {
@@ -122,7 +138,7 @@ class Home extends Component {
       });
   }
 
-  handleBackground = () => {};
+  // handleBackground = () => {};
 
   render() {
     return (
@@ -144,6 +160,97 @@ class Home extends Component {
         </div>
         {/* BACKGROUND  */}
         <div className={!this.state.searchValue ? "bg-main" : "hidden"}>
+          {/* DISPLAYED MAP ----------------------------*/}
+          {this.state.searchValue && (
+            <div>
+              <div className="flex above-map">
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    checked={this.state.showMap}
+                    onChange={this.handleMap}
+                  />
+                  <span className="slider round"></span>
+                </label>
+                <p>Afficher la carte</p>
+              </div>
+              {this.state.showMap && (
+                <div id="map">
+                  <Map
+                    style="mapbox://styles/mapbox/streets-v11"
+                    containerStyle={{
+                      height: "100%",
+                      width: "100%",
+                    }}
+                    center={this.state.searchValue.center}
+                  >
+                    {this.state.filteredResults.map((result, index) => {
+                      const loc = result.location.coordinates;
+                      if (loc.length > 0) {
+                        return (
+                          <Marker
+                            key={result._id}
+                            index={index}
+                            coordinates={[
+                              result.location.coordinates[0],
+                              result.location.coordinates[1],
+                            ]}
+                            anchor="bottom"
+                            onClick={() => this.showCard(result)}
+                          >
+                            <i className="fas fa-map-marker-alt"></i>
+                          </Marker>
+                        );
+                      }
+                    })}
+                    {this.state.showCard && (
+                      <Popup
+                        coordinates={[
+                          this.state.selectedElem.location.coordinates[0],
+                          this.state.selectedElem.location.coordinates[1],
+                        ]}
+                        offset={{
+                          "bottom-left": [12, -38],
+                          bottom: [0, -38],
+                          "bottom-right": [-12, -38],
+                        }}
+                      >
+                        {this.state.selectedElem.teamName && (
+                          <p className="bold">
+                            Equipe :{" "}
+                            <Link to={`/team/${this.state.selectedElem._id}`}>
+                              <span className="green">
+                                {this.state.selectedElem.teamName}
+                              </span>
+                            </Link>
+                          </p>
+                        )}
+                        {this.state.selectedElem.clubName && (
+                          <p className="bold">
+                            Club :{" "}
+                            <Link to={`/club/${this.state.selectedElem._id}`}>
+                              <span className="green">
+                                {this.state.selectedElem.clubName}
+                              </span>
+                            </Link>
+                          </p>
+                        )}
+                        {this.state.selectedElem.sport && (
+                          <p>
+                            Sport : {this.state.selectedElem.sport.sportName}
+                          </p>
+                        )}
+                      </Popup>
+                    )}
+                  </Map>
+                </div>
+                /* {this.state.showCard ? (
+                <Card elem={this.state.selectedElem} />
+              ) : null}*/
+              )}
+            </div>
+          )}
+
           {/* DISPLAYED CARDS ----------------------------*/}
           <div className="cards-container grid fr-5">
             {this.state.filteredResults.map((group, index) => (

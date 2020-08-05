@@ -216,25 +216,44 @@ class Home extends Component {
                         }}
                       >
                         {this.state.selectedElem.teamName && (
-                          <p className="bold">
-                            Equipe :{" "}
+                          <div>
+                            <p className="bold">
+                              Equipe :{" "}
+                              <Link to={`/team/${this.state.selectedElem._id}`}>
+                                <span className="green">
+                                  {this.state.selectedElem.teamName}
+                                </span>
+                              </Link>
+                            </p>
                             <Link to={`/team/${this.state.selectedElem._id}`}>
-                              <span className="green">
-                                {this.state.selectedElem.teamName}
-                              </span>
+                              <img
+                                className="logo-map"
+                                src={this.state.selectedElem.image}
+                                alt="logo"
+                              />
                             </Link>
-                          </p>
+                          </div>
                         )}
                         {this.state.selectedElem.clubName && (
-                          <p className="bold">
-                            Club :{" "}
+                          <div>
+                            <p className="bold">
+                              Club :{" "}
+                              <Link to={`/club/${this.state.selectedElem._id}`}>
+                                <span className="green">
+                                  {this.state.selectedElem.clubName}
+                                </span>
+                              </Link>
+                            </p>
                             <Link to={`/club/${this.state.selectedElem._id}`}>
-                              <span className="green">
-                                {this.state.selectedElem.clubName}
-                              </span>
+                              <img
+                                className="logo-map"
+                                src={this.state.selectedElem.image}
+                                alt="logo"
+                              />
                             </Link>
-                          </p>
+                          </div>
                         )}
+
                         {this.state.selectedElem.sport && (
                           <p>
                             Sport : {this.state.selectedElem.sport.sportName}

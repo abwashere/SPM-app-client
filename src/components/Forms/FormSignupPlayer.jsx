@@ -93,7 +93,7 @@ class FormSignupPlayer extends Component {
 
   render() {
     return (
-      <div className="FormSignup">
+      <div className="FormSignup Player">
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <div className="field">
             <label className="label">Email</label>

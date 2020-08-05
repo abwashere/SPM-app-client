@@ -75,7 +75,7 @@ class FormSignupClub extends Component {
 
   render() {
     return (
-      <div className="FormSignup">
+      <div className="FormSignup Club">
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <div className="field">
             <label className="label">Email</label>

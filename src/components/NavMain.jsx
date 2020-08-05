@@ -112,7 +112,7 @@ class NavMain extends React.Component {
 							<div className="navbar-end">
 								<Link to="/events/all" id="all-events-link">
 									<p
-										className="link
+										className="link hvr-float
 										navbar-item"
 									>
 										Voir les évènements
@@ -123,7 +123,7 @@ class NavMain extends React.Component {
 									<p
 										onClick={this.displaySignIn}
 										id="login-link"
-										className="link button is-success is-outlined"
+										className="link button is-success is-outlined hvr-float"
 									>
 										Se connecter
 									</p>
@@ -131,7 +131,7 @@ class NavMain extends React.Component {
 										<Link
 											to="/signup"
 											id="signup-link"
-											className="link button is-primary"
+											className="link button is-success hvr-float"
 										>
 											S'inscrire
 										</Link>

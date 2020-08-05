@@ -8,6 +8,23 @@
 	font-weight: 700;
 }
 
-.Filter .control{
-  margin-bottom: 5%;
+.Filter .control {
+	margin-bottom: 5%;
+}
+
+.delete-filters {
+	margin-left: 10px;
+}
+
+
+.Filter .practice  {
+	display: flex;
+	justify-content: space-between;
+}
+.Filter .radio {
+	width: 50%;
+}
+
+.Filter .radio input {
+	margin-right: 4%;
 }

@@ -30,7 +30,7 @@ class Player extends Component {
 				<h1 className="title">
 					{this.state.player.firstName} {this.state.player.lastName}
 				</h1>
-				<div className="flex space-btw">
+				<div className="flex">
 					<div
 						className="profile-logo-container round-box box-shadowed"
 						style={{

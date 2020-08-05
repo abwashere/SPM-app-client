@@ -26,14 +26,15 @@
 .Card .heading {
 	margin-bottom: 10px;
 	text-transform: capitalize;
+	font-weight: 800;
 }
 
 .Card .heading .name {
-	font-size: 1em;
+	font-size: 1.3em;
 }
 
 .Card .heading .team-owner {
-	font-size: 0.8em;
+	font-size: 1.1em;
 	color: var(--color-main);
 }
 
@@ -51,27 +52,27 @@
 	height: 40%;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
 	.cards-container.grid {
-		width: 80%;
+		width: 90%;
 	}
 }
 
-@media screen and (max-width: 1000px) and (min-width: 650px) {
+@media screen and (max-width: 1100px) and (min-width: 650px) {
 	.Card {
 		min-width: 250px;
 		margin: auto;
 	}
 	.Card .heading {
-		font-size: 0.8em;
+		/* font-size: 0.8em; */
 		overflow: hidden;
 	}
 	.Card .address {
-		font-size: 0.7em;
+		/* font-size: 0.7em; */
 	}
 	.Card .description,
 	.Card .sport {
-		font-size: 0.7em;
+		/* font-size: 0.8em; */
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
@@ -79,29 +80,47 @@
 
 @media screen and (max-width: 650px) {
 	.Card {
-		min-width: 300px;
+		max-width: 250px;
 		margin: auto;
 	}
 
 	.Card .heading .name {
-		font-size: 1.2em;
+		/* font-size: 1.2em; */
 	}
 
 	.Card .heading .team-owner {
-		font-size: 0.9em;
+		/* font-size: 0.9em; */
 		color: var(--color-main);
 	}
 
 	.Card .address {
-		font-size: 0.8em;
+		/* font-size: 0.8em; */
 		color: var(--color-grey);
 	}
 
 	.Card .description,
 	.Card .sport {
 		height: 30%;
-		font-size: 0.9em;
+		/* font-size: 0.9em; */
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
+}
+
+@media screen and (max-width: 500px) {
+	.cards-container.grid {
+		width: 100%;
+	}
+
+/* 	.Card .heading .name {
+		font-size: 1.4em;
+	}
+
+	.Card .heading .team-owner {
+		font-size: 1em;
+	}
+
+	.Card .address {
+		font-size: 0.8em;
+	} */
 }

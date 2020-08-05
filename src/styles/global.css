@@ -1,142 +1,157 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-content);
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: var(--font-content);
 }
 
 html {
-  font-family: "Manrope", sans-serif;
+	font-family: "Manrope", sans-serif;
 }
 
 .w-1pc-padding {
-  padding: 0 1%;
+	padding: 0 1%;
 }
 
 .App {
-  position: relative;
-  min-height: 90vh;
+	position: relative;
+	min-height: 90vh;
 }
 
 .ContentMain {
-  padding: 1% 4% 5% 4%;
+	padding: 1% 3% 5% 3%;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+	text-decoration: none;
+	color: inherit;
 }
 
 ul {
-  list-style-type: none;
+	list-style-type: none;
 }
 
 .link:hover {
-  color: var(--color-main);
+	color: var(--color-main);
 }
 
 .grid {
-  display: grid;
-  grid-gap: 2rem;
-  width: 100%;
-  padding: 1%;
+	display: grid;
+	grid-gap: 1.7rem;
+	width: 100%;
 }
 
 .fr-5 {
-  grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 33vh;
+	grid-template-columns: repeat(5, 1fr);
+	grid-auto-rows: 35vh;
 }
 
 .fr-2 {
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 300px;
+	grid-template-columns: repeat(2, 1fr);
+	grid-auto-rows: 300px;
 }
 
-@media screen and (max-width: 1000px) and (min-width: 650px) {
-  .grid {
-    grid-gap: 1.5rem;
-    width: 100%;
-  }
-  .fr-5 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .fr-2 {
-  grid-template-columns: repeat(1, 1fr);
-  grid-auto-rows: 300px;
-}
+@media screen and (max-width: 1100px) and (min-width: 650px) {
+	.grid {
+		grid-gap: 1.4rem;
+		width: 100%;
+	}
+	.fr-5 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.fr-2 {
+		grid-template-columns: repeat(1, 1fr);
+	}
 }
 @media screen and (max-width: 650px) {
-  .grid {
-    grid-gap: 4rem;
-    width: 100%;
-    margin: 5% 0;
-  }
-  .fr-5 {
-    grid-template-columns: repeat(1, 1fr);
-  }
+	.grid {
+		grid-gap: 1rem;
+		width: 90%;
+		margin: 5% 0;
+	}
+	.fr-5 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.fr-2 {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+	.flex {
+		flex-wrap: wrap;
+	}
+
+	.ContentMain {
+		margin: auto;
+		padding-bottom: 0;
+	}
+}
+@media screen and (max-width: 500px) {
+	.grid {
+		grid-gap: 1rem;
+		width: 90%;
+	}
+	.fr-5 {
+		grid-template-columns: repeat(1, 1fr);
+	}
+	.flex {
+		flex-direction: column;
+		align-items: center;
+	}
 }
 
 .flex {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .col {
-  flex-direction: column;
-  justify-content: space-around;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
 .space-btw {
-  justify-content: space-between;
+	justify-content: space-between;
 }
 
 .round-box {
-  border-radius: 100%;
+	border-radius: 100%;
 }
 .border-round {
-  border-radius: 8px;
+	border-radius: 8px;
 }
 
 .box-shadowed {
-  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
-    0 0 0 1px rgba(10, 10, 10, 0.02);
+	box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+		0 0 0 1px rgba(10, 10, 10, 0.02);
 }
 
 .bold {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 /* LOGO BIG */
 .profile-logo-container {
-  height: 100px;
-  width: 100px;
-  margin: 0 4% 4% 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-position-y: top;
-  background-repeat: no-repeat;
-  background-size: cover;
+	height: 100px;
+	width: 100px;
+	margin: 0 4% 3% 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
-/* .profile-logo-container .logo {
-  max-height: 100%;
-  max-width: 100%;
-} */
-.FormEditAccount .profile-logo-container {
-  margin: 10% 0;
-}
-
 
 .deleteElement {
-  color: rgb(247, 92, 92);
-  padding: 10px 20px 10px;
-  border: 1px solid rgb(247, 92, 92);
-  border-radius: 10px;
-  width: fit-content;
+	color: rgb(247, 92, 92);
+	padding: 10px 20px 10px;
+	border: 1px solid rgb(247, 92, 92);
+	border-radius: 10px;
+	width: fit-content;
 }
 
 .centered {
-  margin: 40px 40% 0;
+	margin: 40px 40% 0;
 }

@@ -1,17 +1,14 @@
-.NavMain {
-	/* display: flex; */
+.navbar {
 	background-color: var(--color-secondary);
-	/* align-items: center; */
 	height: var(--nav-height);
 	z-index: 100;
-	padding: 2% 1% 1%;
 }
 
-.NavMain .link:hover {
+.navbar .link:hover {
 	cursor: pointer;
 }
 
-.NavMain #welcome-msg {
+.navbar #welcome-msg {
 	color: var(--color-main);
 }
 
@@ -22,17 +19,31 @@
 	text-shadow: black 1px 1px 1px 1px;
 }
 
-.NavMain .navbar-menu {
+.navbar .navbar-menu {
 	width: fit-content;
 	position: absolute;
 	right: 1%;
+	padding-left: 2%;
+	padding-right: 2%;
 }
 
-.NavMain .navbar-item {
+.navbar .navbar-item {
 	text-align: right;
 }
 
-
 .navbar-brand {
-  justify-content: space-between;
+	justify-content: space-between;
+}
+.navbar-burger {
+	height: var(--nav-height);
+}
+
+
+@media screen and (min-width: 1024px) {
+.navbar .navbar-menu .navbar-end{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: var(--nav-height);
+}
 }

@@ -47,7 +47,7 @@ class NavMain extends React.Component {
 				{this.state.isLoggedOut && <Redirect to="/" />}
 
 				<nav
-					className="NavMain navbar"
+					className="navbar"
 					role="navigation"
 					aria-label="main navigation"
 				>
@@ -77,7 +77,7 @@ class NavMain extends React.Component {
 						</div>
 					</div>
 					<div
-						className={`navbar-menu ${this.state.isActive && "is-active"} `}
+						className={`navbar-menu ${this.state.isActive && "is-active"} border-round `}
 						id="nav-content"
 						onMouseLeave={this.displayMenu}
 					>

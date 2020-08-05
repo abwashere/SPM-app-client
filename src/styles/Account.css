@@ -12,7 +12,7 @@
 	align-items: flex-start;
 	margin-left: 10%;
 }
-.Account .forms .edit-right button{
+.Account .forms .edit-right button {
 	margin: 10% auto 25%;
 }
 
@@ -54,4 +54,29 @@
 
 .FormDeleteAccount p {
 	margin: 5% 0;
+}
+
+@media screen and (max-width: 650px) {
+	.Account {
+		width: 100%;
+	}
+	.Account .forms .edit-bottom {
+		margin: 5% auto 15%;
+		align-self: center;
+	}
+	.Account .forms .edit-right {
+		align-items: flex-start;
+		margin-left: 0;
+	}
+	.Account .forms .edit-left {
+		width: 90%;
+	}
+	.FormEditAccount {
+		width: 90%;
+		margin: 5% auto;
+	}
+	.FormEditAccount .form {
+		width: 80%;
+		margin: auto;
+	}
 }

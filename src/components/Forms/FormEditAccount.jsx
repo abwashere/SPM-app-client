@@ -120,7 +120,7 @@ export class FormEditAccount extends Component {
     let user = this.context.user;
     let role = this.context.user.role;
     return (
-      <div className="FormSignUp FormEditAccount">
+      <div className="FormEditAccount">
         <h2 className="subtitle">Mettre à jour mes infos personnelles</h2>
         <form
           className="form flex"

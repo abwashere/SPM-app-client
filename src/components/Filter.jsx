@@ -5,9 +5,6 @@ class Filter extends React.Component {
   state = {
     onDisplay: null,
     sportsList: null,
-    practice: null,
-    sport: null,
-    day: null,
   };
 
   componentDidMount() {
@@ -30,31 +27,18 @@ class Filter extends React.Component {
   handleChange = (event) => {
     const value = event.target.value;
     const key = event.target.name;
-    this.setState({ [key]: value });
+    this.props.handleFilterChange(key, value);
   };
 
   deleteFilters = (event) => {
-    console.log("effacer les filtres");
-    this.setState({
-      practice: null,
-      sport: null,
-      day: null,
-    });
+    this.props.handleDeleteFilters();
+    this.displayFilters();
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     this.displayFilters();
-    let practices = this.state.practice;
-    let sports = this.state.sport;
-    let days = this.state.day;
-    let selection = [];
-    if (practices) selection.practice = practices;
-    if (sports) selection.sport = sports;
-    if (days) selection.day = days;
-    console.log(typeof selection.pratice);
-
-    this.props.callback(selection);
+    this.props.handleFilterSubmit();
   };
 
   render() {
@@ -82,6 +66,7 @@ class Filter extends React.Component {
               className="filters"
               onChange={this.handleChange}
               onSubmit={this.handleSubmit}
+              ref="form"
             >
               <div className="practice control">
                 <label className="radio" htmlFor="filter-competition">
@@ -90,7 +75,9 @@ class Filter extends React.Component {
                     name="practice"
                     id="filter-competition"
                     value="compétition"
+                    // checked={this.props.practice === "compétition"}
                   />
+                  {"  "}
                   Compétition
                 </label>
                 <label className="radio" htmlFor="filter-loisir">
@@ -99,7 +86,9 @@ class Filter extends React.Component {
                     name="practice"
                     id="filter-loisir"
                     value="loisir"
+                    // checked={this.props.practice === "loisir"}
                   />
+                  {"  "}
                   Loisir
                 </label>
                 {/* FIXME: */}
@@ -115,7 +104,7 @@ class Filter extends React.Component {
               </div>
               <div className="control">
                 <div className="select">
-                  <select name="sport">
+                  <select name="sport" defaultValue={this.props.sport}>
                     <option>Sport</option>
                     {this.state.sportsList.map((sport) => (
                       <option key={sport._id} value={sport._id}>
@@ -127,15 +116,21 @@ class Filter extends React.Component {
               </div>
               <div className="control">
                 <div className="select">
-                  <select name="day">
-                    <option>Jour d'entrainement</option>
-                    <option>lundi</option>
-                    <option>mardi</option>
-                    <option>mercredi</option>
-                    <option>jeudi</option>
-                    <option>vendredi</option>
-                    <option>samedi</option>
-                    <option>dimanche</option>
+                  <select name="day" defaultValue={this.props.day}>
+                    <option>Jour d'entraînement</option>
+                    {[
+                      "lundi",
+                      "mardi",
+                      "mercredi",
+                      "jeudi",
+                      "vendredi",
+                      "samedi",
+                      "dimanche",
+                    ].map((day) => (
+                      <option key={day} value={day}>
+                        {day}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>

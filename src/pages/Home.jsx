@@ -17,9 +17,102 @@ class Home extends Component {
     clubs: [],
     teamsAndClubs: [],
     searchValue: "",
-    filteredPractice: null,
-    filteredSport: null,
-    filteredDay: null,
+    closestGroups: [],
+    filteredResults: [],
+    practice: null,
+    sport: null,
+    day: null,
+  };
+
+  handleSearch = (place) => {
+    let closestGroups = [];
+
+    const lgtSearch = place.geometry.coordinates[0];
+    const latSearch = place.geometry.coordinates[1];
+    const to = turf.point([lgtSearch, latSearch]);
+
+    this.state.teamsAndClubs.forEach((elem) => {
+      let lgtElem = elem.location.coordinates[0];
+      let latElem = elem.location.coordinates[1];
+      let from = turf.point([lgtElem, latElem]);
+      let options = { units: "kilometers" };
+      let distance = turf.distance(from, to, options);
+      if (distance <= 20) closestGroups.push(elem);
+    });
+
+    if (
+      this.state.filteredResults.length === 0 ||
+      (this.state.practice === "" &&
+        this.state.day === "" &&
+        this.state.sport === "")
+    ) {
+      this.setState({
+        searchValue: place,
+        closestGroups,
+        filteredResults: closestGroups,
+      });
+    } else {
+      const search = new Promise((res, rej) => {
+        this.setState({ searchValue: place, closestGroups });
+      });
+
+      search.then(() => {
+        let filteredResults = this.handleFilterSubmit();
+        this.setState({ filteredResults });
+      });
+    }
+  };
+
+  handleFilterChange = (key, value) => {
+    this.setState({ [key]: value });
+  };
+
+  handleFilterSubmit = () => {
+    if (this.state.day || this.state.practice || this.state.sport) {
+      const results = this.state.closestGroups;
+
+      const filteredResults = results
+        .filter((group) => {
+          return !group.role;
+        })
+        .filter((team) => {
+          if (this.state.sport) {
+            return team.sport._id === this.state.sport;
+          } else {
+            return true;
+          }
+        })
+        .filter((team) => {
+          if (this.state.practice) {
+            return team.practice === this.state.practice;
+          } else {
+            return true;
+          }
+        })
+        .filter((team) => {
+          if (this.state.day) {
+            const dayTeam = team.trainings.filter((training) => {
+              console.log(training.day);
+              return training.day === this.state.day;
+            });
+            console.log(dayTeam);
+            return dayTeam;
+          } else {
+            return true;
+          }
+        });
+
+      this.setState({ filteredResults });
+    }
+  };
+
+  handleDeleteFilters = () => {
+    this.setState({
+      practice: null,
+      sport: null,
+      day: null,
+      filteredResults: this.state.closestGroups,
+    });
   };
 
   componentDidMount() {
@@ -29,110 +122,50 @@ class Home extends Component {
           teamsAndClubs: [...dbRes[0], ...dbRes[1]],
         });
       })
-      // .then(() =>
-      // 	console.log(
-      // 		"Tous les CLUB + TEAMS de la DB :",
-      // 		this.state.teamsAndClubs
-      // 	)
-      // )
       .catch((err) => {
         console.error(err);
       });
   }
 
-  handleSearch = (place) => {
-    this.setState({ searchValue: place });
-  };
-
-  handleFilter = (selection) => {
-    // console.log("filter group is there ? ", selection);
-    this.setState({ filteredDay: selection.day });
-    this.setState({ filteredSport: selection.sport });
-    this.setState({ filteredPractice: selection.practice });
-  };
-
   handleBackground = () => {};
 
   render() {
-    const {
-      teamsAndClubs,
-      searchValue,
-      filteredPractice,
-      filteredSport,
-      filteredDay,
-    } = this.state;
-
-    // console.log("LE STATE: ", this.state);
-    let closestGroups = [];
-
-    if (searchValue) {
-      const lgtSearch = searchValue.geometry.coordinates[0];
-      const latSearch = searchValue.geometry.coordinates[1];
-      const to = turf.point([lgtSearch, latSearch]);
-
-      teamsAndClubs.forEach((elem) => {
-        let lgtElem = elem.location.coordinates[0];
-        let latElem = elem.location.coordinates[1];
-        let from = turf.point([lgtElem, latElem]);
-        let options = { units: "kilometers" };
-        let distance = turf.distance(from, to, options);
-        if (distance <= 20) closestGroups.push(elem);
-      });
-    }
-    // console.log("elem in less than 20 km : ", closestGroups);
-
-    // TODO: AJOUTER LE FILTRE DES JOURS (nesté !)
-    // TODO: attention au group.sport dont il faudra peut-être retrouver l'id quand le populate fonctionnera !
-    const results = closestGroups
-      .filter((group) => {
-        console.log("===============group", group);
-        if ((!filteredDay, !filteredPractice, !filteredSport)) return true;
-        if (filteredSport && group.sport)
-          return group.sport._id === filteredSport;
-      })
-      .filter((group) => {
-        if (filteredPractice) return group.practice === filteredPractice;
-        else return true;
-      })
-      .filter((group) => {
-        if (filteredDay && group.trainings) {
-          return group.trainings.filter((training) => {
-            console.log("===============training", training);
-            return training.day === filteredDay;
-          });
-        } else {
-          return true;
-        }
-      });
-
-    console.log("filtered groups ", results);
-    // console.log("search value ", results);
-
     return (
       <div className="ContentMain">
         {/* SEARCHBAR + FILTERS--------------------- */}
         <div className="flex space-btw">
           <SearchBar callback={this.handleSearch} />
-          {searchValue && <Filter callback={this.handleFilter} />}
+          {this.state.searchValue && (
+            <Filter
+              callback={this.handleFilter}
+              handleFilterChange={this.handleFilterChange}
+              handleDeleteFilters={this.handleDeleteFilters}
+              handleFilterSubmit={this.handleFilterSubmit}
+              day={this.state.day}
+              sport={this.state.sport}
+              practice={this.state.pratice}
+            />
+          )}
         </div>
         {/* BACKGROUND  */}
-        <div className={!searchValue ? "bg-main" : "hidden"}>
+        <div className={!this.state.searchValue ? "bg-main" : "hidden"}>
           {/* DISPLAYED CARDS ----------------------------*/}
           <div className="cards-container grid fr-5">
-            {results.map((group, index) => (
-              <Card key={index} index={index} elem={group} />
+            {this.state.filteredResults.map((group, index) => (
+              <Card key={group._id} index={index} elem={group} />
             ))}
-            {!results && <li>Loading...</li>}
+            {!this.state.filteredResults && <li>Loading...</li>}
           </div>
 
-          {results.length === 0 && searchValue && (
-            <p className="topo">
-              Pas de clubs à l'horizon, veuillez modifier votre recherche.
-            </p>
-          )}
+          {this.state.filteredResults.length === 0 &&
+            this.state.searchValue && (
+              <p className="topo">
+                Pas de clubs à l'horizon, veuillez modifier votre recherche.
+              </p>
+            )}
 
           {/* DISPLAYED CONTENT BEFORE SEARCH -------------- */}
-          {!searchValue && (
+          {!this.state.searchValue && (
             <div className="presentation-content bordered-round flex col">
               <div className="title-container">
                 <h1 className="title">

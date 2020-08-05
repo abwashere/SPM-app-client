@@ -1,48 +1,48 @@
 .bg-main {
-	padding: 0;
-	position: fixed;
-	bottom: var(--footer-height);
-	left: 0;
-	height: calc(100% - var(--nav-height) - (var(--footer-height)));
-	width: 100%;
-	z-index: -10;
-	background: linear-gradient(
-			0deg,
-			rgba(34, 193, 195, 0) 0%,
-			rgba(227, 252, 240, 0.7) 100%
-		),
-		url("./bg-images/chris-leipelt-CBgEyshBRbM-medium-unsplash.jpg");
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
+  padding: 0;
+  position: fixed;
+  bottom: var(--footer-height);
+  left: 0;
+  height: calc(100% - var(--nav-height) - (var(--footer-height)));
+  width: 100%;
+  z-index: -10;
+  background: linear-gradient(
+      0deg,
+      rgba(34, 193, 195, 0) 0%,
+      rgba(227, 252, 240, 0.7) 100%
+    ),
+    url("./bg-images/chris-leipelt-CBgEyshBRbM-medium-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
-	/* opacity: .50; */
+  /* opacity: .50; */
 }
 
 .presentation-content {
-	background-color: rgba(245, 245, 245, 0.63);
-	position: fixed;
-	top: 50%;
-	right: 5%;
-	width: 50%;
-	height: 30vh;
-	padding: 2%;
-	align-self: flex-start;
+  background-color: rgba(245, 245, 245, 0.63);
+  position: fixed;
+  top: 50%;
+  right: 5%;
+  width: 50%;
+  height: 30vh;
+  padding: 2%;
+  align-self: flex-start;
 }
 
 .cards-container {
-	width: 100%;
+  width: 100%;
 }
 
 @media screen and (max-width: 500px) {
-	.title-container .title {
-		font-size: 1.2em;
-	}
-	.title-container .subtitle {
-		font-size: 0.7em;
-		font-weight: 700;
-	}
-	.title-container .topo {
-		font-size: 0.7em;
-	}
+  .title-container .title {
+    font-size: 1.2em;
+  }
+  .title-container .subtitle {
+    font-size: 0.7em;
+    font-weight: 700;
+  }
+  .title-container .topo {
+    font-size: 0.7em;
+  }
 }

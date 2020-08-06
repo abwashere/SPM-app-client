@@ -1,96 +1,104 @@
 .FormSignup {
-	width: 70%;
-	margin: auto;
-	padding: 2%;
+  width: 70%;
+  margin: auto;
+  padding: 2%;
 }
 
 /* FIXME: TEXTE A ALIGNER A GAUCHE ET BOUTONS A CENTRER => FLEX=ALIGN CENTER */
 .FormSignUp .btn-signup,
 .FormSignUp .form-section-bottom,
 .Signup .content {
-	margin: 5% auto 0;
-	text-align: center;
+  margin: 5% auto 0;
+  text-align: center;
 }
 
 .Signup .radio {
-	width: 30vw;
+  width: 30vw;
 }
 .Signup .radio-inputs {
-	margin-bottom: 3%;
-	width: 100%;
-	justify-content: space-between;
+  margin-bottom: 3%;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .Signup .radio-inputs input {
-	margin-right: 5%;
+  margin-right: 5%;
 }
 
 .player {
-	/* ALIGNER A DROITE */
+  /* ALIGNER A DROITE */
 }
 
 .other {
-	margin: 20px auto 0;
+  margin: 20px auto 0;
 }
 
 .has-name {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .preview {
-	width: 50%;
-	margin: 0 auto 30px;
+  width: 50%;
+  margin: 0 auto 30px;
 }
 
 .field-body {
-	margin-top: 10px;
-	margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .inter-title {
-	font-weight: bold;
-	font-size: 1.1rem;
-	margin-bottom: 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0;
 }
 
 .addTraining {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .delete-btn {
-	text-align: center;
-	padding: 20px;
+  text-align: center;
+  padding: 20px;
 }
 
 .delete-btn span {
-	font-size: 0.5rem;
+  font-size: 0.5rem;
 }
 
 .delete-btn svg {
-	color: rgb(247, 92, 92);
+  color: rgb(247, 92, 92);
 }
 
 .FormSignup .btn-signup {
-	margin-bottom: 10%;
+  margin-bottom: 10%;
 }
 
 .FormSignup.Player {
-	border: 5px solid #00D1B2;
+  border: 5px solid #00d1b2;
 }
 .FormSignup.Club {
-	border: 5px solid rgb(103, 93, 255);
+  border: 5px solid rgb(103, 93, 255);
 }
 
 .email {
-	padding-left: 40px;
-	padding-top: 8px;
+  padding-left: 40px;
+  padding-top: 8px;
 }
 
 @media screen and (max-width: 650px) {
-	.FormSignup {
-		width: 100%;
-	}
-	.Signup .radio {
-		margin-bottom: 4%;
-	}
+  .FormSignup {
+    width: 100%;
+  }
+  .Signup .radio {
+    margin-bottom: 4%;
+  }
+}
+
+#checkbox-player {
+  margin-bottom: 30px;
+}
+
+.checkbox-image {
+  height: 30px;
 }

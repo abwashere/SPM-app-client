@@ -5,6 +5,8 @@ import sportApiHandler from "../../api/sportApiHandler";
 import LocationAutoComplete from "./../LocationAutoComplete";
 import FormTraining from "./FormTraining";
 import buildFormData from "./../../utils/buildFormData";
+import AddAPlayer from "./../../components/AddAPlayer";
+import playerApiHandler from "../../api/playerApiHandler";
 
 import "bulma/css/bulma.css";
 import "./../../styles/FormSignUp.css";
@@ -103,6 +105,18 @@ class FormCreateEditTeam extends Component {
       trainings: updatedTrainings,
     });
   };
+
+  // handlePlayer () => {
+
+  // }
+
+  // handlePlayerChange () => {
+
+  // }
+
+  // removePlayer () => {
+
+  // }
 
   handlePlace = (place) => {
     // This handle is passed as a callback to the autocomplete component.
@@ -364,7 +378,10 @@ class FormCreateEditTeam extends Component {
                 <button className="button is-link">Créer</button>
               )}
               {this.props.match.params.mode === "edit" && (
-                <button className="button is-link">Mettre à jour</button>
+                <div>
+                  <AddAPlayer />
+                  <button className="button is-link">Mettre à jour</button>
+                </div>
               )}
             </div>
           </div>

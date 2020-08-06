@@ -8,8 +8,8 @@
 }
 
 .Profiles .logo {
-	height: 40vh;
-	float: right;
+	height: 26vh;
+  float: right;
 }
 
 /* ! Profile logo is in the global.css for reuse ! */

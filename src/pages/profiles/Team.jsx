@@ -89,7 +89,7 @@ class Team extends Component {
 				<h3 className="bold">Entraînements :</h3>
 				{this.state.team.coachName && (
 					<p>
-						<span className="bold green">Entraîneur : </span>
+						<span className="bold green">Entraîneur(es) : </span>
 						{this.state.team.coachName}
 					</p>
 				)}

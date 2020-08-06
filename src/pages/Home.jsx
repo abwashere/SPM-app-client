@@ -66,7 +66,7 @@ class Home extends Component {
 			let from = turf.point([lgtElem, latElem]);
 			let options = { units: "kilometers" };
 			let distance = turf.distance(from, to, options);
-			if (distance <= 20) closestGroups.push(elem);
+			if (distance <= 10) closestGroups.push(elem);
 		});
 
 		if (

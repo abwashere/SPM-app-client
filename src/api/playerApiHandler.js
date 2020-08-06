@@ -46,7 +46,7 @@ export default {
 
   deletePlayer(id) {
     return service
-      .delete(`/${id}`)
+      .delete(`/delete/${id}`)
       .then((res) => res.data)
       .catch(errorHandler);
   },

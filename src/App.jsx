@@ -32,7 +32,7 @@ function App() {
 				<Switch>
 					{/* AUTHENTIFICATION ROUTES */}
 					<Route exact path="/" component={Home} />
-					<Route exact path="/search/:recherche?" component={Home} />
+					{/* <Route exact path="/search/:recherche?" component={Home} /> */}
 					<Route exact path="/signup" component={Signup} />
 					{/* PROFILES ROUTES */}
 					<Route exact path="/club/:id" component={ClubPage} />

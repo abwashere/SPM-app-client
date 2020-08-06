@@ -14,21 +14,15 @@ class Club extends Component {
 	componentDidMount() {
 		const clubId = this.props.match.params.id;
 
-		clubApiHandler
-			.getOneClub(clubId)
-			.then((apiRes) => {
-				console.log(apiRes);
-				this.setState({ club: apiRes });
+		Promise.all([
+			clubApiHandler.getOneClub(clubId),
+			clubApiHandler.getTeamsOfClub(clubId),
+		])
+			.then(([dbClub, dbTeams]) => {
+				console.log("club + teams ", dbClub, dbTeams);
+				this.setState({ club: dbClub, clubTeams: dbTeams });
 			})
-			.catch((apiError) => console.log(apiError))
-			.then(() => {
-				clubApiHandler
-					.getTeamsOfClub(clubId)
-					.then((dbResTeams) => {
-						this.setState({ clubTeams: dbResTeams });
-					})
-					.catch((err) => console.log(err));
-			});
+			.catch((apiError) => console.log(apiError));
 	}
 
 	render() {
@@ -101,7 +95,9 @@ class Club extends Component {
 							{!this.state.clubTeams && <p>Chargement...</p>}
 						</div>
 
-						{this.state.length === 0 && <p>Ce club n'as pas encore d'équipes ou créneaux féminins.</p>}
+						{this.state.length === 0 && (
+							<p>Ce club n'as pas encore d'équipes ou créneaux féminins.</p>
+						)}
 					</div>
 				</div>
 			</div>

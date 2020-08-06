@@ -58,7 +58,15 @@ class Home extends Component {
       });
     } else {
       const search = new Promise((res, rej) => {
-        this.setState({ searchValue: place, closestGroups });
+        if (closestGroups.length === 0) {
+          this.setState({
+            searchValue: place,
+            closestGroups,
+            filteredResults: closestGroups,
+          });
+        } else {
+          this.setState({ searchValue: place, closestGroups });
+        }
       });
 
       search.then(() => {
@@ -151,8 +159,6 @@ class Home extends Component {
         console.error(err);
       });
   }
-
-  // handleBackground = () => {};
 
   render() {
     console.log("le state ======", this.state);

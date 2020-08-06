@@ -13,16 +13,13 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 class AddAPlayer extends Component {
   state = {};
-
-  //   handleChange = (event) => {
-  //     const value = event.target.value;
-  //     const key = event.target.name;
-  //     this.props.handleTrainingChange(this.props.number, key, value);
-  //   };
-
-  //   handleClick = (event) => {
-  //     this.props.removeTraining(this.props.number);
-  //   };
+  handleChange = (event, value) => {
+    const updatedArray = value.map((indValue) => ({
+      player: indValue.id,
+    }));
+    console.log(updatedArray);
+    this.props.handleRegisteredPlayers(updatedArray);
+  };
 
   componentDidMount() {
     playerApiHandler
@@ -35,7 +32,6 @@ class AddAPlayer extends Component {
     if (!this.state.players) return null;
 
     const playerArray = this.state.players.map((player) => {
-      console.log(player);
       return {
         name: player.firstName + " " + player.lastName,
         id: player._id,
@@ -43,14 +39,37 @@ class AddAPlayer extends Component {
       };
     });
 
-    console.log(playerArray);
     return (
       <div id="checkbox-player">
+        {/* <Autocomplete
+          multiple
+          id="tags-outlined"
+          options={playerArray}
+          onChange={this.handleChange}
+          getOptionLabel={(option) => (
+            <div className="flex">
+              <img className="checkbox-image" src={option.picture} alt="pic" />{" "}
+              <p value={option.id}>{option.name}</p>
+            </div>
+          )}
+          filterSelectedOptions
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              variant="outlined"
+              label="Ajouter des membres"
+              placeholder="Membres de l'équipe"
+            />
+          )}
+        /> */}
+
         <Autocomplete
           multiple
           id="checkboxes-tags-demo"
           options={playerArray}
           disableCloseOnSelect
+          onChange={this.handleChange}
+          size="small"
           getOptionLabel={(option) => option.name}
           renderOption={(option, { selected }) => (
             <React.Fragment>
@@ -67,12 +86,12 @@ class AddAPlayer extends Component {
                     src={option.picture}
                     alt="pic"
                   />{" "}
-                  <p>{option.name}</p>
+                  <p value={option.id}>{option.name}</p>
                 </div>
               }
             </React.Fragment>
           )}
-          style={{ width: 500 }}
+          style={{ width: "100%" }}
           renderInput={(params) => (
             <TextField
               {...params}

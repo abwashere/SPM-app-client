@@ -37,18 +37,20 @@ class Team extends Component {
           alt={this.state.team.teamName}
         />
         <br />
-        <Link to={`/club/${this.state.team.club._id}`}>
         <p>
           <span className="bold green">Club : </span>
-          {this.state.team.club.clubName}
+          <Link to={`/club/${this.state.team.club._id}`}>
+            {this.state.team.club.clubName}
+          </Link>
         </p>
         <br />
-        <div
-          className="profile-logo-container round-box box-shadowed"
-          style={{
-            backgroundImage: `url(${this.state.team.club.image})`,
-          }}
-        ></div>
+        <Link to={`/club/${this.state.team.club._id}`}>
+          <div
+            className="profile-logo-container round-box box-shadowed"
+            style={{
+              backgroundImage: `url(${this.state.team.club.image})`,
+            }}
+          ></div>
         </Link>
         <br />
         <p>
@@ -126,6 +128,29 @@ class Team extends Component {
             <span className="bold  green">Plus d'infos sur l'équipe : </span>
             {this.state.team.description}
           </p>
+        )}
+        <br />
+        <br />
+        {this.state.team.registeredPlayers.length > 0 && (
+          <div>
+            <h3 className="bold">Joueuses :</h3>
+            <div className="flex wrap">
+              {this.state.team.registeredPlayers.map((player) => (
+                <div key={player._id} className="small-player-profile flex col">
+                  <img
+                    className="pic-player-team"
+                    src={player.picture}
+                    alt="player pic"
+                  />
+                  <h4>
+                    <Link to={`/player/${player._id}`}>
+                      {player.firstName} {player.lastName}
+                    </Link>
+                  </h4>
+                </div>
+              ))}
+            </div>
+          </div>
         )}
       </div>
     );

@@ -114,6 +114,10 @@ ul {
   align-items: center;
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
 .col {
   flex-direction: column;
   justify-content: space-around;

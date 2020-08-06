@@ -6,7 +6,7 @@ import LocationAutoComplete from "./../LocationAutoComplete";
 import FormTraining from "./FormTraining";
 import buildFormData from "./../../utils/buildFormData";
 import AddAPlayer from "./../../components/AddAPlayer";
-import playerApiHandler from "../../api/playerApiHandler";
+// import playerApiHandler from "../../api/playerApiHandler";
 
 import "bulma/css/bulma.css";
 import "./../../styles/FormSignUp.css";
@@ -19,6 +19,11 @@ class FormCreateEditTeam extends Component {
     // year: "1987",
     // description: "On est là pour gagner !",
     // division: "Régionales 2",
+    registeredPlayers: [
+      {
+        player: "",
+      },
+    ],
     trainings: [
       {
         day: "",
@@ -106,16 +111,9 @@ class FormCreateEditTeam extends Component {
     });
   };
 
-  // handlePlayer () => {
-
-  // }
-
-  // handlePlayerChange () => {
-
-  // }
-
-  // removePlayer () => {
-
+  handleRegisteredPlayers = (playersArray) => {
+    this.setState({ registeredPlayers: playersArray });
+  };
   // }
 
   handlePlace = (place) => {
@@ -379,7 +377,9 @@ class FormCreateEditTeam extends Component {
               )}
               {this.props.match.params.mode === "edit" && (
                 <div>
-                  <AddAPlayer />
+                  <AddAPlayer
+                    handleRegisteredPlayers={this.handleRegisteredPlayers}
+                  />
                   <button className="button is-link">Mettre à jour</button>
                 </div>
               )}

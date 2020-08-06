@@ -235,11 +235,11 @@ class FormSignupPlayer extends Component {
                 <span className="file-label">Choisir un fichier…</span>
               </span>
             </label>
-            <div></div>
           </div>
           {this.state.file && (
             <img className="preview" src={this.state.file} alt="preview" />
           )}
+
           {this.state.message.existingMail && (
             <div className="error-message">
               {this.state.message.existingMail}

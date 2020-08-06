@@ -237,6 +237,9 @@ class FormCreateEditEvent extends Component {
               {this.props.match.params.mode === "create" && (
                 <button className="button is-link">Créer</button>
               )}
+              {/* {this.state.message && (
+                <div className="error-message">{this.state.message}</div>
+              )} */}
               {this.props.match.params.mode === "edit" && (
                 <button className="button is-link">Mettre à jour</button>
               )}

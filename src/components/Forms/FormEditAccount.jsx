@@ -16,6 +16,7 @@ export class FormEditAccount extends Component {
     sportsList: [],
     file: null,
     isUpdated: true,
+    message: {},
   };
   componentDidMount() {
     let user = this.context.user;
@@ -55,10 +56,17 @@ export class FormEditAccount extends Component {
     console.log(event.target.type);
 
     if (event.target.type === "file") {
-      this.setState({
-        file: URL.createObjectURL(event.target.files[0]),
-        picture: event.target.files[0],
-      });
+      if (this.context.user.role === "Player") {
+        this.setState({
+          file: URL.createObjectURL(event.target.files[0]),
+          picture: event.target.files[0],
+        });
+      } else {
+        this.setState({
+          file: URL.createObjectURL(event.target.files[0]),
+          image: event.target.files[0],
+        });
+      }
     } else if (event.target.type === "select-one") {
       var stateCopy = Object.assign({}, this.state);
       stateCopy.practice[0][key] = value;
@@ -82,37 +90,54 @@ export class FormEditAccount extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     let user = this.context.user;
-    console.log("le state du form edit AVANT UPDATE", this.state);
+    // console.log("le state du form edit AVANT UPDATE", this.state);
 
     let fd;
-    if (this.state.file) {
-      fd = new FormData();
-      buildFormData(fd, this.state);
-    } else {
-      fd = this.state;
-    }
+    // if (this.state.file) {
+    fd = new FormData();
+    buildFormData(fd, this.state);
+    // } else {
+    //   fd = this.state;
+    // }
 
     if (user.role === "Player")
       playerApiHandler
         .updatePlayer(user._id, fd)
         .then((data) => {
-          console.log("UPDATED INFOS", data);
+          // console.log("UPDATED INFOS", data);
           this.context.setUser(data);
-          this.setState({ isUpdated: true });
+          this.setState({
+            isUpdated: true,
+            message: { success: "Les données ont bien été mises à jour." },
+          });
         })
         .catch((error) => {
-          console.log(error);
+          this.setState({
+            message: {
+              failure:
+                "Désolé, nous n'avons pas réussi à mettre vos données à jour.",
+            },
+          });
         });
     if (user.role === "Club")
       clubApiHandler
         .updateClub(user._id, fd)
         .then((data) => {
-          console.log("UPDATED INFOS", data);
+          // console.log("UPDATED INFOS", data);
           this.context.setUser(data);
-          this.setState({ isUpdated: true });
+          this.setState({
+            isUpdated: true,
+            message: { success: "Les données ont bien été mises à jour." },
+          });
         })
         .catch((error) => {
           console.log(error);
+          this.setState({
+            message: {
+              failure:
+                "Désolé, nous n'avons pas réussi à mettre vos données à jour.",
+            },
+          });
         });
   };
 
@@ -339,12 +364,12 @@ export class FormEditAccount extends Component {
                     <div className="field">
                       <div className="control has-icons-left">
                         <div className="select">
-                          {this.state.practice &&
-                            this.state.practice.map((practice) => (
+                          {user.practice &&
+                            user.practice.map((practice) => (
                               <select
-                                key={practice.sport}
+                                key={practice.sport._id}
                                 name="sport"
-                                value={practice.sport}
+                                // value={practice.sport._id}
                                 onChange={this.handleChange}
                               >
                                 <option>Sport</option>
@@ -355,7 +380,6 @@ export class FormEditAccount extends Component {
                                 ))}
                               </select>
                             ))}
-
                           <span className="icon is-small is-left">
                             <i className="fas fa-football-ball"></i>
                           </span>
@@ -380,10 +404,19 @@ export class FormEditAccount extends Component {
             )}
 
             {/* ----------------------------------------BUTTON */}
-
+            {this.state.message.success && (
+              <div className="success-message">
+                {this.state.message.success}
+              </div>
+            )}
+            {this.state.message.failure && (
+              <div className="error-message">{this.state.message.failure}</div>
+            )}
             <div className="field btn-signup">
               <div className="control">
-                <button className="button is-link hvr-buzz-out">Mettre à jour</button>
+                <button className="button is-link hvr-buzz-out">
+                  Mettre à jour
+                </button>
               </div>
             </div>
           </div>

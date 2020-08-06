@@ -154,6 +154,13 @@ ul {
 	width: 75%;
 }
 
+.success-message {
+  color: #49c674;
+  font-size: 0.8rem;
+  margin: 0 auto 20px;
+  width: 75%;
+}
+
 /* LOGO BIG */
 .profile-logo-container {
 	height: 100px;

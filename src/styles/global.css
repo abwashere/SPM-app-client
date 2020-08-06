@@ -143,6 +143,17 @@ ul {
   font-weight: bold;
 }
 
+.green {
+  color: var(--color-main);
+}
+
+.error-message {
+  color: rgb(247, 92, 92);
+  font-size: 0.8rem;
+  margin: 0 auto 20px;
+  width: 75%;
+}
+
 /* LOGO BIG */
 .profile-logo-container {
   height: 100px;
@@ -285,8 +296,4 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
-}
-
-.green {
-  color: var(--color-main);
 }

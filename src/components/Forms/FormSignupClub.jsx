@@ -12,15 +12,16 @@ import "./../../styles/FormSignUp.css";
 class FormSignupClub extends Component {
   static contextType = UserContext;
   state = {
-    role: "Club",
-    email: "yo@mail.com",
-    password: "1234",
-    clubName: "Les Tataz",
-    phoneNumber: "0123456789",
-    website: "https://www.tataz.com",
-    year: "2018",
-    subscriptionFee: "150€ par an pour les adultes, 80€ pour les juniors",
-    description: "Faire la fête après les matchs !",
+    // role: "Club",
+    // email: "yo@mail.com",
+    // password: "1234",
+    // clubName: "Les Tataz",
+    // phoneNumber: "0123456789",
+    // website: "https://www.tataz.com",
+    // year: "2018",
+    // subscriptionFee: "150€ par an pour les adultes, 80€ pour les juniors",
+    // description: "Faire la fête après les matchs !",
+    message: [],
     file: null,
   };
 
@@ -43,7 +44,9 @@ class FormSignupClub extends Component {
     event.preventDefault();
 
     if (!validateEmail(this.state.email)) {
-      console.log("email is not valid");
+      this.setState({
+        message: { invalidMail: "Merci de renseigner un email valide." },
+      });
     } else {
       let fd = new FormData();
       buildFormData(fd, this.state);
@@ -56,7 +59,7 @@ class FormSignupClub extends Component {
           this.props.history.push("/account");
         })
         .catch((error) => {
-          console.log(error);
+          this.setState({ message: error });
         });
     }
   };
@@ -232,6 +235,18 @@ class FormSignupClub extends Component {
               </div>
             </label>
           </div>
+
+          {this.state.message.existingMail && (
+            <div className="error-message">
+              {this.state.message.existingMail}
+            </div>
+          )}
+
+          {this.state.message.invalidMail && (
+            <div className="error-message">
+              {this.state.message.invalidMail}
+            </div>
+          )}
 
           <div className="field btn-signup">
             <div className="control">

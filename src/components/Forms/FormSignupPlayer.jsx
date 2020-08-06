@@ -14,12 +14,13 @@ class FormSignupPlayer extends Component {
   static contextType = UserContext;
 
   state = {
-    role: "Player",
-    email: "tata@foo.bar",
-    password: "1234",
-    firstName: "Jane",
-    lastName: "Doe",
-    description: "Faire la fête après les matches !",
+    // role: "Player",
+    // email: "tata@foo.bar",
+    // password: "1234",
+    // firstName: "Jane",
+    // lastName: "Doe",
+    // description: "Faire la fête après les matches !",
+    message: [],
     sportsList: [],
     practice: [
       {
@@ -50,7 +51,9 @@ class FormSignupPlayer extends Component {
     console.log("state before submit", this.state);
 
     if (!validateEmail(this.state.email)) {
-      console.log("email is not valid");
+      this.setState({
+        message: { invalidMail: "Merci de renseigner un email valide." },
+      });
     } else {
       let fd = new FormData();
       buildFormData(fd, this.state);
@@ -63,7 +66,7 @@ class FormSignupPlayer extends Component {
           this.props.history.push("/account");
         })
         .catch((error) => {
-          console.log(error);
+          this.setState({ message: error });
         });
     }
   };
@@ -236,6 +239,16 @@ class FormSignupPlayer extends Component {
           </div>
           {this.state.file && (
             <img className="preview" src={this.state.file} alt="preview" />
+          )}
+          {this.state.message.existingMail && (
+            <div className="error-message">
+              {this.state.message.existingMail}
+            </div>
+          )}
+          {this.state.message.invalidMail && (
+            <div className="error-message">
+              {this.state.message.invalidMail}
+            </div>
           )}
 
           <div className="field btn-signup">

@@ -39,7 +39,12 @@ class FormDeleteAccount extends Component {
         {isDeleted && <Redirect to="/" />}
 
         <React.Fragment>
-          <p>Etes-vous sûr⸱e de vouloir supprimer ce compte ?</p>
+          {this.props.role === "Club" && (
+            <p>Etes-vous sûr⸱e de vouloir supprimer ce compte ?</p>
+          )}
+          {this.props.role === "Player" && (
+            <p>Es-tu sûre de vouloir supprimer ce compte ?</p>
+          )}
           <div className="buttons">
             <button
               onClick={() => this.handleDelete(user._id)}

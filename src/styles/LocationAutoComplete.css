@@ -21,7 +21,3 @@
 .LocationAutoComplete-items:hover {
 	background-color: #0000ff11;
 }
-
-.LocationAutoComplete .input {
-	border: none;
-}

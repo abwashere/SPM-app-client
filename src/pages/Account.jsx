@@ -108,7 +108,7 @@ class Account extends React.Component {
                           className="link hvr-underline-from-center"
                           to={`/account/event/edit/${event._id}`}
                         >
-                          {event.name}
+                          {event.title}
                         </Link>
                       </li>
                     ))}

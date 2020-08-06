@@ -42,7 +42,7 @@ class Filter extends React.Component {
   };
 
   render() {
-    if (!this.state.sportsList) return <p>is loading...</p>;
+    if (!this.props.allSports) return <p>is loading...</p>;
     else
       return (
 				<div className="Filter flex">
@@ -106,7 +106,7 @@ class Filter extends React.Component {
 								<div className="select">
 									<select name="sport" defaultValue={this.props.sport}>
 										<option>Sport</option>
-										{this.state.sportsList.map((sport) => (
+										{this.props.allSports.map((sport) => (
 											<option key={sport._id} value={sport._id}>
 												{sport.sportName}
 											</option>

@@ -97,7 +97,7 @@ export class FormEditAccount extends Component {
         .updatePlayer(user._id, fd)
         .then((data) => {
           console.log("UPDATED INFOS", data);
-          this.context.setUser(data); // FIXME: setUser ne fonctionne pas
+          this.context.setUser(data);
           this.setState({ isUpdated: true });
         })
         .catch((error) => {
@@ -108,7 +108,7 @@ export class FormEditAccount extends Component {
         .updateClub(user._id, fd)
         .then((data) => {
           console.log("UPDATED INFOS", data);
-          this.context.setUser(data); // FIXME: setUser ne fonctionne pas
+          this.context.setUser(data);
           this.setState({ isUpdated: true });
         })
         .catch((error) => {
@@ -253,7 +253,6 @@ export class FormEditAccount extends Component {
                       className="input"
                       type="tel"
                       name="phoneNumber"
-                      pattern="[0-9]{10}"
                       minLength="10"
                       maxLength="10"
                       defaultValue={user.phoneNumber}

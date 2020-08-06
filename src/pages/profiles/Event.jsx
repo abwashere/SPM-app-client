@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import eventApiHandler from "./../../api/eventApiHandler";
 import moment from "moment";
 
@@ -48,12 +49,14 @@ class Event extends Component {
 							{this.state.event.club.clubName}
 						</p>
 						<br />
-						<div
-							className="profile-logo-container round-box box-shadowed"
-							style={{
-								backgroundImage: `url(${this.state.event.club.image})`,
-							}}
-						></div>
+						<Link to={`/club/${this.state.event.club._id}`}>
+							<div
+								className="profile-logo-container round-box box-shadowed"
+								style={{
+									backgroundImage: `url(${this.state.event.club.image})`,
+								}}
+							></div>
+						</Link>
 					</div>
 				)}
 				<br />

@@ -98,10 +98,10 @@ class Club extends Component {
 							{this.state.clubTeams.map((team, index) => (
 								<Card key={index} elem={team} />
 							))}
-							{!this.state.clubTeams && <p>Loading...</p>}
+							{!this.state.clubTeams && <p>Chargement...</p>}
 						</div>
 
-						{this.state.length === 0 && <p>Ce club n'as pas encore de team.</p>}
+						{this.state.length === 0 && <p>Ce club n'as pas encore d'équipes ou créneaux féminins.</p>}
 					</div>
 				</div>
 			</div>

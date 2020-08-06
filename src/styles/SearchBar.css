@@ -8,14 +8,22 @@
 	font-weight: 700;
 }
 
+.Filter .radio input {
+	margin-right: 4%;
+}
+
+.Filter .radio {
+	margin-left: 0;
+	margin-right: 1%;
+}
+
 .Filter .control {
 	margin-bottom: 5%;
 }
 
-.delete-filters {
-	margin-left: 10px;
+#btn-filter-apply, .delete-filters {
+	margin: 1%;
 }
-
 
 .Filter .practice  {
 	display: flex;
@@ -23,8 +31,4 @@
 }
 .Filter .radio {
 	width: 50%;
-}
-
-.Filter .radio input {
-	margin-right: 4%;
 }

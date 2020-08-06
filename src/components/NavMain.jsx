@@ -49,7 +49,12 @@ class NavMain extends React.Component {
 					<div className="navbar-brand">
 						{/* --------------------------- AFFICHAGE LOGO */}
 
-						<Link exact to="/" id="logo" className="navbar-item bold">
+						<Link
+							to="/"
+							onClick={() => window.location.reload(false)}
+							id="logo"
+							className="navbar-item bold"
+						>
 							Spm
 						</Link>
 

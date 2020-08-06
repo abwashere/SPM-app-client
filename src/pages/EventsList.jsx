@@ -39,8 +39,13 @@ class EventsList extends Component {
 						<tbody>
 							{!events && (
 								<tr>
-									<td>Loading events list ...</td>
+									<td>Chargement...</td>
 								</tr>
+							)}
+							{events && (events.length === 0 && (
+								<tr>
+									<td>Aucun évènements prévus.</td>
+								</tr>)
 							)}
 							{events &&
 								events.map((event, i) => (

@@ -68,7 +68,7 @@ class Filter extends React.Component {
 							onSubmit={this.handleSubmit}
 							ref="form"
 						>
-							<div className="practice control">
+							<div className="practice control flex space-btw">
 								<label className="radio" htmlFor="filter-competition">
 									<input
 										type="radio"

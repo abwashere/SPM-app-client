@@ -230,11 +230,11 @@ class FormSignupClub extends Component {
                 </span>
                 <span className="file-label">Choisir un fichier…</span>
               </span>
-              <div>
-                {this.state.file && <img src={this.state.file} alt="preview" />}
-              </div>
             </label>
           </div>
+          {this.state.file && (
+            <img className="preview" src={this.state.file} alt="preview" />
+          )}
 
           {this.state.message.existingMail && (
             <div className="error-message">

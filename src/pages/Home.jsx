@@ -75,7 +75,6 @@ class Home extends Component {
   handleFilterSubmit = () => {
     if (this.state.day || this.state.practice || this.state.sport) {
       const results = this.state.closestGroups;
-
       const filteredResults = results
         .filter((group) => {
           return !group.role;

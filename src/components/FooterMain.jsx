@@ -12,45 +12,49 @@ const FooterMain = () => {
 				</div>
 
 				<div className="flex">
-					<span>created by Aude Richon</span>
-					<a
-						href="https://www.linkedin.com/in/auderichon/"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<span className="icon is-medium">
-							<i className="fab fa-linkedin"></i>
-						</span>
-					</a>
-					<a
-						href="https://github.com/auderichon"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<span className="icon is-medium">
-							<i className="fab fa-github-square"></i>
-						</span>
-					</a>
-					<span> and Audrey Belson </span>
-					<a
-						href="https://linkedin.com/in/audrey-belson"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<span className="icon is-medium">
-							<i className="fab fa-linkedin"></i>
-						</span>
-					</a>
-					<a
-						href="https://github.com/abWasHere"
-						className="icon"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<span className="icon is-medium">
-							<i className="fab fa-github-square"></i>
-						</span>
-					</a>
+					<div className="devs">
+						<a
+							href="https://www.linkedin.com/in/auderichon/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="icon"
+						>
+							<span className="icon is-medium hvr-wobble-vertical">
+								<i className="fab fa-linkedin"></i>
+							</span>
+						</a>
+						<a
+							href="https://github.com/auderichon"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="icon"
+						>
+							<span className="icon is-medium hvr-wobble-vertical">
+								<i className="fab fa-github-square"></i>
+							</span>
+						</a>
+						<span>Aude Richon | Audrey Belson </span>
+						<a
+							href="https://linkedin.com/in/audrey-belson"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="icon"
+						>
+							<span className="icon is-medium hvr-wobble-vertical">
+								<i className="fab fa-linkedin"></i>
+							</span>
+						</a>
+						<a
+							href="https://github.com/abWasHere"
+							className="icon"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<span className="icon is-medium hvr-wobble-vertical">
+								<i className="fab fa-github-square"></i>
+							</span>
+						</a>
+					</div>
 				</div>
 			</div>
 		</footer>

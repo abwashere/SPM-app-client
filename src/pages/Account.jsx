@@ -19,7 +19,7 @@ class Account extends React.Component {
     clubApiHandler
       .getTeamsOfClub(user._id)
       .then((dbResTeams) => {
-        console.log("teams du club:", dbResTeams);
+        // console.log("teams du club:", dbResTeams);
         this.setState({ clubTeams: dbResTeams });
       })
       .catch((err) => console.log(err))
@@ -27,7 +27,7 @@ class Account extends React.Component {
         clubApiHandler
           .getEventsOfClub(user._id)
           .then((dbResEvents) => {
-            console.log("events du club:", dbResEvents);
+            // console.log("events du club:", dbResEvents);
             this.setState({ clubEvents: dbResEvents });
           })
           .catch((err) => console.log(err));
@@ -40,7 +40,6 @@ class Account extends React.Component {
 
   render() {
     const { displayDelete, clubTeams, clubEvents } = this.state;
-    console.log("le state de la page account", this.state);
     let role = this.context.user.role;
 
     return (

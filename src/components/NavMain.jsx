@@ -21,6 +21,7 @@ class NavMain extends React.Component {
 			.then(() => {
 				this.setState({ isLoggedOut: true });
 				this.props.context.removeUser();
+				this.setState({ isLoggedOut: false });
 			})
 			.catch((error) => {
 				console.log(error);

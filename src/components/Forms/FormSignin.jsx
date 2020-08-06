@@ -52,7 +52,7 @@ class FormSignin extends Component {
         <form
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
-          className="SignInForm box-shadowed border-round"
+          className="SignInForm box-shadowed border-round slide-left"
         >
           <div className="field">
             <label className="label">Email</label>

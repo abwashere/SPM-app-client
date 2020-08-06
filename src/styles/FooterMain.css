@@ -16,6 +16,10 @@
 	font-size: 1.1em;
 }
 
+.FooterMain .devs {
+	font-size: 0.8em;
+}
+
 @media screen and (max-width: 650px) {
 	.FooterMain.footer span:not(#logo-footer) {
 		display: none;

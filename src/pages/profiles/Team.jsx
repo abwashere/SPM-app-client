@@ -133,7 +133,7 @@ class Team extends Component {
         <br />
         {this.state.team.registeredPlayers.length > 0 && (
           <div>
-            <h3 className="bold">Joueuses :</h3>
+            <h3 className="bold">Membres de l'équipe :</h3>
             <div className="flex wrap">
               {this.state.team.registeredPlayers.map((player) => (
                 <div key={player._id} className="small-player-profile flex col">

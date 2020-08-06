@@ -37,7 +37,7 @@ class Event extends Component {
 			<div className="ContentMain Profiles">
 				<h1 className="title">{this.state.event.title}</h1>
 				<img
-					className="event-img flip-scale-up-hor"
+					className="event-img box-shadowed"
 					src={this.state.event.image}
 					alt={this.state.event.title}
 				/>

@@ -82,9 +82,9 @@ class Home extends Component {
 				})
 				.filter((team) => {
 					if (this.state.sport) {
-						/* this.props.history.push(
-							`/search?place=`, state{state:}
-						); */
+						this.props.history.push(
+							`/search?place=${this.state.searchValue.place_name}&sport=${this.state.sport}`
+						);
 						return team.sport._id === this.state.sport;
 					} else {
 						return true;

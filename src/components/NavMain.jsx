@@ -51,7 +51,7 @@ class NavMain extends React.Component {
 
 						<Link
 							to="/"
-							onClick={() => window.location.reload(false)}
+							onClick={() => window.location.replace("/")}
 							id="logo"
 							className="navbar-item bold"
 						>

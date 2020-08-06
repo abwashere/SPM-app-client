@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import teamApiHandler from "./../../api/teamApiHandler";
 
@@ -31,11 +32,12 @@ class Team extends Component {
         <h1 className="title">{this.state.team.teamName}</h1>
 
         <img
-          className="logo"
+          className="logo box-shadowed"
           src={this.state.team.image}
           alt={this.state.team.teamName}
         />
         <br />
+        <Link to={`/club/${this.state.team.club._id}`}>
         <p>
           <span className="bold green">Club : </span>
           {this.state.team.club.clubName}
@@ -47,6 +49,7 @@ class Team extends Component {
             backgroundImage: `url(${this.state.team.club.image})`,
           }}
         ></div>
+        </Link>
         <br />
         <p>
           <span className="bold green">Sport : </span>

@@ -88,11 +88,12 @@
 
 .delete-btn {
   text-align: center;
-  padding: 20px;
+  padding-top: 30px;
 }
 
 .delete-btn span {
   font-size: 0.5rem;
+  display: block;
 }
 
 .delete-btn svg {
@@ -102,8 +103,19 @@
 /* ADD PLAYER FORM --------------- */
 #checkbox-player {
   margin-bottom: 30px;
+  width: 400px;
 }
 
 .checkbox-image {
   height: 30px;
+}
+
+#checkbox-player input {
+  min-width: fit-content;
+}
+
+@media screen and (max-width: 400px) {
+  #checkbox-player {
+    width: 200px;
+  }
 }

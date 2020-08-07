@@ -1,85 +1,100 @@
+.Profiles.Teams {
+	align-items: flex-start;
+}
+
 .Profiles h1 {
-  font-size: 2rem;
-  margin: 30px auto 40px;
+	font-size: 2rem;
+	margin: 30px auto 40px;
 }
 
 .Profiles .flex {
-  align-items: flex-start;
+	align-items: flex-start;
 }
 
 .Profiles .logo {
-	height: 26vh;
-  float: right;
+	height: 33vh;
+  /* float: right; */
+}
+.Profiles .club-box {
+	margin: 0% 8% 5% 0;
 }
 
-/* ! Profile logo is in the global.css for reuse ! */
+/* ! Profile main pic is in the global.css for reuse ! */
 
 .Profiles h3 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+	font-size: 1.3rem;
+	margin-bottom: 10px;
 }
 
 .Profiles .event-img {
-  height: 30vh;
-  float: right;
+	height: 30vh;
+	float: right;
 }
 
+.Profiles .description-team {
+	width: 70%;
+	text-align: justify;
+}
 .Profiles .description-club {
-  width: 40%;
-  margin-right: 4%;
+	width: 40%;
+	margin-right: 4%;
+	text-align: justify;
 }
 .Profiles .teams-box {
-  width: 40%;
+	width: 40%;
 }
 
 .Profiles .green {
-  color: var(--color-main);
+	color: var(--color-main);
 }
 
 .Profiles table,
 .Profiles th,
 .Profiles td {
-  border: 1px solid var(--color-main);
+	border: 1px solid var(--color-main);
 }
 
 .Profiles th {
-  height: 40px;
-  text-align: center;
-  vertical-align: middle;
+	height: 40px;
+	text-align: center;
+	vertical-align: middle;
 }
 
 .Profiles td {
-  width: 60px;
+	width: 60px;
 }
 
 .Profiles th,
 .Profiles td {
-  padding: 0 15px 0 20px;
+	padding: 0 15px 0 20px;
 }
 
 @media screen and (max-width: 650px) {
-  .Profiles .description-club {
-    width: 100%;
-    margin: 5% 0;
-  }
-  .Profiles .teams-box {
-    width: 100%;
-    align-items: center;
-  }
+	.Profiles .description-club {
+		width: 100%;
+		margin: 5% 0;
+	}
+	.Profiles .teams-box {
+		width: 100%;
+		align-items: center;
+	}
 
-  .Profiles .event-img {
-    height: 18vh;
-    float: none;
+	.Profiles .event-img {
+		height: 18vh;
+		float: initial;
   }
+  .Profiles .logo {
+	height: 25vh;
+}
 }
 
 .pic-player-team {
-  height: 60px;
+	height: 60px;
 }
 
 .Profiles .flex .small-player-profile {
-  width: 90px;
-  align-items: center;
-  text-align: center;
-  margin: 10px;
+	width: 90px;
+	align-items: center;
+	text-align: center;
+	margin: 10px;
 }

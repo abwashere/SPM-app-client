@@ -29,9 +29,9 @@ class Club extends Component {
 		if (!this.state.club) return null;
 
 		return (
-			<div className="ContentMain Profiles">
+			<div className="ContentMain Profiles slide-left">
 				<h1 className="title">{this.state.club.clubName}</h1>
-				<div className="flex slide-left">
+				<div className="flex ">
 					<div
 						className="profile-logo-container round-box box-shadowed"
 						style={{

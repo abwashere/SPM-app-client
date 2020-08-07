@@ -40,7 +40,7 @@ export class FormEditAccount extends Component {
 				console.log(error);
 			});
 
-		console.log("EDITED user =====", this.context.user);
+		console.log("CONTEXT USER =====", this.context.user);
 	}
 
 	handleUpdate = () => {
@@ -53,8 +53,6 @@ export class FormEditAccount extends Component {
 		const value =
 			event.target.type === "file" ? event.target.files[0] : event.target.value;
 		const key = event.target.name;
-		console.log(event.target.type);
-
 		if (event.target.type === "file") {
 			if (this.context.user.role === "Player") {
 				this.setState({

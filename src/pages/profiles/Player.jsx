@@ -26,11 +26,11 @@ class Player extends Component {
 		if (!this.state.player) return null;
 
 		return (
-			<div className="ContentMain Profiles">
+			<div className="ContentMain Profiles slide-left">
 				<h1 className="title">
 					{this.state.player.firstName} {this.state.player.lastName}
 				</h1>
-				<div className="flex slide-left">
+				<div className="flex ">
 					<div
 						className="profile-logo-container round-box box-shadowed"
 						style={{

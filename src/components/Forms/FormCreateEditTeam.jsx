@@ -19,11 +19,7 @@ class FormCreateEditTeam extends Component {
     // year: "1987",
     // description: "On est là pour gagner !",
     // division: "Régionales 2",
-    registeredPlayers: [
-      {
-        player: "",
-      },
-    ],
+    registeredPlayers: [],
     trainings: [
       {
         day: "",

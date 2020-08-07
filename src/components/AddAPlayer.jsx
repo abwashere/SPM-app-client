@@ -14,9 +14,7 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 class AddAPlayer extends Component {
   state = {};
   handleChange = (event, value) => {
-    const updatedArray = value.map((indValue) => ({
-      player: indValue.id,
-    }));
+    const updatedArray = value.map((indValue) => indValue.id);
     console.log(updatedArray);
     this.props.handleRegisteredPlayers(updatedArray);
   };

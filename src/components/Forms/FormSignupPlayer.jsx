@@ -76,6 +76,7 @@ class FormSignupPlayer extends Component {
       .getSports()
       .then((apiRes) => {
         this.setState({ sportsList: apiRes });
+        console.log("les sports ===", apiRes);
       })
       .catch((error) => {
         console.log(error);
@@ -170,7 +171,6 @@ class FormSignupPlayer extends Component {
                 <i className="fa fa-map-marker"></i>
               </span>
               <span className="icon is-small is-right">
-                {/* <i className="fas fa-check"></i> */}
               </span>
             </div>
           </div>
@@ -179,7 +179,7 @@ class FormSignupPlayer extends Component {
             <label className="label">
               Le sport que tu pratiques ou que tu souhaites pratiquer
             </label>
-            <div className="field-body">
+            <div className="field-body practice">
               <div className="field">
                 <div className="control has-icons-left">
                   <div className="select">
@@ -191,9 +191,9 @@ class FormSignupPlayer extends Component {
                         </option>
                       ))}
                     </select>
-                  </div>
-                  <div className="icon is-small is-left">
+                  <span className="icon is-small is-left">
                     <i className="fas fa-football-ball"></i>
+                  </span>
                   </div>
                 </div>
               </div>

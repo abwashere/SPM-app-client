@@ -211,6 +211,7 @@ export class FormEditAccount extends Component {
 						<div className="field">
 							{user.role === "Club" && <label className="label">Adresse</label>}
 							{user.role === "Player" && <label className="label">Ville</label>}
+							<p>{user.location.formattedAddress} </p>
 							<div className="control has-icons-left">
 								{user.role === "Club" && (
 									<LocationAutoComplete
@@ -357,12 +358,7 @@ export class FormEditAccount extends Component {
 								<div className="field">
 									<label className="label">Ton sport</label>
 									<p className="green">
-										{
-											this.state.sportsList.find(
-												(sport) => sport._id === user.practice[0].sport
-											)?.sportName
-										}{" "}
-										niveau {user.practice[0].level}
+										 {user.practice[0].sport.sportName} niveau {user.practice[0].level}
 									</p>
 
 									{/* MAPPING DE TOUS LES SPORTS DE PLAYER */}
@@ -378,7 +374,7 @@ export class FormEditAccount extends Component {
 																name="sport"
 																onChange={this.handleChange}
 															>
-																<option>Choisis un autre sport</option>
+																<option>Change de sport</option>
 																{this.state.sportsList.map((sport) => (
 																	<option key={sport._id} value={sport._id}>
 																		{sport.sportName}
@@ -396,7 +392,7 @@ export class FormEditAccount extends Component {
 											<div className="control">
 												<div className="select">
 													<select name="level">
-														<option>Ton niveau</option>
+														<option>Niveau</option>
 														<option value="débutante">débutante</option>
 														<option value="intermédiaire">intermédiaire</option>
 														<option value="expérimentée">expérimentée</option>

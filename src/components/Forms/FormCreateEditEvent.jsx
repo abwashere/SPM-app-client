@@ -128,6 +128,20 @@ class FormCreateEditEvent extends Component {
                 </span>
               </div>
             )}
+            {!this.state.date && (
+              <div className="control has-icons-left">
+                <input
+                  className="input"
+                  type="date"
+                  data-start-date={today}
+                  name="date"
+                  required
+                />
+                <span className="icon is-small is-left">
+                  <i className="fa fa-calendar-alt"></i>
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="field">

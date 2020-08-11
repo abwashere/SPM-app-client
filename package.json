@@ -13,6 +13,7 @@
     "hover.css": "^2.3.2",
     "mapbox-gl": "^1.11.1",
     "moment": "^2.27.0",
+    "qs": "^6.9.4",
     "react": "^16.13.1",
     "react-bulma-components": "^3.4.0",
     "react-dom": "^16.13.1",

@@ -2,7 +2,7 @@ import React from "react";
 import FormSignupClub from "../components/Forms/FormSignupClub";
 import FormSignupPlayer from "../components/Forms/FormSignupPlayer";
 
-import "./../styles/FormSignUp.css";
+import "../styles/FormSignUp.css";
 
 class Signup extends React.Component {
 	state = {};

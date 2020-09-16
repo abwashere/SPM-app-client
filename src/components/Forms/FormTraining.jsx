@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./../../styles/FormSignUp.css";
+import "../../styles/FormSignUp.css";
 import "bulma/css/bulma.css";
 
 class FormTraining extends Component {

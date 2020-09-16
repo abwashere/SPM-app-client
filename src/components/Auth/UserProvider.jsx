@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import authApiHandler from "./../../api/authApiHandler";
+import authApiHandler from "../../api/authApiHandler";
 import UserContext from "./UserContext";
 
 class UserProvider extends Component {

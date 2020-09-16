@@ -1,8 +1,8 @@
 import React from "react";
-import FormCreateEditTeam from "./../../components/Forms/FormCreateEditTeam";
+import FormCreateEditTeam from "../../components/Forms/FormCreateEditTeam";
 import teamApiHandler from "../../api/teamApiHandler";
 
-import "./../../styles/Forms.css";
+import "../../styles/Forms.css";
 
 const TeamCreateEdit = (props) => {
   function handleClick(event) {

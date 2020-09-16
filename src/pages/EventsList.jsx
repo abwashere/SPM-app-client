@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-import eventApiHandler from "./../api/eventApiHandler";
+import eventApiHandler from "../api/eventApiHandler";
 
-import "./../styles/EventsList.css";
+import "../styles/EventsList.css";
 
 class EventsList extends Component {
 	state = {

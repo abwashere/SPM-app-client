@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import eventApiHandler from "./../../api/eventApiHandler";
+import eventApiHandler from "../../api/eventApiHandler";
 import moment from "moment";
 
-import "./../../styles/Profiles.css";
-import "./../../styles/global.css";
+import "../../styles/Profiles.css";
+import "../../styles/global.css";
 
 require("moment/locale/fr.js");
 

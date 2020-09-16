@@ -2,7 +2,7 @@ import React from "react";
 import LocationAutoComplete from "./LocationAutoComplete";
 
 import "bulma/css/bulma.css";
-import "./../styles/SearchBar.css";
+import "../styles/SearchBar.css";
 
 const SearchBar = ({ callback }) => {
 	return (

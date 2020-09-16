@@ -34,6 +34,10 @@ class NavMain extends React.Component {
       : this.setState({ onDisplay: true });
   };
 
+  hideSignIn = () => {
+    this.setState({ onDisplay: false });
+  };
+
   displayMenu = () => {
     this.state.isActive
       ? this.setState({ isActive: false })
@@ -135,7 +139,7 @@ class NavMain extends React.Component {
                   </p>
                   <p>
                     <Link
-                      onClick={this.displaySignIn}
+                      onClick={this.hideSignIn}
                       to="/signup"
                       id="signup-link"
                       className="link button is-success"

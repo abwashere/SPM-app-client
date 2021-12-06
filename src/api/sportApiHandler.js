@@ -13,7 +13,7 @@ function errorHandler(error) {
   throw error;
 }
 
-export default {
+const api = {
   service,
 
   getSports() {
@@ -23,3 +23,5 @@ export default {
       .catch(errorHandler);
   },
 };
+
+export default api

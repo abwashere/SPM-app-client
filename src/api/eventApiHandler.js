@@ -13,7 +13,7 @@ function errorHandler(error) {
   throw error;
 }
 
-export default {
+const api = {
   service,
 
   getEvents(query) {
@@ -58,3 +58,5 @@ export default {
       .catch(errorHandler);
   },
 };
+
+export default api

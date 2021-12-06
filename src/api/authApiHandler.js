@@ -12,7 +12,7 @@ function errorHandler(error) {
   throw error;
 }
 
-export default {
+const api = {
   service,
 
   signupPlayer(playerInfo) {
@@ -50,3 +50,5 @@ export default {
       .catch(errorHandler);
   },
 };
+
+export default api

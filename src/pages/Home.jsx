@@ -249,7 +249,7 @@ class Home extends Component {
                             <i className="fas fa-map-marker-alt"></i>
                           </Marker>
                         );
-                      }
+                      } else { return null }
                     })}
                     {this.state.showCard && (
                       <Popup

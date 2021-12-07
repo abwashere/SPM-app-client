@@ -9,8 +9,8 @@ It was designed for women who wants to join a sport team and for clubs who want 
 
 ## Setup
 
-This app has 2 repositories : [Front](https://github.com/abwashere/SPM-app-server),
-[Api](https://github.com/abwashere/SPM-app-client).
+This app has 2 repositories : [Api](https://github.com/abwashere/SPM-app-server),
+[Front](https://github.com/abwashere/SPM-app-client).
 
 
 Use npm to install packages.

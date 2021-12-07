@@ -15,7 +15,7 @@ This app has 2 repositories : [Api](https://github.com/abwashere/SPM-app-server)
 
 Use npm to install packages.
 ```bash
-SPM-app-client
+cd SPM-app-client
 npm install
 ```
 
